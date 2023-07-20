@@ -1,4 +1,4 @@
-import {esaleHttp} from '../../../../_cloner/helpers/axiosConfig'
+import {dashboardHttp} from '../../../../_cloner/helpers/axiosConfig'
 import {
   SaleByProductPriorityReportRequest,
   SaleByProductReportRequest,
@@ -6,29 +6,29 @@ import {
 } from './_models'
 
 const getSaleTotalTypes = async () => {
-  const {data} = await esaleHttp.get('LotteryWinnerReport/GetSaleTotalTypes')
+  const {data} = await dashboardHttp.get('LotteryWinnerReport/GetSaleTotalTypes')
   return data
 }
 const getSaleTotalTypeDetails = async (id: number) => {
-  const {data} = await esaleHttp.get(
+  const {data} = await dashboardHttp.get(
     `LotteryWinnerReport/GetSaleTotalTypeDetails?saleTotalTypeId=${id}`
   )
   return data
 }
 
 const getDeliverDates = async () => {
-  const {data} = await esaleHttp.get('LotteryWinnerReport/GetDeliverDates')
+  const {data} = await dashboardHttp.get('LotteryWinnerReport/GetDeliverDates')
   return data
 }
 
 const getWinnerTypes = async () => {
-  const {data} = await esaleHttp.get('LotteryWinnerReport/GetWinnerTypes')
+  const {data} = await dashboardHttp.get('LotteryWinnerReport/GetWinnerTypes')
   return data
 }
 
 // Reports
 const getSaleMountReport = async () => {
-  const {data} = await esaleHttp.get('LotteryWinnerReport/GetSaleStatisticsReport', {
+  const {data} = await dashboardHttp.get('LotteryWinnerReport/GetSaleStatisticsReport', {
     headers: {
       saletypeId: 2,
       saleTotalTypeDetailId: 0,
@@ -38,7 +38,7 @@ const getSaleMountReport = async () => {
   return data
 }
 const getSaleReport = async (formData: SaleReportRequest) => {
-  const {data} = await esaleHttp.get('LotteryWinnerReport/GetSaleStatisticsReport', {
+  const {data} = await dashboardHttp.get('LotteryWinnerReport/GetSaleStatisticsReport', {
     headers: {
       saletypeId: formData.saletypeId,
       saleTotalTypeDetailId: formData.saleTotalTypeDetailId,
@@ -49,7 +49,7 @@ const getSaleReport = async (formData: SaleReportRequest) => {
 }
 
 const getSaleByProductReport = async (formData: SaleByProductReportRequest) => {
-  const {data} = await esaleHttp.get('LotteryWinnerReport/GetSaleStatisticsByCarTypeReport', {
+  const {data} = await dashboardHttp.get('LotteryWinnerReport/GetSaleStatisticsByCarTypeReport', {
     headers: {
       saletypeId: formData.saletypeId,
       saleTotalTypeDetailId: formData.saleTotalTypeDetailId,
@@ -60,7 +60,7 @@ const getSaleByProductReport = async (formData: SaleByProductReportRequest) => {
   return data
 }
 const getSaleByProductPriorityReport = async (formData: SaleByProductPriorityReportRequest) => {
-  const {data} = await esaleHttp.get(
+  const {data} = await dashboardHttp.get(
     'LotteryWinnerReport/GetSaleStatisticsByPriorityProductReport',
     {
       headers: {
@@ -75,7 +75,7 @@ const getSaleByProductPriorityReport = async (formData: SaleByProductPriorityRep
   return data
 }
 const getSaleByProductPriorityAndSaleDetailReport = async (formData: SaleReportRequest) => {
-  const {data} = await esaleHttp.get('LotteryWinnerReport/GetSaleStatByDeliverDate', {
+  const {data} = await dashboardHttp.get('LotteryWinnerReport/GetSaleStatByDeliverDate', {
     headers: {
       saletypeId: formData.saletypeId,
       saleTotalTypeDetailId: formData.saleTotalTypeDetailId,
@@ -87,7 +87,7 @@ const getSaleByProductPriorityAndSaleDetailReport = async (formData: SaleReportR
 
 // Tables Details
 const getSaleDetailsReport = async (formData: SaleReportRequest) => {
-  const {data} = await esaleHttp.get('LotteryWinnerReport/GetSaleReportByCar', {
+  const {data} = await dashboardHttp.get('LotteryWinnerReport/GetSaleReportByCar', {
     headers: {
       saletypeId: formData.saletypeId,
       saleTotalTypeDetailId: formData.saleTotalTypeDetailId,
@@ -97,7 +97,7 @@ const getSaleDetailsReport = async (formData: SaleReportRequest) => {
   return data
 }
 const getSaleTotalDetailReport = async (isJavani: number = -1) => {
-  const {data} = await esaleHttp.get('LotteryWinnerReport/GetSaleReportBySaleTotalType', {
+  const {data} = await dashboardHttp.get('LotteryWinnerReport/GetSaleReportBySaleTotalType', {
     headers: {
       isJavani,
     },
@@ -107,7 +107,7 @@ const getSaleTotalDetailReport = async (isJavani: number = -1) => {
 
 // Download Excel
 const downloadTotalTypeExcel = async (formData: SaleReportRequest) => {
-  const {data} = await esaleHttp.get('LotteryWinnerFileReport/GetSaleExcelReportByCar', {
+  const {data} = await dashboardHttp.get('LotteryWinnerFileReport/GetSaleExcelReportByCar', {
     responseType: 'arraybuffer',
     headers: {
       'Content-Type': 'blob',
@@ -119,7 +119,7 @@ const downloadTotalTypeExcel = async (formData: SaleReportRequest) => {
   return data
 }
 const downloadTotalTypeDetailExcel = async (isJavani: number = -1) => {
-  const {data} = await esaleHttp.get('LotteryWinnerFileReport/GetSaleExcelReportBySaleTotalType', {
+  const {data} = await dashboardHttp.get('LotteryWinnerFileReport/GetSaleExcelReportBySaleTotalType', {
     responseType: 'arraybuffer',
     headers: {
       isJavani,

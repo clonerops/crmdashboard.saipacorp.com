@@ -91,10 +91,45 @@ const VerticalCharts: FC<IProps> = ({
             },
         },
         tooltip: {
-            enabled: false
+            enabled: false,
         },
-
     };
+
+    // const darkTheme = {
+    //     chart: {
+    //         backgroundColor: "#333333",
+    //         style: {
+    //             color: "#ffffff",
+    //         },
+    //     },
+    //     title: {
+    //         style: {
+    //             color: "#ffffff",
+    //         },
+    //     },
+    //     xAxis: {
+    //         labels: {
+    //             style: {
+    //                 color: "#ffffff",
+    //             },
+    //         },
+    //     },
+    //     yAxis: {
+    //         labels: {
+    //             style: {
+    //                 color: "#ffffff",
+    //             },
+    //         },
+    //     },
+    //     tooltip: {
+    //         backgroundColor: "#000000",
+    //         style: {
+    //             color: "#ffffff",
+    //         },
+    //     },
+    //     // Add any other desired styling options for the dark mode theme
+    // };
+    // Highcharts.setOptions(darkTheme);
 
     return (
         <>

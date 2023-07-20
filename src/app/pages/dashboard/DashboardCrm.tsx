@@ -10,6 +10,8 @@ import {
     getUserRoles,
 } from "../../../_cloner/helpers/reusableFunction";
 import AccessDenied from "../../../_cloner/helpers/components/AccessDenied";
+import BilllandingByStatus from "../../modules/transfer/components/BilllandingByStatus";
+import BilllandingCarsByStatus from "../../modules/transfer/components/BilllandingCarsByStatus";
 
 const DashboardCrm: FC = () => {
     return (
@@ -22,20 +24,13 @@ const DashboardCrm: FC = () => {
                 "TransLotteryWinnerDashboardStatisticCRM"
             ) ? (
                 <>
-                    <div className="md:grid md:grid-cols-3 md:gap-4">
-                        <div className="mt-2 mb-2 shadow-lg">
-                            <SaleTotalTypeReport />
-                        </div>
-                        <div className="mt-2 mb-2 shadow-lg md:col-span-2">
-                            <SaleTotalProductAndDateReport />
-                        </div>
-                    </div>
                     <div className="md:grid md:grid-cols-1 md:gap-4">
+                        {/* <div className="mt-2 mb-2 shadow-lg">
+                            <BilllandingByStatus />
+                        </div> */}
+                        {/* <div className="mt-2 mb-2 shadow-lg md:col-span-2"> */}
                         <div className="mt-2 mb-2 shadow-lg">
-                            <SaleByProductReport />
-                        </div>
-                        <div className="mt-2 mb-2 shadow-lg">
-                            <SaleByProductPriorityReport />
+                            <BilllandingCarsByStatus />
                         </div>
                     </div>
                 </>
