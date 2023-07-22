@@ -13,6 +13,7 @@ import {
 } from "../helpers/dropdownTransfer";
 // import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
+import { PieCharts } from "../../../../_cloner/partials/charts/PieCharts";
 // import moment from "moment-jalaali";
 
 const BilllandingCarsByStatus = () => {

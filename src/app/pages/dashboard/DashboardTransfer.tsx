@@ -25,13 +25,12 @@ const DashboardTransfer: FC = () => {
             ) ? (
                 <>
                     <div className="md:grid md:grid-cols-1 md:gap-4">
-                        {/* <div className="mt-2 mb-2 shadow-lg">
-                            <BilllandingByStatus />
-                        </div> */}
-                        {/* <div className="mt-2 mb-2 shadow-lg md:col-span-2"> */}
                         <div className="mt-2 mb-2 shadow-lg">
                             <BilllandingCarsByStatus />
                         </div>
+                        {/* <div className="mt-2 mb-2 shadow-lg">
+                            <BilllandingByStatus />
+                        </div> */}
                     </div>
                 </>
             ) : (
