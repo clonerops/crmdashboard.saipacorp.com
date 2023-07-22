@@ -46,7 +46,7 @@ const BilllandingCarsByStatus2 = () => {
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
             // fromDate: "",
             // toDate: "",
-            contractor_no: 0,
+            contractor_id: 0,
             dealer_no: 0,
         };
         mutate(formData);
@@ -59,19 +59,19 @@ const BilllandingCarsByStatus2 = () => {
             toDate: toDate ? calculateToDate : calculateNowDate,
             // fromDate: "",
             // toDate: "",
-            contractor_no: selectedOption?.value,
+            contractor_id: selectedOption?.value,
             dealer_no: selectedDealers?.value,
         };
         mutate(formData);
     };
     const onChangeDealers = (selectedOption: any) => {
-        setSelectedContractors(selectedOption);
+        setSelectedDealers(selectedOption);
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: toDate ? calculateToDate : calculateNowDate,
             // fromDate: "",
             // toDate: "",
-            contractor_no: selectedContractors?.value,
+            contractor_id: selectedContractors?.value,
             dealer_no: selectedOption?.value,
         };
         mutate(formData);
@@ -82,7 +82,7 @@ const BilllandingCarsByStatus2 = () => {
         const formData = {
             fromDate: moment(d.value).format("jYYYY/jMM/jDD"),
             toDate: toDate ? calculateToDate : calculateNowDate,
-            contractor_no: selectedContractors?.value,
+            contractor_id: selectedContractors?.value,
             dealer_no: selectedDealers?.value,
         };
         mutate(formData);
@@ -92,7 +92,7 @@ const BilllandingCarsByStatus2 = () => {
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: moment(d.value).format("jYYYY/jMM/jDD"),
-            contractor_no: selectedContractors?.value,
+            contractor_id: selectedContractors?.value,
             dealer_no: selectedDealers?.value,
         };
         mutate(formData);

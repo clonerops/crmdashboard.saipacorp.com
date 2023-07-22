@@ -31,7 +31,7 @@ const BilllandingByStatus = () => {
         const formData = {
             fromDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
-            contractor_no: 0,
+            contractor_id: 0,
         };
         mutate(formData);
     }, []);
@@ -41,7 +41,7 @@ const BilllandingByStatus = () => {
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: toDate ? calculateToDate : calculateNowDate,
-            contractor_no: selectedOption?.value,
+            contractor_id: selectedOption?.value,
         };
         mutate(formData);
     };
@@ -51,7 +51,7 @@ const BilllandingByStatus = () => {
         const formData = {
             fromDate: moment(d.value).format("jYYYY/jMM/jDD"),
             toDate: toDate ? calculateToDate : calculateNowDate,
-            contractor_no: selectedContractors?.value,
+            contractor_id: selectedContractors?.value,
         };
         mutate(formData);
     };
@@ -60,7 +60,7 @@ const BilllandingByStatus = () => {
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: moment(d.value).format("jYYYY/jMM/jDD"),
-            contractor_no: selectedContractors?.value,
+            contractor_id: selectedContractors?.value,
         };
         mutate(formData);
     };

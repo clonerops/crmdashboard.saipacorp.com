@@ -14,7 +14,7 @@ const getBLandsByStatus = async (formData: BLandsByStatus ) => {
         headers: {
             fromDate: formData.fromDate,
             toDate: formData.toDate,
-            contractor_no: formData.contractor_no     
+            contractor_id: formData.contractor_id     
         }
     })
     return data
@@ -25,7 +25,7 @@ const getBLandsCarsByStatus = async (formData: BLandsCarsByStatus) => {
             fromDate: formData.fromDate,
             toDate: formData.toDate,
             dealer_no: formData.dealer_no,
-            contractor_no: formData.contractor_no     
+            contractor_id: formData.contractor_id     
         }
     })
     return data
@@ -36,7 +36,7 @@ const getBLandsCarsByStatus2 = async (formData: BLandsCarsByStatus) => {
             fromDate: formData.fromDate,
             toDate: formData.toDate,
             dealer_no: formData.dealer_no,
-            contractor_no: formData.contractor_no     
+            contractor_id: formData.contractor_id     
         }
     })
     return data
