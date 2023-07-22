@@ -30,11 +30,23 @@ const getBLandsCarsByStatus = async (formData: BLandsCarsByStatus) => {
     })
     return data
 }
+const getBLandsCarsByStatus2 = async (formData: BLandsCarsByStatus) => {
+    const { data } = await dashboardHttp.get('/BillLandingReport/GetBLandCarsStatisticByStatus2', {
+        headers: {
+            fromDate: formData.fromDate,
+            toDate: formData.toDate,
+            dealer_no: formData.dealer_no,
+            contractor_no: formData.contractor_no     
+        }
+    })
+    return data
+}
 
 export {
     getContractors,
     getDealers,
     getBLandsByStatus,
-    getBLandsCarsByStatus
+    getBLandsCarsByStatus,
+    getBLandsCarsByStatus2
 
 }

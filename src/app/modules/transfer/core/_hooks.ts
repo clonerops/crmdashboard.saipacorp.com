@@ -20,10 +20,16 @@ const useGetBLandsCarsByStatus = () => {
         return api.getBLandsCarsByStatus(formData);
     });
 };
+const useGetBLandsCarsByStatus2 = () => {
+    return useMutation((formData: BLandsCarsByStatus) => {
+        return api.getBLandsCarsByStatus2(formData);
+    });
+};
 
 export {
     useGetContractors,
     useGetDealers,
     useGetBLandsByStatus,
     useGetBLandsCarsByStatus,
+    useGetBLandsCarsByStatus2
 };
