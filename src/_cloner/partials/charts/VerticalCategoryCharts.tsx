@@ -139,13 +139,14 @@ const VerticalCategoryCharts: FC<IProps> = ({
         },
         series: [
             {
-                name: "شرکت های گروه",
+                name: "شکایت/درخواست",
                 data: data,
                 colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
             },
             {
                 name: "تعداد مختومگی",
                 data: data1,
+                // data: data1,
                 colors: ["#546E7A"],
             },
         ],
@@ -177,10 +178,16 @@ const VerticalCategoryCharts: FC<IProps> = ({
             },
         },
         tooltip: {
+            enabeld: true,
             formatter: function (
                 this: Highcharts.TooltipFormatterContextObject
             ) {
-                return `<b> ${this.x} <br /> تعداد مختومگی: ${this.y} </b>`;
+                console.log(this)
+                if (this.series.name === "شکایت/درخواست") {
+                    return `<b> ${this.x} <br /> شکایت/درخواست: ${this.y} </b>`;
+                } else if (this.series.name === "تعداد مختومگی") {
+                    return `<b> ${this.x} <br /> تعداد مختومگی: ${this.y} </b>`;
+                }
             },
         },
     };

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useGetComplaintOrRequestReport } from "../_core/_hooks";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
-import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import { VerticalCategoryCharts } from "../../../../_cloner/partials/charts/VerticalCategoryCharts";
 
 const ComplaintOrRequest = () => {
@@ -47,7 +46,7 @@ const ComplaintOrRequest = () => {
         <>
             <Card6 image="" title="گزارش آماری شکایت یا درخواست">
                 <div className="flex flex-col">
-                    <div className="flex flex-row gap-4">
+                    <div className="flex flex-row gap-4 w-50">
                         <div className="py-1 w-full">
                             <CustomDatepicker
                                 // title="از تاریخ"
