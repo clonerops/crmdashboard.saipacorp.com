@@ -4,6 +4,7 @@ import { useGetComplaintOrRequestReport } from "../_core/_hooks";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
+import { VerticalCategoryCharts } from "../../../../_cloner/partials/charts/VerticalCategoryCharts";
 
 const ComplaintOrRequest = () => {
     const [fromDate, setFromDate] = useState("");
@@ -65,8 +66,9 @@ const ComplaintOrRequest = () => {
                         </div>
                     </div>
                 </div>
-                <VerticalCharts
-                    data={data?.map((item: any) => item.count)}
+                <VerticalCategoryCharts
+                    data={data?.map((item: any) => item.countAll)}
+                    data1={data?.map((item: any) => item.finishedCount)}
                     categories={data?.map((item: any) => item.desc)}
                     isLoading={isLoading}
                     isError={isError}
