@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { FC } from "react";
+import { FC, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HC_exporting from "highcharts/modules/exporting";
@@ -53,6 +53,9 @@ const StackedCharts: FC<IProps> = ({
                     fontSize: "16px",
                     fontFamily: "Yekan_reqular",
                 },
+                // formatter: function(this: any) {
+                //     return this.total
+                //   },
             },
             labels: {
                 style: {
@@ -109,11 +112,6 @@ const StackedCharts: FC<IProps> = ({
         },
         tooltip: {
             enabled: false
-            // useHTML: true,
-            // style: {
-            //     color: "#323130",
-            //     direction: "rtl",
-            // },
         },
     };
 

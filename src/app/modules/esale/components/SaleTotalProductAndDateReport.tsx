@@ -25,6 +25,7 @@ const SaleTotalProductAndDateReport = () => {
         label: "همه",
     });
 
+    const [calculateTotalCount, setCalculateTotalCount] = useState(0);
     const { data: saleTotalTypes } = useGetSaleTotalTypes();
     const { mutate: totalDetails, data: saleTotalTypeDetails } =
         useGetSaleTotalTypeDetails();
@@ -36,6 +37,16 @@ const SaleTotalProductAndDateReport = () => {
         isError,
     } = useGetSaleByProductPriorityAndSaleDetailReport();
 
+    const calculateSum = (data: any) => {
+        const calculateTotal = data?.reduce(
+            (accumulator: any, currentValue: any) => {
+                return accumulator + currentValue.cnT_ALL;
+            },
+            0
+        );
+        setCalculateTotalCount(calculateTotal);
+    };
+
     useEffect(() => {
         const formData = {
             saletypeId: 2,
@@ -43,7 +54,14 @@ const SaleTotalProductAndDateReport = () => {
             isJavani: -1,
         };
         totalDetails(totalTypesSelect?.value);
-        saleReport(formData);
+        saleReport(formData, {
+            onSuccess: (data) => {
+                calculateSum(data);
+            },
+            onError: () => {
+                setCalculateTotalCount(0);
+            },
+        });
     }, []);
 
     const onChangeTotalTypes = (selectOption: any) => {
@@ -54,7 +72,14 @@ const SaleTotalProductAndDateReport = () => {
             saleTotalTypeDetailId: totalTypeDetailSelect?.value,
             isJavani: radioSelect,
         };
-        saleReport(formData);
+        saleReport(formData, {
+            onSuccess: (data) => {
+                calculateSum(data);
+            },
+            onError: () => {
+                setCalculateTotalCount(0);
+            },
+        });
     };
     const onChangeTotalTypeDetail = (selectOption: any) => {
         setTotalTypeDetailSelect(selectOption);
@@ -63,7 +88,14 @@ const SaleTotalProductAndDateReport = () => {
             saleTotalTypeDetailId: selectOption?.value,
             isJavani: radioSelect,
         };
-        saleReport(formData);
+        saleReport(formData, {
+            onSuccess: (data) => {
+                calculateSum(data);
+            },
+            onError: () => {
+                setCalculateTotalCount(0);
+            },
+        });
     };
 
     const onChangeRadioSelect = (event: any) => {
@@ -74,7 +106,14 @@ const SaleTotalProductAndDateReport = () => {
             isJavani: event.target.value,
         };
 
-        saleReport(formData);
+        saleReport(formData, {
+            onSuccess: (data) => {
+                calculateSum(data);
+            },
+            onError: () => {
+                setCalculateTotalCount(0);
+            },
+        });
     };
 
     return (
@@ -106,6 +145,12 @@ const SaleTotalProductAndDateReport = () => {
                             key="saleTotalTypeDetail"
                         />
                     </div>
+                    <label className="flex items-center justify-center">
+                        تعداد کل:{" "}
+                        <span className="font-yekan_extrabold text-xl text-indigo-700 px-4">
+                            {calculateTotalCount}
+                        </span>
+                    </label>
                 </div>
                 <div>
                     <StackedCharts

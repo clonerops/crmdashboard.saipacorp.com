@@ -4,9 +4,10 @@ import { useGetComplaintOrRequestReport } from "../_core/_hooks";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import { VerticalCategoryCharts } from "../../../../_cloner/partials/charts/VerticalCategoryCharts";
+import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
 
 const ComplaintOrRequest = () => {
-    const [fromDate, setFromDate] = useState("");
+    const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
     const [toDate, setToDate] = useState("");
 
     let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
@@ -18,7 +19,7 @@ const ComplaintOrRequest = () => {
 
     useEffect(() => {
         const formData = {
-            fromDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
+            fromDate: moment(setDateOneMonth().getTime()).format("jYYYY/jMM/jDD"),
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
         };
         mutate(formData);
@@ -52,7 +53,7 @@ const ComplaintOrRequest = () => {
                                 // title="از تاریخ"
                                 placeholder="از تاریخ"
                                 onChange={(d: any) => fromDateChange(d)}
-                                defaultValue={new Date().getTime()}
+                                defaultValue={setDateOneMonth().getTime()}
                             />
                         </div>
                         <div className="py-1 w-full">
