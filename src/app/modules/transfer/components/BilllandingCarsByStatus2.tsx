@@ -114,7 +114,15 @@ const BilllandingCarsByStatus2 = () => {
                     <div className="py-1 w-full">
                         <label>نمایندگی</label>
                         <ProfessionalSelect
-                            options={dropdownDealers(dealers)}
+                            options={
+                                dealers === undefined
+                                    ? [{ value: 0, label: "همه" }]
+                                    : dropdownDealers([
+                                          { dlR_NO: 0, dlR_NAME: "همه" },
+                                          ...dealers,
+                                      ])
+                            }
+                            // options={dropdownDealers(dealers)}
                             onChange={onChangeDealers}
                             value={selectedDealers}
                             placeholder="نمایندگی"

@@ -116,6 +116,8 @@ const SaleTotalProductAndDateReport = () => {
         });
     };
 
+    console.log(saleTotalTypeDetails)
+
     return (
         <Card6 image="" title="گزارش آماری فروش اولویت تحویل و منتخبین">
             <div className="flex flex-col">
@@ -128,9 +130,7 @@ const SaleTotalProductAndDateReport = () => {
                         placeholder=""
                     />
                     <ProfessionalSelect
-                        options={dropdownSaleTotalTypeDetails(
-                            saleTotalTypeDetails
-                        )}
+                        options={saleTotalTypeDetails === undefined ? [{ value: 0, label: "همه" }] : dropdownSaleTotalTypeDetails([{ id: 0, detailDesc: "همه" }, ...saleTotalTypeDetails])}
                         onChange={onChangeTotalTypeDetail}
                         value={totalTypeDetailSelect}
                         defaultValue={{ value: 0, label: "همه" }}

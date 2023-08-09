@@ -43,7 +43,7 @@ const SaleTotalTypeReport = () => {
         const filteredData = data?.filter(
             (item: any) => item.applicantTypeDesc != "واريز كنندگان"
         );
-        console.log(filteredData)
+        console.log(filteredData);
         const calculateTotal = filteredData?.reduce(
             (accumulator: any, currentValue: any) => {
                 return accumulator + currentValue.count;
@@ -65,8 +65,8 @@ const SaleTotalTypeReport = () => {
                 calculateSum(data);
             },
             onError: () => {
-                setCalculateTotalCount(0)
-            }
+                setCalculateTotalCount(0);
+            },
         });
     }, []);
 
@@ -78,13 +78,13 @@ const SaleTotalTypeReport = () => {
             saleTotalTypeDetailId: 0,
             isJavani: radioSelect,
         };
-        saleReport(formData,{
+        saleReport(formData, {
             onSuccess: (data) => {
                 calculateSum(data);
             },
             onError: () => {
-                setCalculateTotalCount(0)
-            }
+                setCalculateTotalCount(0);
+            },
         });
     };
     const onChangeTotalTypeDetail = (selectOption: any) => {
@@ -99,8 +99,8 @@ const SaleTotalTypeReport = () => {
                 calculateSum(data);
             },
             onError: () => {
-                setCalculateTotalCount(0)
-            }
+                setCalculateTotalCount(0);
+            },
         });
     };
 
@@ -111,13 +111,13 @@ const SaleTotalTypeReport = () => {
             saleTotalTypeDetailId: 0,
             isJavani: event.target.value,
         };
-        saleReport(formData,{
+        saleReport(formData, {
             onSuccess: (data) => {
                 calculateSum(data);
             },
             onError: () => {
-                setCalculateTotalCount(0)
-            }
+                setCalculateTotalCount(0);
+            },
         });
     };
 
@@ -141,9 +141,17 @@ const SaleTotalTypeReport = () => {
                         </div>
                         <div className="py-1">
                             <ProfessionalSelect
-                                options={dropdownSaleTotalTypeDetails(
-                                    saleTotalTypeDetails
-                                )}
+                                options={
+                                    saleTotalTypeDetails === undefined
+                                        ? [{ value: 0, label: "همه" }]
+                                        : dropdownSaleTotalTypeDetails([
+                                              { id: 0, detailDesc: "همه" },
+                                              ...saleTotalTypeDetails,
+                                          ])
+                                }
+                                // options={dropdownSaleTotalTypeDetails(
+                                //     saleTotalTypeDetails
+                                // )}
                                 onChange={onChangeTotalTypeDetail}
                                 value={totalTypeDetailSelect}
                                 defaultValue={{ value: 0, label: "همه" }}
@@ -162,7 +170,10 @@ const SaleTotalTypeReport = () => {
                         <div className="flex justify-between items-center gap-x-8 py-2">
                             <div className="flex justify-center items-center">
                                 <label className="flex items-center justify-center">
-                                    تعداد کل: <span className="font-yekan_extrabold text-xl text-indigo-700 px-4">{calculateTotalCount}</span>
+                                    تعداد کل:{" "}
+                                    <span className="font-yekan_extrabold text-xl text-indigo-700 px-4">
+                                        {calculateTotalCount}
+                                    </span>
                                 </label>
                             </div>
                             <div className="flex justify-center items-center">

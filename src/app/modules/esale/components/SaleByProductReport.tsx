@@ -158,9 +158,17 @@ const SaleByProductReport = () => {
                             placeholder=""
                         />
                         <ProfessionalSelect
-                            options={dropdownSaleTotalTypeDetails(
-                                saleTotalTypeDetails
-                            )}
+                            options={
+                                saleTotalTypeDetails === undefined
+                                    ? [{ value: 0, label: "همه" }]
+                                    : dropdownSaleTotalTypeDetails([
+                                          { id: 0, detailDesc: "همه" },
+                                          ...saleTotalTypeDetails,
+                                      ])
+                            }
+                            // options={dropdownSaleTotalTypeDetails(
+                            //     saleTotalTypeDetails
+                            // )}
                             onChange={onChangeTotalTypeDetail}
                             value={totalTypeDetailSelect}
                             defaultValue={{ value: 0, label: "همه" }}
@@ -189,9 +197,17 @@ const SaleByProductReport = () => {
                         </div>
                         <div>
                             <ProfessionalSelect
-                                options={dropdownSaleTotalWinnerType(
-                                    saleWinnerType
-                                )}
+                                options={
+                                    saleWinnerType === undefined
+                                        ? [{ value: 0, label: "همه" }]
+                                        : dropdownSaleTotalWinnerType([
+                                              { id: 0, totalTypeDesc: "همه" },
+                                              ...saleWinnerType,
+                                          ])
+                                }
+                                // options={dropdownSaleTotalWinnerType(
+                                //     saleWinnerType
+                                // )}
                                 onChange={onChangeTotalWinnerType}
                                 value={totalWinnerTypeSelect}
                                 defaultValue={{ value: 0, label: "همه" }}

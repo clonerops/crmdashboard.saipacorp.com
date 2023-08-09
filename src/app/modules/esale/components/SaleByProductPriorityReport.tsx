@@ -186,16 +186,32 @@ const SaleByProductPriorityReport = () => {
                         placeholder=""
                     />
                     <ProfessionalSelect
-                        options={dropdownSaleTotalTypeDetails(
-                            saleTotalTypeDetails
-                        )}
+                        options={
+                            saleTotalTypeDetails === undefined
+                                ? [{ value: 0, label: "همه" }]
+                                : dropdownSaleTotalTypeDetails([
+                                      { id: 0, detailDesc: "همه" },
+                                      ...saleTotalTypeDetails,
+                                  ])
+                        }
+                        // options={dropdownSaleTotalTypeDetails(
+                        //     saleTotalTypeDetails
+                        // )}
                         onChange={onChangeTotalTypeDetail}
                         value={totalTypeDetailSelect}
                         defaultValue={{ value: 0, label: "همه" }}
                         placeholder=""
                     />
                     <ProfessionalSelect
-                        options={dropdownTotalDate(saleTotalDate)}
+                        options={
+                            saleTotalDate === undefined
+                                ? [{ value: 0, label: "همه" }]
+                                : dropdownTotalDate([
+                                      { id: 0, deliverDateDesc: "همه" },
+                                      ...saleTotalDate,
+                                  ])
+                        }
+                        // options={dropdownTotalDate(saleTotalDate)}
                         onChange={onChangeTotalDate}
                         value={totalDateSelect}
                         defaultValue={{ value: 0, label: "همه" }}
@@ -212,12 +228,20 @@ const SaleByProductPriorityReport = () => {
                     </div>
                     <div>
                         <ProfessionalSelect
-                            options={dropdownSaleTotalWinnerType(
-                                saleWinnerType
-                            )}
+                            options={
+                                saleWinnerType === undefined
+                                    ? [{ value: -1, label: "همه" }]
+                                    : dropdownSaleTotalWinnerType([
+                                          { id: -1, totalTypeDesc: "همه" },
+                                          ...saleWinnerType,
+                                      ])
+                            }
+                            // options={dropdownSaleTotalWinnerType(
+                            //     saleWinnerType
+                            // )}
                             onChange={onChangeTotalWinnerType}
                             value={totalWinnerTypeSelect}
-                            defaultValue={{ value: 0, label: "همه" }}
+                            defaultValue={{ value: -1, label: "همه" }}
                             placeholder=""
                         />
                     </div>
