@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import * as api from "./_requests";
 import {
+    SaleByProductDepositorsReportRequest,
     SaleByProductPriorityReportRequest,
     SaleByProductReportRequest,
     SaleReportRequest,
@@ -41,6 +42,11 @@ const useGetSaleByProductReport = () => {
 const useGetSaleByProductPriorityReport = () => {
     return useMutation((formData: SaleByProductPriorityReportRequest) => {
         return api.getSaleByProductPriorityReport(formData);
+    });
+};
+const useGetSaleByProductDepositorsReport = () => {
+    return useMutation((formData: SaleByProductDepositorsReportRequest) => {
+        return api.getSaleByProductDepositorsReport(formData);
     });
 };
 const useGetSaleByProductPriorityAndSaleDetailReport = () => {
@@ -85,6 +91,7 @@ export {
     useGetSaleByProductReport,
     useGetSaleByProductPriorityReport,
     useGetSaleByProductPriorityAndSaleDetailReport,
+    useGetSaleByProductDepositorsReport,
     useGetSaleDetailsReport,
     useGetSaleTotalDetailsReport,
     useGetSaleTotalExcel,

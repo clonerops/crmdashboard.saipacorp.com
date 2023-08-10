@@ -16,3 +16,8 @@ export interface SaleByProductPriorityReportRequest {
   isJavani: number
   winnerType: number
 }
+export interface SaleByProductDepositorsReportRequest {
+  saletypeId: number
+  saleTotalTypeDetailId: number
+  isJavani: number
+}

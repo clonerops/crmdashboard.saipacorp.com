@@ -1,5 +1,6 @@
 import {dashboardHttp} from '../../../../_cloner/helpers/axiosConfig'
 import {
+  SaleByProductDepositorsReportRequest,
   SaleByProductPriorityReportRequest,
   SaleByProductReportRequest,
   SaleReportRequest,
@@ -74,6 +75,19 @@ const getSaleByProductPriorityReport = async (formData: SaleByProductPriorityRep
   )
   return data
 }
+const getSaleByProductDepositorsReport = async (formData: SaleByProductDepositorsReportRequest) => {
+  const {data} = await dashboardHttp.get(
+    'LotteryWinnerReport/GetPayedStatisticByCarType',
+    {
+      headers: {
+        saletypeId: formData.saletypeId,
+        saleTotalTypeDetailId: formData.saleTotalTypeDetailId,
+        isJavani: formData.isJavani,
+      },
+    }
+  )
+  return data
+}
 const getSaleByProductPriorityAndSaleDetailReport = async (formData: SaleReportRequest) => {
   const {data} = await dashboardHttp.get('LotteryWinnerReport/GetSaleStatByDeliverDate', {
     headers: {
@@ -139,6 +153,7 @@ export {
   getSaleByProductReport,
   getSaleByProductPriorityReport,
   getSaleByProductPriorityAndSaleDetailReport,
+  getSaleByProductDepositorsReport,
   getSaleDetailsReport,
   getSaleTotalDetailReport,
   downloadTotalTypeExcel,

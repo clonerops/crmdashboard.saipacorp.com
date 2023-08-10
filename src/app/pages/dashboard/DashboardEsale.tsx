@@ -11,6 +11,7 @@ import {
     getUserRoles,
 } from "../../../_cloner/helpers/reusableFunction";
 import AccessDenied from "../../../_cloner/helpers/components/AccessDenied";
+import SaleByProductDepositorsReport from "../../modules/esale/components/SaleByProductDepositorsReport";
 
 const DashboardEsale: FC = () => {
     return (
@@ -37,6 +38,11 @@ const DashboardEsale: FC = () => {
                         </div>
                         <div className="mt-2 mb-2 shadow-lg">
                             <SaleByProductPriorityReport />
+                        </div>
+                    </div>
+                    <div className="md:grid md:grid-cols-1 md:gap-4">
+                        <div className="mt-2 mb-2 shadow-lg">
+                            <SaleByProductDepositorsReport />
                         </div>
                     </div>
                 </>
