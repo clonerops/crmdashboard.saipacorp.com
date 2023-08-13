@@ -115,9 +115,6 @@ const SaleTotalProductAndDateReport = () => {
             },
         });
     };
-
-    console.log(saleTotalTypeDetails)
-
     return (
         <Card6 image="" title="گزارش آماری فروش اولویت تحویل و منتخبین">
             <div className="flex flex-col">

@@ -105,7 +105,6 @@ const VerticalInvoicedCategoryCharts: FC<IProps> = ({
             formatter: function (
                 this: Highcharts.TooltipFormatterContextObject
             ) {
-                console.log(this)
                 if (this.series.name === "فاکتور شده ها") {
                     return `<b> ${this.x} <br /> فاکتور شده ها: ${this.y} </b>`;
                 } else if (this.series.name === "تحویل شده ها") {
