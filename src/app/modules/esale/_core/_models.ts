@@ -30,3 +30,4 @@ export interface SaleByProductInvoicedReportRequest {
   isJavani: number
   priority: number
 }
+export interface SaleByProductInvoicedReportDetailRequest extends SaleByProductInvoicedReportRequest {}

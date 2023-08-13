@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import * as api from "./_requests";
 import {
     SaleByProductDepositorsReportRequest,
+    SaleByProductInvoicedReportDetailRequest,
     SaleByProductInvoicedReportRequest,
     SaleByProductPriorityReportRequest,
     SaleByProductReportRequest,
@@ -55,6 +56,11 @@ const useGetSaleByProductInvoicedReport = () => {
         return api.getSaleByProductInvoicedReport(formData);
     });
 };
+const useGetSaleByProductInvoicedReportDetail = () => {
+    return useMutation((formData: SaleByProductInvoicedReportDetailRequest) => {
+        return api.getSaleByProductInvoicedReportDetail(formData);
+    });
+};
 const useGetSaleByProductPriorityAndSaleDetailReport = () => {
     return useMutation((formData: SaleReportRequest) => {
         return api.getSaleByProductPriorityAndSaleDetailReport(formData);
@@ -99,6 +105,7 @@ export {
     useGetSaleByProductPriorityAndSaleDetailReport,
     useGetSaleByProductDepositorsReport,
     useGetSaleByProductInvoicedReport,
+    useGetSaleByProductInvoicedReportDetail,
     useGetSaleDetailsReport,
     useGetSaleTotalDetailsReport,
     useGetSaleTotalExcel,

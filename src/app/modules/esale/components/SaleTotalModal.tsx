@@ -73,6 +73,7 @@ const SaleTotalModal: FC<IProps> = ({isOpen, setIsOpen}) => {
       saleTotalTypeDetailId: 0,
       isJavani: -1,
     }
+    totalDetails(totalTypesSelect?.value)
     saleReport(formData)
   }, [])
 
