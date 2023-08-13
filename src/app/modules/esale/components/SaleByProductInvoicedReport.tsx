@@ -1,30 +1,21 @@
-import moment from "moment-jalaali";
 import { useEffect, useState } from "react";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import ProfessionalSelect from "./ProfessionalSelect";
 import {
     dropdownSaleTotalType,
     dropdownSaleTotalTypeDetails,
-    dropdownSaleTotalWinnerType,
     dropdownTotalDate,
 } from "../helpers/dropdownSaleTotalType";
 import RadioGroupSaleType from "./RadioGroupSaleType";
 import {
     useGetDeliverDates,
-    useGetSaleByProductDepositorsReport,
+    useGetSaleByProductInvoicedReport,
     useGetSaleTotalTypeDetails,
     useGetSaleTotalTypes,
 } from "../_core/_hooks";
-import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
-import {
-    setDateOneWeek,
-} from "../../../../_cloner/helpers/reusableFunction";
-import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
+import { VerticalInvoicedCategoryCharts } from "../../../../_cloner/partials/charts/VerticalInvoicedCategoryCharts";
 
-const SaleByProductDepositorsReport = () => {
-    const [fromDate, setFromDate] = useState(setDateOneWeek().getTime());
-    const [toDate, setToDate] = useState("");
-
+const SaleByProductInvoicedReport = () => {
     const [radioSelect, setRadioSelect] = useState(-1);
     const [totalTypesSelect, setTotalTypesSelect] = useState<any>({
         value: 2,
@@ -39,11 +30,8 @@ const SaleByProductDepositorsReport = () => {
         label: "همه",
     });
 
-    let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
-    let calculateToDate = moment(toDate).format("jYYYY/jMM/jDD");
-    let calculateNowDate = moment(Date.now()).format("jYYYY/jMM/jDD");
-
     const [calculateTotalCount, setCalculateTotalCount] = useState(0);
+    const [calculateTotalInvoicedCount, setCalculateTotalInvoicedCount] = useState(0);
 
     const { data: saleTotalTypes } = useGetSaleTotalTypes();
     const { data: saleTotalDate } = useGetDeliverDates();
@@ -51,20 +39,27 @@ const SaleByProductDepositorsReport = () => {
     const { mutate: totalDetails, data: saleTotalTypeDetails } =
         useGetSaleTotalTypeDetails();
     const {
-        mutate: saleProductDepositorsReport,
-        data: saleProductDepositors,
+        mutate: saleProductInvoicedReport,
+        data: saleProductInvoiced,
         isLoading,
         isError,
-    } = useGetSaleByProductDepositorsReport();
+    } = useGetSaleByProductInvoicedReport();
 
     const calculateSum = (data: any) => {
         const calculateTotal = data?.reduce(
             (accumulator: any, currentValue: any) => {
-                return accumulator + currentValue.count;
+                return accumulator + currentValue.delivered_count;
+            },
+            0
+        );
+        const calculateTotalInvoiced = data?.reduce(
+            (accumulator: any, currentValue: any) => {
+                return accumulator + currentValue.invoiced_count;
             },
             0
         );
         setCalculateTotalCount(calculateTotal);
+        setCalculateTotalInvoicedCount(calculateTotalInvoiced)
     };
 
     useEffect(() => {
@@ -72,48 +67,20 @@ const SaleByProductDepositorsReport = () => {
             saletypeId: 2,
             saleTotalTypeDetailId: 0,
             isJavani: -1,
-            priority: 0,
-            fromDate: moment(setDateOneWeek().getTime()).format(
-                "jYYYY/jMM/jDD"
-            ),
-            toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
+            priority: 0
         };
         totalDetails(totalTypesSelect?.value);
-        saleProductDepositorsReport(formData, {
+        saleProductInvoicedReport(formData, {
             onSuccess: (data) => {
                 calculateSum(data);
             },
             onError: () => {
                 setCalculateTotalCount(0);
+                setCalculateTotalInvoicedCount(0)
+
             },
         });
     }, []);
-
-    const fromDateChange = (d: any) => {
-        setFromDate(d.value);
-        const formData = {
-            saletypeId: totalTypesSelect?.value,
-            saleTotalTypeDetailId: totalTypeDetailSelect?.value,
-            isJavani: radioSelect,
-            fromDate: moment(d.value).format("jYYYY/jMM/jDD"),
-            toDate: toDate ? calculateToDate : calculateNowDate,
-            priority: totalDateSelect?.value,
-        };
-        saleProductDepositorsReport(formData);
-    };
-
-    const toDateChange = (d: any) => {
-        setToDate(d);
-        const formData = {
-            saletypeId: totalTypesSelect?.value,
-            saleTotalTypeDetailId: totalTypeDetailSelect?.value,
-            isJavani: radioSelect,
-            fromDate: fromDate ? calculateFromDate : calculateNowDate,
-            toDate: moment(d.value).format("jYYYY/jMM/jDD"),
-            priority: totalDateSelect?.value,
-        };
-        saleProductDepositorsReport(formData);
-    };
 
     const onChangeTotalTypes = (selectOption: any) => {
         setTotalTypesSelect(selectOption);
@@ -122,16 +89,15 @@ const SaleByProductDepositorsReport = () => {
             saletypeId: selectOption?.value,
             saleTotalTypeDetailId: totalTypeDetailSelect?.value,
             isJavani: radioSelect,
-            priority: totalDateSelect?.value,
-            fromDate: fromDate ? calculateFromDate : calculateNowDate,
-            toDate: toDate ? calculateToDate : calculateNowDate,
+            priority: totalDateSelect?.value
         };
-        saleProductDepositorsReport(formData, {
+        saleProductInvoicedReport(formData, {
             onSuccess: (data) => {
                 calculateSum(data);
             },
             onError: () => {
                 setCalculateTotalCount(0);
+                setCalculateTotalInvoicedCount(0)
             },
         });
     };
@@ -141,16 +107,15 @@ const SaleByProductDepositorsReport = () => {
             saletypeId: totalTypesSelect?.value,
             saleTotalTypeDetailId: selectOption?.value,
             isJavani: radioSelect,
-            priority: totalDateSelect?.value,
-            fromDate: fromDate ? calculateFromDate : calculateNowDate,
-            toDate: toDate ? calculateToDate : calculateNowDate,
+            priority: totalDateSelect?.value
         };
-        saleProductDepositorsReport(formData, {
+        saleProductInvoicedReport(formData, {
             onSuccess: (data) => {
                 calculateSum(data);
             },
             onError: () => {
                 setCalculateTotalCount(0);
+                setCalculateTotalInvoicedCount(0)
             },
         });
     };
@@ -160,19 +125,19 @@ const SaleByProductDepositorsReport = () => {
             saletypeId: totalTypesSelect?.value,
             saleTotalTypeDetailId: totalTypeDetailSelect?.value,
             isJavani: radioSelect,
-            fromDate: fromDate ? calculateFromDate : calculateNowDate,
-            toDate: toDate ? calculateToDate : calculateNowDate,
             priority: selectOption?.value,
         };
-        saleProductDepositorsReport(formData, {
+        saleProductInvoicedReport(formData, {
             onSuccess: (data) => {
                 calculateSum(data);
             },
             onError: () => {
                 setCalculateTotalCount(0);
+                setCalculateTotalInvoicedCount(0)
             },
         });
     };
+
 
     const onChangeRadioSelect = (event: any) => {
         setRadioSelect(event.target.value);
@@ -180,22 +145,21 @@ const SaleByProductDepositorsReport = () => {
             saletypeId: totalTypesSelect?.value,
             saleTotalTypeDetailId: totalTypeDetailSelect?.value,
             isJavani: event.target.value,
-            priority: totalDateSelect?.value,
-            fromDate: fromDate ? calculateFromDate : calculateNowDate,
-            toDate: toDate ? calculateToDate : calculateNowDate,
+            priority: totalDateSelect?.value
         };
-        saleProductDepositorsReport(formData, {
+        saleProductInvoicedReport(formData, {
             onSuccess: (data) => {
                 calculateSum(data);
             },
             onError: () => {
                 setCalculateTotalCount(0);
+                setCalculateTotalInvoicedCount(0)
             },
         });
     };
 
     return (
-        <Card6 image="" title="گزارش آماری براساس واریزکنندگان خودرو">
+        <Card6 image="" title="گزارش آماری فاکتورشده ها و تحویل شده ها براساس خودرو">
             <div className="flex flex-col">
                 <div className="md:grid md:grid-cols-3 md:gap-4">
                     <ProfessionalSelect
@@ -219,7 +183,7 @@ const SaleByProductDepositorsReport = () => {
                         defaultValue={{ value: 0, label: "همه" }}
                         placeholder=""
                     />
-                    <ProfessionalSelect
+                                        <ProfessionalSelect
                         options={
                             saleTotalDate === undefined
                                 ? [{ value: 0, label: "همه" }]
@@ -234,46 +198,37 @@ const SaleByProductDepositorsReport = () => {
                         placeholder=""
                     />
 
-                    <div className="py-1 w-full">
-                        <CustomDatepicker
-                            // title="از تاریخ"
-                            placeholder="از تاریخ"
-                            onChange={(d: any) => fromDateChange(d)}
-                            defaultValue={setDateOneWeek().getTime()}
-                        />
-                    </div>
-                    <div className="py-1 w-full">
-                        <CustomDatepicker
-                            // title="تا تاریخ"
-                            placeholder="تا تاریخ"
-                            onChange={(d: any) => toDateChange(d)}
-                            defaultValue={new Date().getTime()}
-                        />
-                    </div>
                 </div>
                 <div className="md:grid md:grid-cols-3 md:gap-4 my-2">
                     <div>
                         <RadioGroupSaleType
                             onChange={onChangeRadioSelect}
-                            id="saleTotalTypeProductDepositors"
-                            key="saleTotalTypeProductDepositors"
+                            id="saleTotalTypeProductInvoiced"
+                            key="saleTotalTypeProductInvoiced"
                         />
                     </div>
                     <div className="flex justify-center items-center">
                         <label className="flex items-center justify-center">
-                            تعداد کل:{" "}
+                            تعداد کل تحویل شده:{" "}
                             <span className="font-yekan_extrabold text-xl text-indigo-700 px-4">
                                 {calculateTotalCount}
                             </span>
                         </label>
                     </div>
+                    <div className="flex justify-center items-center">
+                        <label className="flex items-center justify-center">
+                            تعداد کل فاکتور شده:{" "}
+                            <span className="font-yekan_extrabold text-xl text-indigo-700 px-4">
+                                {calculateTotalInvoicedCount}
+                            </span>
+                        </label>
+                    </div>
                 </div>
                 <div>
-                    <VerticalCharts
-                        data={saleProductDepositors?.map(
-                            (item: any) => item.count
-                        )}
-                        categories={saleProductDepositors?.map(
+                    <VerticalInvoicedCategoryCharts
+                        data={saleProductInvoiced?.map((item: any) => item.invoiced_count)}
+                        data1={saleProductInvoiced?.map((item: any) => item.delivered_count)}
+                        categories={saleProductInvoiced?.map(
                             (item: any) => item.carType
                         )}
                         isLoading={isLoading}
@@ -286,4 +241,4 @@ const SaleByProductDepositorsReport = () => {
     );
 };
 
-export default SaleByProductDepositorsReport;
+export default SaleByProductInvoicedReport;

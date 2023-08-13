@@ -12,6 +12,7 @@ import {
 } from "../../../_cloner/helpers/reusableFunction";
 import AccessDenied from "../../../_cloner/helpers/components/AccessDenied";
 import SaleByProductDepositorsReport from "../../modules/esale/components/SaleByProductDepositorsReport";
+import SaleByProductInvoicedReport from "../../modules/esale/components/SaleByProductInvoicedReport";
 
 const DashboardEsale: FC = () => {
     return (
@@ -43,6 +44,11 @@ const DashboardEsale: FC = () => {
                     <div className="md:grid md:grid-cols-1 md:gap-4">
                         <div className="mt-2 mb-2 shadow-lg">
                             <SaleByProductDepositorsReport />
+                        </div>
+                    </div>
+                    <div className="md:grid md:grid-cols-1 md:gap-4">
+                        <div className="mt-2 mb-2 shadow-lg">
+                            <SaleByProductInvoicedReport />
                         </div>
                     </div>
                 </>

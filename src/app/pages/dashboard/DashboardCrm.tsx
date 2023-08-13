@@ -20,7 +20,7 @@ const DashboardCrm: FC = () => {
             ) ? (
                 <>
                     <div className="md:grid md:grid-cols-1 md:gap-4">
-                        <div className="mt-2 mb-2 shadow-lg">
+                         <div className="mt-2 mb-2 shadow-lg">
                             <ComplaintOrRequest />
                         </div>
                     </div>

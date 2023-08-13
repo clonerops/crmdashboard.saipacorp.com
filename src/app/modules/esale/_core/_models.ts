@@ -17,7 +17,16 @@ export interface SaleByProductPriorityReportRequest {
   winnerType: number
 }
 export interface SaleByProductDepositorsReportRequest {
+  fromDate: string
+  toDate: string
   saletypeId: number
   saleTotalTypeDetailId: number
   isJavani: number
+  priority: number
+}
+export interface SaleByProductInvoicedReportRequest {
+  saletypeId: number
+  saleTotalTypeDetailId: number
+  isJavani: number
+  priority: number
 }
