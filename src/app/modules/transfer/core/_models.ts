@@ -3,9 +3,6 @@ export interface BLandsByStatus {
     toDate: string
     contractor_id: number
 }
-export interface BLandsCarsByStatus {
-    fromDate: string
-    toDate: string
+export interface BLandsCarsByStatus extends BLandsByStatus{
     dealer_no: number
-    contractor_id: number
 }
