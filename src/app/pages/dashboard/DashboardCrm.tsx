@@ -16,7 +16,7 @@ const DashboardCrm: FC = () => {
             </PageTitle>
             {checkUserRole(
                 getUserRoles(),
-                "TransLotteryWinnerDashboardStatistic"
+                "TransCrmDashboard"
             ) ? (
                 <>
                     <div className="md:grid md:grid-cols-1 md:gap-4">

@@ -19,7 +19,7 @@ const DashboardTransfer: FC = () => {
             </PageTitle>
             {checkUserRole(
                 getUserRoles(),
-                "TransLotteryWinnerDashboardStatistic"
+                "TransTransferDashboard"
             ) ? (
                 <>
                     <div className="md:grid md:grid-cols-2 md:gap-4">

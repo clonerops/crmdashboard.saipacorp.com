@@ -7,7 +7,6 @@ import SaleByProductPriorityReport from "../../modules/esale/components/SaleByPr
 import SaleTotalProductAndDateReport from "../../modules/esale/components/SaleTotalProductAndDateReport";
 import {
     checkUserRole,
-    getRefreshToken,
     getUserRoles,
 } from "../../../_cloner/helpers/reusableFunction";
 import AccessDenied from "../../../_cloner/helpers/components/AccessDenied";
@@ -22,7 +21,7 @@ const DashboardEsale: FC = () => {
             </PageTitle>
             {checkUserRole(
                 getUserRoles(),
-                "TransLotteryWinnerDashboardStatistic"
+                "TransLotteryWinnerDashboard"
             ) ? (
                 <>
                     <div className="md:grid md:grid-cols-3 md:gap-4">

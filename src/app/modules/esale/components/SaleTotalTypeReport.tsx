@@ -43,6 +43,7 @@ const SaleTotalTypeReport = () => {
         const filteredData = data?.filter(
             (item: any) => item.applicantTypeDesc != "واريز كنندگان"
         );
+        console.log(filteredData);
         const calculateTotal = filteredData?.reduce(
             (accumulator: any, currentValue: any) => {
                 return accumulator + currentValue.count;
