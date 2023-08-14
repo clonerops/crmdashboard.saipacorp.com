@@ -7,6 +7,7 @@ import {
 } from "../../../_cloner/helpers/reusableFunction";
 import AccessDenied from "../../../_cloner/helpers/components/AccessDenied";
 import ComplaintOrRequest from "../../modules/crm/components/ComplaintOrRequest";
+import ComplaintOrRequestStatus from "../../modules/crm/components/ComplaintOrRequestStatus";
 
 const DashboardCrm: FC = () => {
     return (
@@ -22,6 +23,9 @@ const DashboardCrm: FC = () => {
                     <div className="md:grid md:grid-cols-1 md:gap-4">
                          <div className="mt-2 mb-2 shadow-lg">
                             <ComplaintOrRequest />
+                        </div>
+                         <div className="mt-2 mb-2 shadow-lg">
+                            <ComplaintOrRequestStatus />
                         </div>
                     </div>
                 </>

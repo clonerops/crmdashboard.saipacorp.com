@@ -9,7 +9,14 @@ const useGetComplaintOrRequestReport = () => {
     });
 };
 
+const useGetComplaintOrRequestStatusReport = () => {
+    return useMutation((formData: ComplaintOrRequestSendData) => {
+        return api.getComplantOrRequestStatusReport(formData);
+    });
+};
+
 
 export {
     useGetComplaintOrRequestReport,
+    useGetComplaintOrRequestStatusReport
 };

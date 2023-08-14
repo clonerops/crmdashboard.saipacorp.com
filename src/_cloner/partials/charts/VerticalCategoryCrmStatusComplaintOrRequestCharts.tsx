@@ -9,16 +9,16 @@ interface IProps {
     text: string;
     categories?: any;
     data?: any;
-    data1?: any;
+    detail?: any
     isLoading?: boolean;
     isError?: boolean;
 }
 
-const VerticalCategoryCharts: FC<IProps> = ({
+const VerticalCategoryCrmStatusComplaintOrRequestCharts: FC<IProps> = ({
     text,
     categories,
     data,
-    data1,
+    detail,
     isLoading,
     isError,
 }) => {
@@ -61,16 +61,16 @@ const VerticalCategoryCharts: FC<IProps> = ({
         },
         series: [
             {
-                name: "شکایت/درخواست",
+                name: "وضعیت",
                 data: data,
                 colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
             },
-            {
-                name: "تعداد مختومگی",
-                data: data1,
-                // data: data1,
-                colors: ["#546E7A"],
-            },
+            // {
+            //     name: "تعداد مختومگی",
+            //     data: data1,
+            //     // data: data1,
+            //     colors: ["#546E7A"],
+            // },
         ],
         plotOptions: {
             series: {
@@ -104,8 +104,8 @@ const VerticalCategoryCharts: FC<IProps> = ({
             formatter: function (
                 this: Highcharts.TooltipFormatterContextObject
             ) {
-                if (this.series.name === "شکایت/درخواست") {
-                    return `<b> ${this.x} <br /> شکایت/درخواست: ${this.y} </b>`;
+                if (this.series.name === "وضعیت") {
+                    return `<b> ${this.x} <br /> وضعیت: ${this.y} </b>`;
                 } else if (this.series.name === "تعداد مختومگی") {
                     return `<b> ${this.x} <br /> تعداد مختومگی: ${this.y} </b>`;
                 }
@@ -124,4 +124,4 @@ const VerticalCategoryCharts: FC<IProps> = ({
     );
 };
 
-export { VerticalCategoryCharts };
+export { VerticalCategoryCrmStatusComplaintOrRequestCharts };

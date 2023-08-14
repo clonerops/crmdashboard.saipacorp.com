@@ -14,6 +14,8 @@ import {
     dropdownTotalDate,
 } from "../helpers/dropdownSaleTotalType";
 import { SaleInvoicedTable } from "./SaleInvoicedTable";
+import { DownloadExcelFile } from "./DownloadExcel";
+import { downloadInvoicedDetailExcel, downloadTotalTypeExcel } from "../_core/_requests";
 
 interface IProps {
     isOpen: boolean;
@@ -22,6 +24,8 @@ interface IProps {
 }
 
 const SaleInvociedModal: FC<IProps> = ({ isOpen, setIsOpen }) => {
+    const [excelLoading, setExcelLoading] = useState(false);
+
     const [radioSelect, setRadioSelect] = useState(-1);
     const [totalTypesSelect, setTotalTypesSelect] = useState<any>({
         value: 2,
@@ -102,28 +106,28 @@ const SaleInvociedModal: FC<IProps> = ({ isOpen, setIsOpen }) => {
             isJavani: -1,
             priority: 0,
         };
-        totalDetails(totalTypesSelect?.value)
+        totalDetails(totalTypesSelect?.value);
         saleReport(formData);
     }, []);
 
-    // const handleDownloadExcel = async () => {
-    //     setExcelLoading(true);
-    //     const formData = {
-    //         saletypeId: totalTypesSelect?.value,
-    //         saleTotalTypeDetailId: totalTypeDetailSelect?.value,
-    //         isJavani: radioSelect,
-    //     };
-    //     try {
-    //         const response = await downloadTotalTypeExcel(formData);
-    //         const outputFilename = `SaleTotalType${Date.now()}.csv`;
-    //         DownloadExcelFile(response, outputFilename);
-    //         setExcelLoading(false);
-    //     } catch (error) {
-    //         console.log(error);
-    //         setExcelLoading(false);
-    //     }
-    // };
-
+    const handleDownloadExcel = async () => {
+        setExcelLoading(true);
+        const formData = {
+            saletypeId: totalTypesSelect?.value,
+            saleTotalTypeDetailId: totalTypeDetailSelect?.value,
+            isJavani: radioSelect,
+            priority: totalDateSelect?.value,
+        };
+        try {
+            const response = await downloadInvoicedDetailExcel(formData);
+            const outputFilename = `InvociedDetail${Date.now()}.csv`;
+            DownloadExcelFile(response, outputFilename);
+            setExcelLoading(false);
+        } catch (error) {
+            console.log(error);
+            setExcelLoading(false);
+        }
+    };
 
     return (
         <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
@@ -171,7 +175,7 @@ const SaleInvociedModal: FC<IProps> = ({ isOpen, setIsOpen }) => {
                     key="saleTotalTypeTables"
                 />
 
-                {/* <div className="flex justify-start items-start">
+                <div className="flex justify-start items-start">
                     <button
                         disabled={saleReportData === undefined}
                         onClick={handleDownloadExcel}
@@ -181,7 +185,7 @@ const SaleInvociedModal: FC<IProps> = ({ isOpen, setIsOpen }) => {
                             ? "در حال دانلود..."
                             : "دانلود خروجی اکسل"}
                     </button>
-                </div> */}
+                </div>
 
                 <SaleInvoicedTable
                     className=""

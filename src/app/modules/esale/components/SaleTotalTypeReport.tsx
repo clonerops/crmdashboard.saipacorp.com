@@ -41,9 +41,8 @@ const SaleTotalTypeReport = () => {
 
     const calculateSum = (data: any) => {
         const filteredData = data?.filter(
-            (item: any) => item.applicantTypeDesc != "واريز كنندگان"
+            (item: any) => item.applicantTypeDesc !== "واريز كنندگان"
         );
-        console.log(filteredData);
         const calculateTotal = filteredData?.reduce(
             (accumulator: any, currentValue: any) => {
                 return accumulator + currentValue.count;
@@ -68,6 +67,7 @@ const SaleTotalTypeReport = () => {
                 setCalculateTotalCount(0);
             },
         });
+        // eslint-disable-next-line
     }, []);
 
     const onChangeTotalTypes = (selectOption: any) => {
