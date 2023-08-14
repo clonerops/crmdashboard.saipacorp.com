@@ -1,33 +1,23 @@
 export interface SaleReportRequest {
-  saletypeId: number
-  saleTotalTypeDetailId: number
-  isJavani: number
+    saletypeId: number;
+    saleTotalTypeDetailId: number;
+    isJavani: number;
 }
-export interface SaleByProductReportRequest {
-  saletypeId: number
-  saleTotalTypeDetailId: number
-  isJavani: number
-  winnerType: number
+export interface SaleByProductReportRequest extends SaleReportRequest {
+    winnerType: number;
 }
-export interface SaleByProductPriorityReportRequest {
-  saletypeId: number
-  saleTotalTypeDetailId: number
-  priority: number
-  isJavani: number
-  winnerType: number
+export interface SaleByProductPriorityReportRequest
+    extends SaleByProductReportRequest {
+    priority: number;
 }
-export interface SaleByProductDepositorsReportRequest {
-  fromDate: string
-  toDate: string
-  saletypeId: number
-  saleTotalTypeDetailId: number
-  isJavani: number
-  priority: number
+export interface SaleByProductDepositorsReportRequest
+    extends SaleReportRequest {
+    fromDate: string;
+    toDate: string;
+    priority: number;
 }
-export interface SaleByProductInvoicedReportRequest {
-  saletypeId: number
-  saleTotalTypeDetailId: number
-  isJavani: number
-  priority: number
+export interface SaleByProductInvoicedReportRequest extends SaleReportRequest {
+    priority: number;
 }
-export interface SaleByProductInvoicedReportDetailRequest extends SaleByProductInvoicedReportRequest {}
+export interface SaleByProductInvoicedReportDetailRequest
+    extends SaleByProductInvoicedReportRequest {}
