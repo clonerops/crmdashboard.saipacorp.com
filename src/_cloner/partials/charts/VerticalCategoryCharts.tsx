@@ -10,6 +10,8 @@ interface IProps {
     categories?: any;
     data?: any;
     data1?: any;
+    title1?: string;
+    title2?: string;
     isLoading?: boolean;
     isError?: boolean;
 }
@@ -19,6 +21,8 @@ const VerticalCategoryCharts: FC<IProps> = ({
     categories,
     data,
     data1,
+    title1,
+    title2,
     isLoading,
     isError,
 }) => {
@@ -29,7 +33,7 @@ const VerticalCategoryCharts: FC<IProps> = ({
     if (isError) {
         return <div>داده ای برای نمایش یافت نشد</div>;
     }
-    
+
     const options = {
         chart: {
             type: "column",
@@ -61,12 +65,14 @@ const VerticalCategoryCharts: FC<IProps> = ({
         },
         series: [
             {
-                name: "شکایت/درخواست",
+                // name: "شکایت/درخواست",
+                name: title1,
                 data: data,
-                colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
+                // colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
+                colors: ["#d4526e"],
             },
             {
-                name: "تعداد مختومگی",
+                name: title2,
                 data: data1,
                 // data: data1,
                 colors: ["#546E7A"],
@@ -74,7 +80,7 @@ const VerticalCategoryCharts: FC<IProps> = ({
         ],
         plotOptions: {
             series: {
-                colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
+                colors: ["#585E7B", "#d4526e", "#13d8aa", "#A5978B"],
                 distributed: true,
                 colorByPoint: true, // Enable color by point
                 dataLabels: {
@@ -104,10 +110,10 @@ const VerticalCategoryCharts: FC<IProps> = ({
             formatter: function (
                 this: Highcharts.TooltipFormatterContextObject
             ) {
-                if (this.series.name === "شکایت/درخواست") {
-                    return `<b> ${this.x} <br /> شکایت/درخواست: ${this.y} </b>`;
-                } else if (this.series.name === "تعداد مختومگی") {
-                    return `<b> ${this.x} <br /> تعداد مختومگی: ${this.y} </b>`;
+                if (this.series.name === title1) {
+                    return `<b> ${this.x} <br /> ${title1}: ${this.y} </b>`;
+                } else if (this.series.name === title2) {
+                    return `<b> ${this.x} <br /> ${title2}: ${this.y} </b>`;
                 }
             },
         },

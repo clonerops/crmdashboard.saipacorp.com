@@ -1,12 +1,12 @@
 import moment from "moment-jalaali";
 import { useEffect, useState } from "react";
-import { useGetComplaintOrRequestReport } from "../_core/_hooks";
+import { useGetComplaintOrRequestStatusReport } from "../_core/_hooks";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
-import { VerticalCategoryCharts } from "../../../../_cloner/partials/charts/VerticalCategoryCharts";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
+import { ComplaintOrRequestStatusTable } from "./ComplaintOrRequestStatusTable";
 
-const ComplaintOrRequest = () => {
+const ComplaintOrRequestStatusDetail = () => {
     const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
     const [toDate, setToDate] = useState("");
 
@@ -15,7 +15,7 @@ const ComplaintOrRequest = () => {
     let calculateNowDate = moment(Date.now()).format("jYYYY/jMM/jDD");
 
     const { mutate, data, isLoading, isError } =
-        useGetComplaintOrRequestReport();
+        useGetComplaintOrRequestStatusReport();
 
     useEffect(() => {
         const formData = {
@@ -48,7 +48,7 @@ const ComplaintOrRequest = () => {
 
     return (
         <>
-            <Card6 image="" title="گزارش آماری شکایت یا درخواست">
+            <Card6 image="" title="گزارش آماری وضعیت شکایت یا درخواست">
                 <div className="flex flex-col">
                     <div className="flex flex-row gap-4 w-50">
                         <div className="py-1 w-full">
@@ -69,19 +69,15 @@ const ComplaintOrRequest = () => {
                         </div>
                     </div>
                 </div>
-                <VerticalCategoryCharts
-                    data={data?.map((item: any) => item.countAll)}
-                    data1={data?.map((item: any) => item.finishedCount)}
-                    categories={data?.map((item: any) => item.desc)}
-                    title1={"شکایت/درخواست"}
-                    title2={"مختومگی"}
-                    isLoading={isLoading}
+                <ComplaintOrRequestStatusTable
+                    data={data}
+                    className=""
                     isError={isError}
-                    text=""
+                    isLoading={isLoading}
                 />
             </Card6>
         </>
     );
 };
 
-export default ComplaintOrRequest;
+export default ComplaintOrRequestStatusDetail;

@@ -4,7 +4,7 @@ import { useGetComplaintOrRequestStatusReport } from "../_core/_hooks";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
-import { ComplaintOrRequestStatusTable } from "./ComplaintOrRequestStatusTable";
+import { VerticalCategoryCharts } from "../../../../_cloner/partials/charts/VerticalCategoryCharts";
 
 const ComplaintOrRequestStatus = () => {
     const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
@@ -69,11 +69,15 @@ const ComplaintOrRequestStatus = () => {
                         </div>
                     </div>
                 </div>
-                <ComplaintOrRequestStatusTable
-                    data={data}
-                    className=""
-                    isError={isError}
+                <VerticalCategoryCharts
+                    data={data?.map((item: any) => item.doingCount)}
+                    data1={data?.map((item: any) => item.endedCount)}
+                    categories={data?.map((item: any) => item.contractName)}
+                    title1={"درحال انجام"}
+                    title2={"پایان یافته"}
                     isLoading={isLoading}
+                    isError={isError}
+                    text=""
                 />
             </Card6>
         </>
