@@ -4,10 +4,7 @@ import { useGetComplaintOrRequestStatusReport } from "../_core/_hooks";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
-import { VerticalCategoryCharts } from "../../../../_cloner/partials/charts/VerticalCategoryCharts";
-import { VerticalCategoryRequestOrComplaintCharts } from "../../../../_cloner/partials/charts/VerticalCategoryRequestOrComplaintCharts";
 import { StackedComplaintOrRequestCharts } from "../../../../_cloner/partials/charts/StackedComplaintOrRequestCharts";
-import { StackedCharts } from "../../../../_cloner/partials/charts/StackedCharts";
 
 const ComplaintOrRequestStatus = () => {
     const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
