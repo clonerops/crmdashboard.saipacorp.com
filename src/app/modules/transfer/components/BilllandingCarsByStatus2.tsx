@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
 import {
-    useGetBLandsCarsByStatus,
+    // useGetBLandsCarsByStatus,
     useGetBLandsCarsByStatus2,
     useGetContractors,
-    useGetDealers,
+    // useGetDealers,
 } from "../core/_hooks";
 import {
     dropdownContractors,
-    dropdownDealers,
+    // dropdownDealers,
 } from "../helpers/dropdownTransfer";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
@@ -20,10 +20,10 @@ const BilllandingCarsByStatus2 = () => {
         value: 0,
         label: "همه",
     });
-    const [selectedDealers, setSelectedDealers] = useState({
-        value: 0,
-        label: "همه",
-    });
+    // const [selectedDealers, setSelectedDealers] = useState({
+    //     value: 0,
+    //     label: "همه",
+    // });
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
 
@@ -32,7 +32,7 @@ const BilllandingCarsByStatus2 = () => {
     let calculateNowDate = moment(Date.now()).format("jYYYY/jMM/jDD");
 
     const { data: contractors } = useGetContractors();
-    const { data: dealers } = useGetDealers();
+    // const { data: dealers } = useGetDealers();
     const {
         mutate,
         data: BlandStatus2,
@@ -60,30 +60,30 @@ const BilllandingCarsByStatus2 = () => {
             // fromDate: "",
             // toDate: "",
             contractor_id: selectedOption?.value,
-            dealer_no: selectedDealers?.value,
+            // dealer_no: selectedDealers?.value,
+            dealer_no: 0,
         };
         mutate(formData);
     };
-    const onChangeDealers = (selectedOption: any) => {
-        setSelectedDealers(selectedOption);
-        const formData = {
-            fromDate: fromDate ? calculateFromDate : calculateNowDate,
-            toDate: toDate ? calculateToDate : calculateNowDate,
-            // fromDate: "",
-            // toDate: "",
-            contractor_id: selectedContractors?.value,
-            dealer_no: selectedOption?.value,
-        };
-        mutate(formData);
-    };
-
+    // const onChangeDealers = (selectedOption: any) => {
+    //     // setSelectedDealers(selectedOption);
+    //     const formData = {
+    //         fromDate: fromDate ? calculateFromDate : calculateNowDate,
+    //         toDate: toDate ? calculateToDate : calculateNowDate,
+    //         // fromDate: "",
+    //         // toDate: "",
+    //         contractor_id: selectedContractors?.value,
+    //         dealer_no: 0,
+    //     };
+    //     mutate(formData);
+    // };
     const fromDateChange = (d: any) => {
         setFromDate(d.value);
         const formData = {
             fromDate: moment(d.value).format("jYYYY/jMM/jDD"),
             toDate: toDate ? calculateToDate : calculateNowDate,
             contractor_id: selectedContractors?.value,
-            dealer_no: selectedDealers?.value,
+            dealer_no: 0,
         };
         mutate(formData);
     };
@@ -93,7 +93,7 @@ const BilllandingCarsByStatus2 = () => {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: moment(d.value).format("jYYYY/jMM/jDD"),
             contractor_id: selectedContractors?.value,
-            dealer_no: selectedDealers?.value,
+            dealer_no: 0,
         };
         mutate(formData);
     };
@@ -111,7 +111,7 @@ const BilllandingCarsByStatus2 = () => {
                             placeholder="پیمانکار حمل"
                         />
                     </div>
-                    <div className="py-1 w-full">
+                    {/* <div className="py-1 w-full">
                         <label>نمایندگی</label>
                         <ProfessionalSelect
                             options={
@@ -127,7 +127,7 @@ const BilllandingCarsByStatus2 = () => {
                             value={selectedDealers}
                             placeholder="نمایندگی"
                         />
-                    </div>
+                    </div> */}
                 </div>
                 <div className="flex flex-row gap-4">
                     <div className="py-1 w-full">
