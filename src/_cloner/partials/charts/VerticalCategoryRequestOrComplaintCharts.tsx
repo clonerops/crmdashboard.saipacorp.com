@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { FC, useState } from "react";
+import { FC } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HC_exporting from "highcharts/modules/exporting";
@@ -9,14 +9,28 @@ interface IProps {
     text: string;
     categories?: any;
     data?: any;
+    data1?: any;
+    data2?: any;
+    data3?: any;
+    title1?: string;
+    title2?: string;
+    title3?: string;
+    title4?: string;
     isLoading?: boolean;
     isError?: boolean;
 }
 
-const StackedComplaintOrRequestCharts: FC<IProps> = ({
+const VerticalCategoryRequestOrComplaintCharts: FC<IProps> = ({
     text,
     categories,
     data,
+    data1,
+    data2,
+    data3,
+    title1,
+    title2,
+    title3,
+    title4,
     isLoading,
     isError,
 }) => {
@@ -36,7 +50,9 @@ const StackedComplaintOrRequestCharts: FC<IProps> = ({
             text: text,
         },
         xAxis: {
+            type: "category",
             categories: categories,
+            
             labels: {
                 style: {
                     fontFamily: "Yekan_reqular",
@@ -46,16 +62,6 @@ const StackedComplaintOrRequestCharts: FC<IProps> = ({
         yAxis: {
             title: {
                 text: "",
-            },
-            stackLabels: {
-                enabled: true,
-                style: {
-                    fontSize: "16px",
-                    fontFamily: "Yekan_reqular",
-                },
-                // formatter: function(this: any) {
-                //     return this.total
-                //   },
             },
             labels: {
                 style: {
@@ -68,38 +74,40 @@ const StackedComplaintOrRequestCharts: FC<IProps> = ({
         },
         series: [
             {
-                name: "شکایت / درحال انجام",
-                data: data?.map((item: any) => item.complaintDoingCount),
-                color: "#546E7A",
-                stack: 'group1', // Group for the first column
+                // name: "شکایت/درخواست",
+                name: title1,
+                data: data,
+                // colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
+                colors: ["#d4526e"],
+                // pointWidth: 30, // Initial width of the bars
             },
             {
-                name: "درخواست / درحال انجام",
-                data: data?.map((item: any) => item.requestDoingCount),
-                color: "#d4526e",
-                stack: 'group2', // Group for the first column
+                name: title2,
+                data: data1,
+                // data: data1,
+                colors: ["#546E7A"],
+                // pointWidth: 30, // Initial width of the bars
             },
             {
-                name: "شکایت / پایان یافته",
-                data: data?.map((item: any) => item.complaintEndedCount),
-                color: "#13d8aa",
-                stack: 'group1', // Group for the first column
+                name: title3,
+                data: data2,
+                // data: data1,
+                colors: ["#13d8aa"],
+                // pointWidth: 30, // Initial width of the bars
             },
             {
-                name: "درخواست / پایان یافته",
-                data: data?.map((item: any) => item.requestEndedCount),
-                color: "#19g6aa",
-                stack: 'group2', // Group for the first column
+                name: title4,
+                data: data3,
+                // data: data1,
+                colors: ["#19g6aa"],
+                // pointWidth: 30, // Initial width of the bars
             },
         ],
         plotOptions: {
             series: {
+                colors: ["#585E7B", "#d4526e", "#13d8aa", "#A5978B"],
                 distributed: true,
-                stacking: "normal", // Enable stacking
-                column: {
-                    groupPadding: 0.2, // Adjust the group padding
-                    pointPadding: 0, // No padding between grouped columns
-                }, // colorByPoint: true, // Enable color by point
+                colorByPoint: true, // Enable color by point
                 dataLabels: {
                     enabled: true,
                     style: {
@@ -122,27 +130,18 @@ const StackedComplaintOrRequestCharts: FC<IProps> = ({
                 },
             },
         },
-        // tooltip: {
-        //     enabled: false,
-        // },
         tooltip: {
             enabeld: true,
             formatter: function (
                 this: Highcharts.TooltipFormatterContextObject
             ) {
-                console.log("this.series.name", this.series.name)
-                if (this.series.name === "شکایت / درحال انجام") {
-                    return `<b> ${this.x} <br />شکایت / درحال انجام: ${this.y} </b>`;
-                } else if (this.series.name === "درخواست / درحال انجام") {
-                    return `<b> ${this.x} <br /> درخواست / درحال انجام: ${this.y} </b>`;
-                }else if (this.series.name === "شکایت / پایان یافته") {
-                    return `<b> ${this.x} <br /> شکایت / پایان یافته: ${this.y} </b>`;
-                }else if (this.series.name === "درخواست / پایان یافته") {
-                    return `<b> ${this.x} <br /> درخواست / پایان یافته: ${this.y} </b>`;
+                if (this.series.name === title1) {
+                    return `<b> ${this.x} <br /> ${title1}: ${this.y} </b>`;
+                } else if (this.series.name === title2) {
+                    return `<b> ${this.x} <br /> ${title2}: ${this.y} </b>`;
                 }
             },
         },
-
     };
 
     return (
@@ -156,4 +155,4 @@ const StackedComplaintOrRequestCharts: FC<IProps> = ({
     );
 };
 
-export { StackedComplaintOrRequestCharts };
+export { VerticalCategoryRequestOrComplaintCharts };

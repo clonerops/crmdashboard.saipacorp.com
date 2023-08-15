@@ -5,8 +5,9 @@ import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatep
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
 import { VerticalCategoryCharts } from "../../../../_cloner/partials/charts/VerticalCategoryCharts";
-import { StackedCharts } from "../../../../_cloner/partials/charts/StackedCharts";
+import { VerticalCategoryRequestOrComplaintCharts } from "../../../../_cloner/partials/charts/VerticalCategoryRequestOrComplaintCharts";
 import { StackedComplaintOrRequestCharts } from "../../../../_cloner/partials/charts/StackedComplaintOrRequestCharts";
+import { StackedCharts } from "../../../../_cloner/partials/charts/StackedCharts";
 
 const ComplaintOrRequestStatus = () => {
     const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
@@ -71,6 +72,15 @@ const ComplaintOrRequestStatus = () => {
                         </div>
                     </div>
                 </div>
+                {/* <StackedCharts
+                        data={data}
+                        categories={data?.map(
+                            (item: any) => item.contractorName
+                        )}
+                        isLoading={isLoading}
+                        isError={isError}
+                        text=""
+                    /> */}
                 <StackedComplaintOrRequestCharts
                     data={data}
                     categories={data?.map((item: any) => item.contractName)}
@@ -78,6 +88,20 @@ const ComplaintOrRequestStatus = () => {
                     isError={isError}
                     text=""
                 />
+                {/* <VerticalCategoryRequestOrComplaintCharts
+                    data={data?.map((item: any) => item.complaintDoingCount)}
+                    data1={data?.map((item: any) => item.requestDoingCount)}
+                    data2={data?.map((item: any) => item.complaintEndedCount)}
+                    data3={data?.map((item: any) => item.requestEndedCount)}
+                    categories={data?.map((item: any) => item.contractName)}
+                    title1={"شکایت / درحال انجام"}
+                    title2={"درخواست / درحال انجام"}
+                    title3={"شکایت / پایان یافته"}
+                    title4={"درخواست / پایان یافته"}
+                    isLoading={isLoading}
+                    isError={isError}
+                    text=""
+                /> */}
             </Card6>
         </>
     );
