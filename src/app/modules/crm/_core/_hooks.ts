@@ -14,9 +14,15 @@ const useGetComplaintOrRequestStatusReport = () => {
         return api.getComplantOrRequestStatusReport(formData);
     });
 };
+const useGetComplaintOrRequestByDealersReport = () => {
+    return useMutation((formData: ComplaintOrRequestSendData) => {
+        return api.getComplantOrRequestByDealersReport(formData);
+    });
+};
 
 
 export {
     useGetComplaintOrRequestReport,
-    useGetComplaintOrRequestStatusReport
+    useGetComplaintOrRequestStatusReport,
+    useGetComplaintOrRequestByDealersReport
 };

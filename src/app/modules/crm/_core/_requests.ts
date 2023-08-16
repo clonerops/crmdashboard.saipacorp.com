@@ -18,5 +18,17 @@ const getComplantOrRequestStatusReport = async (
     );
     return data;
 };
+const getComplantOrRequestByDealersReport = async (
+    formData: ComplaintOrRequestSendData
+) => {
+    const { data } = await dashboardHttp.get(
+        `CrmTBSReport/GetComplaintStatisticByDealers?fromDate=${formData.fromDate}&toDate=${formData.toDate}`
+    );
+    return data;
+};
 
-export { getComplantOrRequestReport, getComplantOrRequestStatusReport };
+export {
+    getComplantOrRequestReport,
+    getComplantOrRequestStatusReport,
+    getComplantOrRequestByDealersReport,
+};
