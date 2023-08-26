@@ -1,7 +1,37 @@
 import React, { useState } from 'react'
-import Select from 'react-select'
+import Select, { StylesConfig } from 'react-select'
 
 const ProfessionalSelect = (props: any) => {
+  const customStyles: StylesConfig = {
+    control: (provided: Record<string, unknown>, state: any) => ({
+        ...provided,
+        height: 35,
+        minHeight: 35,
+        color: "black",
+        fontSize: "12px",
+        border: state.isFocused
+            ? "1px solid #000256"
+            : "1px solid tw-border-gray-300",
+        boxShadow: state.isFocused ? "0px 0px 4px #000256" : "none",
+        // "&": {
+        //   border: "1px solid #cccccc",
+        //   boxShadow: "none"
+        // },
+        "&:hover": {
+            // border: "1px solid #ff8b67",
+            // boxShadow: "0px 0px 6px #ff8b67"
+        },
+        // "&:focus": {
+        //   border: "1px solid #ff8b67",
+        //   boxShadow: "0px 0px 6px #ff8b67"
+        // },
+        // "&:acitve": {
+        //   border: "1px solid #ff8b67",
+        //   boxShadow: "0px 0px 6px #ff8b67"
+        // }
+    }),
+};
+
 
     const [inputValue, setInputValue] = useState("");
 
@@ -33,18 +63,9 @@ const ProfessionalSelect = (props: any) => {
       defaultValue={props.defaultValue}
       value={props.value}
       placeholder={props.placeholder}
+      styles={customStyles}
       inputValue={inputValue}
       name={props.name}
-      // theme={(theme) => ({
-      //   ...theme,
-      //   colors: {
-      //     ...theme.colors,
-      //     text: 'blue',
-      //     primary25: 'pink',
-      //     primary: 'black',
-      //   },
-      // })}
-    //   styles={customStyles}
       onInputChange={handleInputChange}
       autoFocus={props.autoFocus}
       onKeyDown={handleKeyDown}

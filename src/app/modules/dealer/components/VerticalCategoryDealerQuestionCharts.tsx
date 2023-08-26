@@ -78,6 +78,28 @@ const VerticalCategoryDealerQuestionCharts: FC<IProps> = ({
             y: data?.strengthProperTraining,
         },
     ];
+    const dataCategories = [
+        {
+            name: "رفتار پرسنل",
+        },
+        { name: "تمیزی خودرو" },
+        {
+            name: "آراستگی پرسنل",
+        },
+        {
+            name: "درخواست وجه اضافی / پذیرایی",
+        },
+        {
+            name: "تمیزی قسمت فروش خودرو",
+        },
+        {
+            name: "تمیزی قسمت تحویل خودرو",
+        },
+        { name: "تحویل خودرو بدون رفع ایراد" },
+        {
+            name: "آموزش مناسب استفاده از خودرو و آپشن ها",
+        },
+    ];
 
     const options = {
         chart: {
@@ -88,7 +110,7 @@ const VerticalCategoryDealerQuestionCharts: FC<IProps> = ({
         },
         xAxis: {
             type: "category",
-            categories: weaknessesData.map((item) => item.name),
+            categories: dataCategories.map((item) => item.name),
             labels: {
                 style: {
                     fontFamily: "Yekan_reqular",
@@ -112,15 +134,17 @@ const VerticalCategoryDealerQuestionCharts: FC<IProps> = ({
             {
                 name: "موارد مثبت ",
                 data: strengthData,
+                colors: ["#13d8aa"],
             },
             {
                 name: "موارد منفی ",
                 data: weaknessesData,
+                colors: ["#d4526e"],
             },
         ],
         plotOptions: {
             series: {
-                colors: ["#585E7B", "#d4526e", "#13d8aa", "#A5978B"],
+                // colors: ["#585E7B", "#d4526e", "#13d8aa", "#A5978B"],
                 distributed: true,
                 colorByPoint: true, // Enable color by point
                 dataLabels: {

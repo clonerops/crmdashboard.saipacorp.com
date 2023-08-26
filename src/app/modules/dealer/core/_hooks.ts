@@ -9,6 +9,7 @@ const useGetProvinces = () => {
 };
 
 const useGetSurveryQuestion = () => {
+    // return useMutation((formData: {fromDate: string, toDate: string, dealerId: number}) => {
     return useMutation((formData: {dealerId: number}) => {
         return api.getSurveryQuestion(formData)
     })
