@@ -99,7 +99,14 @@ const SaleByProductDepositorsReport = () => {
             toDate: toDate ? calculateToDate : calculateNowDate,
             priority: totalDateSelect?.value,
         };
-        saleProductDepositorsReport(formData);
+        saleProductDepositorsReport(formData, {
+            onSuccess: (data) => {
+                calculateSum(data);
+            },
+            onError: () => {
+                setCalculateTotalCount(0);
+            },
+        });
     };
 
     const toDateChange = (d: any) => {
@@ -112,7 +119,14 @@ const SaleByProductDepositorsReport = () => {
             toDate: moment(d.value).format("jYYYY/jMM/jDD"),
             priority: totalDateSelect?.value,
         };
-        saleProductDepositorsReport(formData);
+        saleProductDepositorsReport(formData, {
+            onSuccess: (data) => {
+                calculateSum(data);
+            },
+            onError: () => {
+                setCalculateTotalCount(0);
+            },
+        });
     };
 
     const onChangeTotalTypes = (selectOption: any) => {

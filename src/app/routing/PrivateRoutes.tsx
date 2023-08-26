@@ -4,6 +4,7 @@ import { DashboardEsale } from '../pages/dashboard/DashboardEsale'
 import Dashboard from '../pages/dashboard/Dashboard'
 import { DashboardTransfer } from '../pages/dashboard/DashboardTransfer'
 import { DashboardCrm } from '../pages/dashboard/DashboardCrm'
+import { DashboardDealer } from '../pages/dashboard/DashboardDealer'
 
 const PrivateRoutes = () => {
 
@@ -17,6 +18,7 @@ const PrivateRoutes = () => {
         <Route path='dashboard/esale' element={<DashboardEsale />} />
         <Route path='dashboard/transfer' element={<DashboardTransfer />} />
         <Route path='dashboard/crm' element={<DashboardCrm />} />
+        <Route path='dashboard/dealer' element={<DashboardDealer />} />
         {/* Lazy Modules */}
         {/* Page Not Found */}
         <Route path='*' element={<Navigate to='/error/404' />} />

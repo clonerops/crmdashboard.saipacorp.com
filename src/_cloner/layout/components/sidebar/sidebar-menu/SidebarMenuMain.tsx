@@ -26,6 +26,12 @@ const SidebarMenuMain = () => {
         title={'داشبورد مدیریت حمل محصول'}
         fontIcon='bi-app-indicator'
       />
+      <SidebarMenuItem
+        to='/dashboard/dealer'
+        icon='/media/icons/duotune/art/art002.svg'
+        title={'داشبورد نمایندگی ها'}
+        fontIcon='bi-app-indicator'
+      />
       {/* <SidebarMenuItem
         to='/builder'
         icon='/media/icons/duotune/general/gen019.svg'
