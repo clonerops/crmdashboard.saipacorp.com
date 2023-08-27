@@ -6,6 +6,7 @@ import { dropdownDealers } from "../helpers/dropdownDealers";
 import { VerticalCategoryDealerQuestionCharts } from "./VerticalCategoryDealerQuestionCharts";
 // import moment from "moment-jalaali";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
+import StarRating from "../../../../_cloner/helpers/components/StarRating";
 // import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 
 const DealersQuestionReport = () => {
@@ -13,6 +14,8 @@ const DealersQuestionReport = () => {
         value: 0,
         label: "همه",
     });
+    const [rating, setRating] = useState<number>(0);
+
     // const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
     // const [toDate, setToDate] = useState("");
 
@@ -33,8 +36,40 @@ const DealersQuestionReport = () => {
             // ),
             // toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
         };
-        mutate(formData);
+        mutate(formData, {
+            onSuccess: (dataItem: any) => {
+                setRating(
+                    parseFloat(
+                        Number(
+                            dataItem?.dealerSatisfactionRate /
+                                dataItem?.customersCount
+                        ).toFixed(2)
+                    )
+                );
+            },
+        });
     };
+    useEffect(() => {
+        const formData = {
+            // fromDate: "0",
+            // toDate: "0",
+            dealerId: 0,
+        };
+
+        mutate(formData, {
+            onSuccess: (dataItem: any) => {
+                setRating(
+                    parseFloat(
+                        Number(
+                            dataItem?.dealerSatisfactionRate /
+                                dataItem?.customersCount
+                        ).toFixed(2)
+                    )
+                );
+            },
+        });
+        // eslint-disable-next-line
+    }, []);
 
     // const fromDateChange = (d: any) => {
     //     setFromDate(d.value);
@@ -56,15 +91,7 @@ const DealersQuestionReport = () => {
     //     mutate(formData);
     // };
 
-    useEffect(() => {
-        const formData = {
-            // fromDate: "0",
-            // toDate: "0",
-            dealerId: 0,
-        };
-        mutate(formData);
-        // eslint-disable-next-line
-    }, []);
+    console.log(parseFloat((25.2554).toFixed(2)));
 
     return (
         <>
@@ -111,7 +138,7 @@ const DealersQuestionReport = () => {
                             />
                         </div> */}
                     </div>
-                    <div className="flex flex-row justify-end items-end gap-x-4 mb-4">
+                    <div className="flex flex-row justify-end items-center gap-x-4 mb-4">
                         <div className="py-1">
                             <label className="font-yekan_bold text-xl">
                                 {`تعداد شرکت کنندگان در نظرسنجی: `}
@@ -119,17 +146,36 @@ const DealersQuestionReport = () => {
                                     {data?.customersCount}
                                 </span>
                             </label>
+                            <span className="text-gray-600">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    className="w-6 h-6"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
+                                    />
+                                </svg>
+                            </span>
                         </div>
-                        <div className="py-1">
+                        <div className="py-1 flex flex-col justify-end items-end">
                             <label className="font-yekan_bold text-xl">
                                 {`میانگین ستاره های اخذ شده: `}
                                 <span className="text-green-700">
-                                    {Math.floor(
-                                        data?.dealerSatisfactionRate /
-                                            data?.customersCount
+                                    {parseFloat(
+                                        Number(
+                                            data?.dealerSatisfactionRate /
+                                                data?.customersCount
+                                        ).toFixed(2)
                                     )}
                                 </span>
                             </label>
+                            <StarRating value={rating} />
                         </div>
                     </div>
                 </div>
