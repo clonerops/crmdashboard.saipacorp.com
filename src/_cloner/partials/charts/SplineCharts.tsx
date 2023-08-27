@@ -14,7 +14,7 @@ interface IProps {
     tooltip?: boolean;
 }
 
-const VerticalCharts: FC<IProps> = ({
+const SplineCharts: FC<IProps> = ({
     text,
     categories,
     data,
@@ -32,7 +32,7 @@ const VerticalCharts: FC<IProps> = ({
 
     const options = {
         chart: {
-            type: "column",
+            type: "spline",
         },
         title: {
             text: text,
@@ -62,14 +62,22 @@ const VerticalCharts: FC<IProps> = ({
             {
                 name: "",
                 data: data,
-                colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
+                lineWidth: 8, // Set the line width here
+                color: "#A5978B", // Set the line color here
+                // colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
             },
         ],
         plotOptions: {
+            spline: {
+                lineColor: "#13d8aa",
+            },
             series: {
-                colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
+                // colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
                 distributed: true,
                 colorByPoint: true, // Enable color by point
+                marker: {
+                    lineWidth: 1,
+                },
                 dataLabels: {
                     enabled: true,
                     style: {
@@ -144,4 +152,4 @@ const VerticalCharts: FC<IProps> = ({
     );
 };
 
-export { VerticalCharts };
+export { SplineCharts };
