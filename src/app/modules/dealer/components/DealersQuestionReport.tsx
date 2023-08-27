@@ -4,9 +4,10 @@ import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
 import { dropdownDealers } from "../helpers/dropdownDealers";
 import { VerticalCategoryDealerQuestionCharts } from "./VerticalCategoryDealerQuestionCharts";
-// import moment from "moment-jalaali";
+import moment from "moment-jalaali";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
 import StarRating from "../../../../_cloner/helpers/components/StarRating";
+import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 // import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 
 const DealersQuestionReport = () => {
@@ -16,12 +17,12 @@ const DealersQuestionReport = () => {
     });
     const [rating, setRating] = useState<number>(0);
 
-    // const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
-    // const [toDate, setToDate] = useState("");
+    const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
+    const [toDate, setToDate] = useState("");
 
-    // let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
-    // let calculateToDate = moment(toDate).format("jYYYY/jMM/jDD");
-    // let calculateNowDate = moment(Date.now()).format("jYYYY/jMM/jDD");
+    let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
+    let calculateToDate = moment(toDate).format("jYYYY/jMM/jDD");
+    let calculateNowDate = moment(Date.now()).format("jYYYY/jMM/jDD");
 
     const { data: dealers } = useGetDealers();
 
@@ -31,10 +32,10 @@ const DealersQuestionReport = () => {
         setDealersSelect(selectedOption);
         const formData = {
             dealerId: selectedOption.value,
-            // fromDate: moment(setDateOneMonth().getTime()).format(
-            //     "jYYYY/jMM/jDD"
-            // ),
-            // toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
+            fromDate: moment(setDateOneMonth().getTime()).format(
+                "jYYYY/jMM/jDD"
+            ),
+            toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
         };
         mutate(formData, {
             onSuccess: (dataItem: any) => {
@@ -51,8 +52,8 @@ const DealersQuestionReport = () => {
     };
     useEffect(() => {
         const formData = {
-            // fromDate: "0",
-            // toDate: "0",
+            fromDate: "0",
+            toDate: "0",
             dealerId: 0,
         };
 
@@ -71,27 +72,26 @@ const DealersQuestionReport = () => {
         // eslint-disable-next-line
     }, []);
 
-    // const fromDateChange = (d: any) => {
-    //     setFromDate(d.value);
-    //     const formData = {
-    //         fromDate: moment(d.value).format("jYYYY/jMM/jDD"),
-    //         toDate: toDate ? calculateToDate : calculateNowDate,
-    //         dealerId: dealersSelect.value,
-    //     };
-    //     mutate(formData);
-    // };
+    const fromDateChange = (d: any) => {
+        setFromDate(d.value);
+        const formData = {
+            fromDate: moment(d.value).format("jYYYY/jMM/jDD"),
+            toDate: toDate ? calculateToDate : calculateNowDate,
+            dealerId: dealersSelect.value,
+        };
+        mutate(formData);
+    };
 
-    // const toDateChange = (d: any) => {
-    //     setToDate(d);
-    //     const formData = {
-    //         fromDate: fromDate ? calculateFromDate : calculateNowDate,
-    //         toDate: moment(d.value).format("jYYYY/jMM/jDD"),
-    //         dealerId: dealersSelect.value,
-    //     };
-    //     mutate(formData);
-    // };
+    const toDateChange = (d: any) => {
+        setToDate(d);
+        const formData = {
+            fromDate: fromDate ? calculateFromDate : calculateNowDate,
+            toDate: moment(d.value).format("jYYYY/jMM/jDD"),
+            dealerId: dealersSelect.value,
+        };
+        mutate(formData);
+    };
 
-    console.log(parseFloat((25.2554).toFixed(2)));
 
     return (
         <>
@@ -118,7 +118,7 @@ const DealersQuestionReport = () => {
                                 placeholder=""
                             />
                         </div>
-                        {/* <div className="py-1 w-full">
+                        <div className="py-1 w-full">
                             <label>از تاریخ</label>
                             <CustomDatepicker
                                 // title="از تاریخ"
@@ -136,7 +136,7 @@ const DealersQuestionReport = () => {
                                 onChange={(d: any) => toDateChange(d)}
                                 defaultValue={new Date().getTime()}
                             />
-                        </div> */}
+                        </div>
                     </div>
                     <div className="flex flex-row justify-end items-center gap-x-4 mb-4">
                         <div className="py-1">

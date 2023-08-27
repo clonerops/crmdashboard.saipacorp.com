@@ -12,7 +12,7 @@ const DashboardDealer: FC = () => {
     return (
         <>
             <PageTitle breadcrumbs={[]}>{"داشبورد نمایندگی ها"}</PageTitle>
-            {checkUserRole(getUserRoles(), "TransCrmDashboard") ? (
+            {checkUserRole(getUserRoles(), "TransDealerDashboard") ? (
                 <>
                     <div className="md:grid md:grid-cols-1 md:gap-4">
                         <div className="mt-2 mb-2 shadow-lg">

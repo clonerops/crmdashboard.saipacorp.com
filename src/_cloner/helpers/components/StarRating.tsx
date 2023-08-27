@@ -6,15 +6,15 @@ interface StarRatingProps {
 }
 
 const StarRating: React.FC<StarRatingProps> = ({ value }) => {
-  const [hoverValue, setHoverValue] = useState<number>(0);
+  const [hoverValue] = useState<number>(0);
 
-  const handleMouseOver = (newValue: number) => {
-    setHoverValue(newValue);
-  };
+//   const handleMouseOver = (newValue: number) => {
+//     setHoverValue(newValue);
+//   };
 
-  const handleMouseLeave = () => {
-    setHoverValue(0);
-  };
+//   const handleMouseLeave = () => {
+//     setHoverValue(0);
+//   };
 
 
   return (
@@ -31,8 +31,8 @@ const StarRating: React.FC<StarRatingProps> = ({ value }) => {
               'text-yellow-400': isFilled || isHalfFilled,
               'text-gray-400': !isFilled && !isHalfFilled,
             })}
-            onMouseOver={() => handleMouseOver(ratingValue)}
-            onMouseLeave={handleMouseLeave}
+            // onMouseOver={() => handleMouseOver(ratingValue)}
+            // onMouseLeave={handleMouseLeave}
           >
             {isFilled ? (
               <>&#9733;</>

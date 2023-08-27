@@ -28,77 +28,35 @@ const VerticalCategoryDealerQuestionCharts: FC<IProps> = ({
     }
 
     const weaknessesData = [
-        {
-            name: "رفتار نامناسب نماینده و كاركنان",
-            y: data?.weaknessInappropriateTreatment,
-        },
-        { name: "عدم تمیزی خودرو", y: data?.weaknessCarNotClean },
-        {
-            name: "ظاهر غیرآراسته و نامرتب پرسنل",
-            y: data?.weaknessPersonelNoCleaning,
-        },
-        { name: "درخواست یا دريافت وجه اضافی", y: data?.weaknessGetExtraMoney },
-        {
-            name: "عدم تمیزی عدم نظافت و آراستگی فضای قسمت فروش خودرو",
-            y: data?.weaknessSaleNoCleaning,
-        },
-        {
-            name: "عدم نظافت و آراستگی فضای قسمت تحویل خودرو",
-            y: data?.weaknessDeliveryNoCleaning,
-        },
-        { name: "تحویل خودرو بدون رفع ایراد", y: data?.weaknessNotFixProblem },
-        {
-            name: "عدم آموزش مناسب استفاده از خودرو و آپشن‌های آن",
-            y: data?.weaknessInadequateTraining,
-        },
+        {name: "رفتار نامناسب نماینده و كاركنان",y: data?.weaknessInappropriateTreatment},
+        {name: "عدم تمیزی خودرو", y: data?.weaknessCarNotClean },
+        {name: "ظاهر غیرآراسته و نامرتب پرسنل",y: data?.weaknessPersonelNoCleaning},
+        {name: "درخواست یا دريافت وجه اضافی", y: data?.weaknessGetExtraMoney },
+        {name: "عدم تمیزی عدم نظافت و آراستگی فضای قسمت فروش خودرو", y: data?.weaknessSaleNoCleaning},
+        {name: "عدم نظافت و آراستگی فضای قسمت تحویل خودرو",y: data?.weaknessDeliveryNoCleaning},
+        {name: "عدم آموزش مناسب استفاده از خودرو و آپشن‌های آن",y: data?.weaknessInadequateTraining},
+        {name: "تحویل خودرو بدون رفع ایراد", y: data?.weaknessNotFixProblem },
     ];
 
     const strengthData = [
-        {
-            name: "رفتار محترمانه نماینده و كاركنان",
-            y: data?.strengthAppropriateTreatment,
-        },
-        { name: "تميزی خودرو", y: data?.strengthCarWasClean },
-        { name: "ظاهر آراسته و مرتب پرسنل", y: data?.strengthPersonelWasClean },
-        { name: "پذيرايی مناسب", y: data?.strengthProperReception },
-        {
-            name: "نظافت و آراستگی فضای قسمت فروش خودرو",
-            y: data?.strengthExistCleaningInSale,
-        },
-        {
-            name: "نظافت و آراستگی فضای قسمت تحویل خودرو",
-            y: data?.strengthExistCleaningInDelivery,
-        },
-        {
-            name: "عدم تمیزی تحویل خودرو بدون ایراد",
-            y: data?.strengthNotProblem,
-        },
-        {
-            name: "آموزش استفاده از خودرو و آپشن‌های آن",
-            y: data?.strengthProperTraining,
-        },
+        {name: "رفتار محترمانه نماینده و كاركنان",y: data?.strengthAppropriateTreatment},
+        {name: "تميزی خودرو", y: data?.strengthCarWasClean},
+        {name: "ظاهر آراسته و مرتب پرسنل", y: data?.strengthPersonelWasClean},
+        {name: "پذيرايی مناسب", y: data?.strengthProperReception},
+        {name: "نظافت و آراستگی فضای قسمت فروش خودرو",y: data?.strengthExistCleaningInSale},
+        {name: "نظافت و آراستگی فضای قسمت تحویل خودرو", y: data?.strengthExistCleaningInDelivery},
+        {name: "آموزش استفاده از خودرو و آپشن‌های آن",y: data?.strengthProperTraining},
+        {name: "عدم تمیزی تحویل خودرو بدون ایراد", y: data?.strengthNotProblem},
     ];
     const dataCategories = [
-        {
-            name: "رفتار پرسنل",
-        },
-        { name: "تمیزی خودرو" },
-        {
-            name: "آراستگی پرسنل",
-        },
-        {
-            name: "درخواست وجه اضافی / پذیرایی",
-        },
-        {
-            name: "تمیزی قسمت فروش خودرو",
-        },
-        {
-            name: "تمیزی قسمت تحویل خودرو",
-        },
-        { name: "تحویل خودرو بدون رفع ایراد" },
-        {
-            name: "آموزش مناسب استفاده از خودرو و آپشن ها",
-        },
+        {name: "رفتار پرسنل",},
+        {name: "تمیزی خودرو" },
+        {name: "آراستگی پرسنل",},
+        {name: "درخواست وجه اضافی / پذیرایی",},
+        {name: "تمیزی قسمت فروش خودرو",},
+        {name: "تمیزی قسمت تحویل خودرو",},
+        {name: "آموزش مناسب استفاده از خودرو"},
+        {name: "تحویل خودرو بدون رفع ایراد" },
     ];
 
     const options = {
