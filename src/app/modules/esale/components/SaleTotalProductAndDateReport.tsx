@@ -11,7 +11,6 @@ import {
     dropdownSaleTotalType,
     dropdownSaleTotalTypeDetails,
 } from "../helpers/dropdownSaleTotalType";
-import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import { StackedCharts } from "../../../../_cloner/partials/charts/StackedCharts";
 
 const SaleTotalProductAndDateReport = () => {
@@ -62,6 +61,7 @@ const SaleTotalProductAndDateReport = () => {
                 setCalculateTotalCount(0);
             },
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onChangeTotalTypes = (selectOption: any) => {
@@ -127,7 +127,14 @@ const SaleTotalProductAndDateReport = () => {
                         placeholder=""
                     />
                     <ProfessionalSelect
-                        options={saleTotalTypeDetails === undefined ? [{ value: 0, label: "همه" }] : dropdownSaleTotalTypeDetails([{ id: 0, detailDesc: "همه" }, ...saleTotalTypeDetails])}
+                        options={
+                            saleTotalTypeDetails === undefined
+                                ? [{ value: 0, label: "همه" }]
+                                : dropdownSaleTotalTypeDetails([
+                                      { id: 0, detailDesc: "همه" },
+                                      ...saleTotalTypeDetails,
+                                  ])
+                        }
                         onChange={onChangeTotalTypeDetail}
                         value={totalTypeDetailSelect}
                         defaultValue={{ value: 0, label: "همه" }}

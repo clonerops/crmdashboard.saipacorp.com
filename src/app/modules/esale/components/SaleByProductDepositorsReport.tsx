@@ -5,7 +5,6 @@ import ProfessionalSelect from "./ProfessionalSelect";
 import {
     dropdownSaleTotalType,
     dropdownSaleTotalTypeDetails,
-    dropdownSaleTotalWinnerType,
     dropdownTotalDate,
 } from "../helpers/dropdownSaleTotalType";
 import RadioGroupSaleType from "./RadioGroupSaleType";
@@ -16,9 +15,7 @@ import {
     useGetSaleTotalTypes,
 } from "../_core/_hooks";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
-import {
-    setDateOneWeek,
-} from "../../../../_cloner/helpers/reusableFunction";
+import { setDateOneWeek } from "../../../../_cloner/helpers/reusableFunction";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 
 const SaleByProductDepositorsReport = () => {
@@ -87,6 +84,7 @@ const SaleByProductDepositorsReport = () => {
                 setCalculateTotalCount(0);
             },
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fromDateChange = (d: any) => {

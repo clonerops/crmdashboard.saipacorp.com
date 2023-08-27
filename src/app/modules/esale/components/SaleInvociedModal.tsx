@@ -15,7 +15,7 @@ import {
 } from "../helpers/dropdownSaleTotalType";
 import { SaleInvoicedTable } from "./SaleInvoicedTable";
 import { DownloadExcelFile } from "./DownloadExcel";
-import { downloadInvoicedDetailExcel, downloadTotalTypeExcel } from "../_core/_requests";
+import { downloadInvoicedDetailExcel } from "../_core/_requests";
 
 interface IProps {
     isOpen: boolean;
@@ -108,6 +108,7 @@ const SaleInvociedModal: FC<IProps> = ({ isOpen, setIsOpen }) => {
         };
         totalDetails(totalTypesSelect?.value);
         saleReport(formData);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleDownloadExcel = async () => {

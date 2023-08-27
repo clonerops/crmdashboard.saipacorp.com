@@ -10,6 +10,7 @@ const AccessDenied = () => {
                 src={toAbsoluteUrl("/media/logos/access.png")}
                 width={300}
                 height={300}
+                alt="access denied"
             />
         </div>
     );

@@ -11,7 +11,6 @@ import RadioGroupSaleType from "./RadioGroupSaleType";
 import {
     useGetDeliverDates,
     useGetSaleByProductPriorityReport,
-    useGetSaleByProductReport,
     useGetSaleTotalTypeDetails,
     useGetSaleTotalTypes,
     useGetWinnerTypes,
@@ -79,6 +78,7 @@ const SaleByProductPriorityReport = () => {
                 setCalculateTotalCount(0);
             },
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onChangeTotalTypes = (selectOption: any) => {

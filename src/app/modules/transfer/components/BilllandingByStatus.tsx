@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
 import { useGetBLandsByStatus, useGetContractors } from "../core/_hooks";
@@ -34,6 +34,7 @@ const BilllandingByStatus = () => {
             contractor_id: 0,
         };
         mutate(formData);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onChangeContractors = (selectedOption: any) => {
@@ -79,7 +80,6 @@ const BilllandingByStatus = () => {
                 <div className="flex flex-row gap-4">
                     <div className="py-1 w-full">
                         <CustomDatepicker
-                            // title="از تاریخ"
                             placeholder="از تاریخ"
                             onChange={(d: any) => fromDateChange(d)}
                             defaultValue={new Date().getTime()}
@@ -87,7 +87,6 @@ const BilllandingByStatus = () => {
                     </div>
                     <div className="py-1 w-full">
                         <CustomDatepicker
-                            // title="تا تاریخ"
                             placeholder="تا تاریخ"
                             onChange={(d: any) => toDateChange(d)}
                             defaultValue={new Date().getTime()}

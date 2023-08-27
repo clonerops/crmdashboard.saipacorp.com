@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
-import {
-    // useGetBLandsCarsByStatus,
-    useGetBLandsCarsByStatus2,
-    useGetContractors,
-    // useGetDealers,
-} from "../core/_hooks";
-import {
-    dropdownContractors,
-    // dropdownDealers,
-} from "../helpers/dropdownTransfer";
+import { useGetBLandsCarsByStatus2, useGetContractors } from "../core/_hooks";
+import { dropdownContractors } from "../helpers/dropdownTransfer";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import moment from "moment-jalaali";
@@ -20,10 +12,6 @@ const BilllandingCarsByStatus2 = () => {
         value: 0,
         label: "همه",
     });
-    // const [selectedDealers, setSelectedDealers] = useState({
-    //     value: 0,
-    //     label: "همه",
-    // });
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
 
@@ -32,7 +20,6 @@ const BilllandingCarsByStatus2 = () => {
     let calculateNowDate = moment(Date.now()).format("jYYYY/jMM/jDD");
 
     const { data: contractors } = useGetContractors();
-    // const { data: dealers } = useGetDealers();
     const {
         mutate,
         data: BlandStatus2,
@@ -44,12 +31,11 @@ const BilllandingCarsByStatus2 = () => {
         const formData = {
             fromDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
-            // fromDate: "",
-            // toDate: "",
             contractor_id: 0,
             dealer_no: 0,
         };
         mutate(formData);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onChangeContractors = (selectedOption: any) => {
@@ -57,26 +43,11 @@ const BilllandingCarsByStatus2 = () => {
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: toDate ? calculateToDate : calculateNowDate,
-            // fromDate: "",
-            // toDate: "",
             contractor_id: selectedOption?.value,
-            // dealer_no: selectedDealers?.value,
             dealer_no: 0,
         };
         mutate(formData);
     };
-    // const onChangeDealers = (selectedOption: any) => {
-    //     // setSelectedDealers(selectedOption);
-    //     const formData = {
-    //         fromDate: fromDate ? calculateFromDate : calculateNowDate,
-    //         toDate: toDate ? calculateToDate : calculateNowDate,
-    //         // fromDate: "",
-    //         // toDate: "",
-    //         contractor_id: selectedContractors?.value,
-    //         dealer_no: 0,
-    //     };
-    //     mutate(formData);
-    // };
     const fromDateChange = (d: any) => {
         setFromDate(d.value);
         const formData = {
@@ -111,28 +82,11 @@ const BilllandingCarsByStatus2 = () => {
                             placeholder="پیمانکار حمل"
                         />
                     </div>
-                    {/* <div className="py-1 w-full">
-                        <label>نمایندگی</label>
-                        <ProfessionalSelect
-                            options={
-                                dealers === undefined
-                                    ? [{ value: 0, label: "همه" }]
-                                    : dropdownDealers([
-                                          { dlR_NO: 0, dlR_NAME: "همه" },
-                                          ...dealers,
-                                      ])
-                            }
-                            // options={dropdownDealers(dealers)}
-                            onChange={onChangeDealers}
-                            value={selectedDealers}
-                            placeholder="نمایندگی"
-                        />
-                    </div> */}
+                   
                 </div>
                 <div className="flex flex-row gap-4">
                     <div className="py-1 w-full">
                         <CustomDatepicker
-                            // title="از تاریخ"
                             placeholder="از تاریخ"
                             onChange={(d: any) => fromDateChange(d)}
                             defaultValue={new Date().getTime()}
@@ -140,7 +94,6 @@ const BilllandingCarsByStatus2 = () => {
                     </div>
                     <div className="py-1 w-full">
                         <CustomDatepicker
-                            // title="تا تاریخ"
                             placeholder="تا تاریخ"
                             onChange={(d: any) => toDateChange(d)}
                             defaultValue={new Date().getTime()}

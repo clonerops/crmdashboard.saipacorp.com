@@ -144,6 +144,7 @@ const Login = () => {
                                 src={`${toAbsoluteUrl(
                                     "/media/logos/demo_7403_none-2.png"
                                 )}`}
+                                alt="background"
                             />
                         </div>
                     </div>
