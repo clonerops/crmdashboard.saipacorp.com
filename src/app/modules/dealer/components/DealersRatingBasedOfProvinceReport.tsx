@@ -6,7 +6,7 @@ import {  dropdownProvinces } from "../helpers/dropdownDealers";
 import moment from "moment-jalaali";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
-import { SplineCharts } from "../../../../_cloner/partials/charts/SplineCharts";
+import { SplineTwoCharts } from "../../../../_cloner/partials/charts/SplineTwoCharts";
 
 const DealersRatingBasedOfProvinceReport = () => {
     const [provinceSelect, setProvinceSelect] = useState<any>({
@@ -107,9 +107,12 @@ const DealersRatingBasedOfProvinceReport = () => {
                         </div>
                     </div>
                 </div>
-                <SplineCharts
+                <SplineTwoCharts
                     data={data?.map((item: {averageStars: number}) => item.averageStars)}
+                    data1={data?.map((item: {customersCount: number}) => item.customersCount)}
                     categories={data?.map((item: {branchName: string}) => item.branchName)}
+                    title1="میانگین ستاره های اخذ شده"
+                    title2="تعداد شرکت کنندگان در نظرنسجی"
                     isLoading={isLoading}
                     isError={isError}
                     tooltip={true}
