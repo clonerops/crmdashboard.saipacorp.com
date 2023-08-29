@@ -8,7 +8,6 @@ import moment from "moment-jalaali";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
 import StarRating from "../../../../_cloner/helpers/components/StarRating";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
-// import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 
 const DealersQuestionReport = () => {
     const [dealersSelect, setDealersSelect] = useState<any>({
@@ -140,9 +139,9 @@ const DealersQuestionReport = () => {
                     </div>
                     <div className="flex flex-row justify-end items-center gap-x-4 mb-4">
                         <div className="py-1">
-                            <label className="font-yekan_bold text-xl">
+                            <label className="text-lg">
                                 {`تعداد شرکت کنندگان در نظرسنجی: `}
-                                <span className="text-green-700">
+                                <span className="text-green-700 font-yekan_bold text-2xl">
                                     {data?.customersCount}
                                 </span>
                             </label>
@@ -164,9 +163,9 @@ const DealersQuestionReport = () => {
                             </span>
                         </div>
                         <div className="py-1 flex flex-col justify-end items-end">
-                            <label className="font-yekan_bold text-xl">
+                            <label className="text-lg">
                                 {`میانگین ستاره های اخذ شده: `}
-                                <span className="text-green-700">
+                                <span className="text-green-700 font-yekan_extrabold text-2xl">
                                     {parseFloat(
                                         Number(
                                             data?.dealerSatisfactionRate /

@@ -19,6 +19,10 @@ const getRatingByProvince = async (formData: {fromDate: string, toDate: string, 
     const { data } = await dashboardHttp.get(`/DealersSurveyReport/GetSurveyResultByDealer?fromDate=${formData.fromDate}&toDate=${formData.toDate}&provinceId=${formData.provinceId}&dealerId=0`);
     return data;
 }
+const getSurveryQusetion = async (formData: {fromDate: string, toDate: string, provinceId: string, questionType: string}) => {
+    const { data } = await dashboardHttp.get(`/DealersSurveyReport/GetSurveyResultByQuestion?fromDate=${formData.fromDate}&toDate=${formData.toDate}&provinceId=${formData.provinceId}&questionType=${formData.questionType}`);
+    return data;
+}
 // const getSurveryQuestion = async (formData: { dealerId: number}) => {
 //     const { data } = await dashboardHttp.get(`/DealersSurveyReport/GetSurveyResultByQuestionType?&provinceId=0&dealerId=${formData.dealerId}`);
 //     return data;
@@ -28,5 +32,6 @@ export {
     getDealers,
     getProvinces,
     getSurveryQuestion,
-    getRatingByProvince
+    getRatingByProvince,
+    getSurveryQusetion
 }; 

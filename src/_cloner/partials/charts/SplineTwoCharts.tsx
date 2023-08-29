@@ -9,6 +9,8 @@ interface IProps {
     text: string;
     title1: string;
     title2: string;
+    color: string;
+    color1: string;
     categories?: any;
     data?: any;
     data1?: any;
@@ -21,6 +23,8 @@ const SplineTwoCharts: FC<IProps> = ({
     text,
     title1,
     title2,
+    color,
+    color1,
     categories,
     data,
     data1,
@@ -69,13 +73,14 @@ const SplineTwoCharts: FC<IProps> = ({
                 name: title1,
                 data: data,
                 lineWidth: 8, // Set the line width here
-                color: "#13d8aa", // Set line color for series 1
+                // color: "#13d8aa", // Set line color for series 1
+                color: color, // Set line color for series 1
             },
             {
                 name: title2,
                 data: data1,
                 lineWidth: 8, // Set the line width here
-                color: "#546E7A", // Set line color for series 2
+                color: color1, // Set line color for series 2
             },
         ],
         plotOptions: {

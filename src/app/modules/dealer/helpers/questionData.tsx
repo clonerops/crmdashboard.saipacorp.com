@@ -1,0 +1,18 @@
+export const questionData = [
+    {value: "WeaknessInappropriateTreatment", label: "رفتار نامناسب نماینده و كاركنان"},
+    {value: "WeaknessCarNotClean", label: "عدم تمیزی خودرو (کارواش نشده - عدم نظافت داخل)"},
+    {value: "WeaknessPersonelNoCleaning", label: "ظاهر غیرآراسته و نامرتب پرسنل"},
+    {value: "WeaknessGetExtraMoney", label: "درخواست یا دريافت وجه اضافی"},
+    {value: "WeaknessSaleNoCleaning", label: "عدم نظافت و آراستگی فضای قسمت فروش خودرو"},
+    {value: "WeaknessDeliveryNoCleaning", label: "عدم نظافت و آراستگی فضای قسمت تحویل خودرو"},
+    {value: "WeaknessNotFixProblem", label: "تحویل خودرو بدون رفع ایراد"},
+    {value: "WeaknessInadequateTraining", label: "عدم آموزش مناسب استفاده از خودرو و آپشن‌های آن"},
+    {value: "StrengthAppropriateTreatment", label: "رفتار محترمانه نماینده و كاركنان"},
+    {value: "StrengthCarWasClean", label: "تميزی خودرو (کارواش شده - نظافت خودرو)"},
+    {value: "StrengthPersonelWasClean", label: "ظاهر آراسته و مرتب پرسنل"},
+    {value: "StrengthProperReception", label: "پذيرايی مناسب"},
+    {value: "StrengthExistCleaningInSale", label: "نظافت و آراستگی فضای قسمت فروش خودرو"},
+    {value: "StrengthExistCleaningInDelivery", label: "نظافت و آراستگی فضای قسمت تحویل خودرو"},
+    {value: "StrengthNotProblem", label: "تحویل خودرو بدون ایراد"},
+    {value: "StrengthProperTraining", label: "آموزش استفاده از خودرو و آپشن‌های آن"},
+]

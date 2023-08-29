@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Select, { StylesConfig } from 'react-select'
 
 const ProfessionalSelect = (props: any) => {
+  
   const customStyles: StylesConfig = {
     control: (provided: Record<string, unknown>, state: any) => ({
         ...provided,
@@ -66,10 +67,10 @@ const ProfessionalSelect = (props: any) => {
       styles={customStyles}
       inputValue={inputValue}
       name={props.name}
-      onInputChange={handleInputChange}
       autoFocus={props.autoFocus}
       onKeyDown={handleKeyDown}
       filterOption={customFilterOption}
+      onInputChange={handleInputChange}
       isSearchable
     />
   )

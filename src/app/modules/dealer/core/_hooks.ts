@@ -20,5 +20,11 @@ const useGetRatingByProvince = () => {
         return api.getRatingByProvince(formData)
     })
 }
+const useGetSurveryQusetion = () => {
+    return useMutation((formData: {fromDate: string, toDate: string, provinceId: string, questionType: string}) => {
+    // return useMutation((formData: {dealerId: number}) => {
+        return api.getSurveryQusetion(formData)
+    })
+}
 
-export { useGetDealers, useGetProvinces, useGetSurveryQuestion, useGetRatingByProvince };
+export { useGetDealers, useGetProvinces, useGetSurveryQuestion, useGetRatingByProvince, useGetSurveryQusetion };

@@ -8,6 +8,7 @@ import {
 import AccessDenied from "../../../_cloner/helpers/components/AccessDenied";
 import DealersQuestionReport from "../../modules/dealer/components/DealersQuestionReport";
 import DealersRatingBasedOfProvinceReport from "../../modules/dealer/components/DealersRatingBasedOfProvinceReport";
+import DealersServuryByQuestionReport from "../../modules/dealer/components/DealersServuryByQuestionReport";
 
 const DashboardDealer: FC = () => {
     return (
@@ -21,6 +22,9 @@ const DashboardDealer: FC = () => {
                         </div>
                         <div className="mt-2 mb-2 shadow-lg">
                             <DealersRatingBasedOfProvinceReport />
+                        </div>
+                        <div className="mt-2 mb-2 shadow-lg">
+                            <DealersServuryByQuestionReport />
                         </div>
                     </div>
                     <div className="md:grid md:grid-cols-1 md:gap-4"></div>

@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
-import {  useGetProvinces, useGetRatingByProvince } from "../core/_hooks";
+import {
+    useGetProvinces,
+    useGetSurveryQusetion,
+} from "../core/_hooks";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
-import {  dropdownProvinces } from "../helpers/dropdownDealers";
+import { dropdownProvinces } from "../helpers/dropdownDealers";
 import moment from "moment-jalaali";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import { SplineTwoCharts } from "../../../../_cloner/partials/charts/SplineTwoCharts";
+import { questionData } from "../helpers/questionData";
 
-const DealersRatingBasedOfProvinceReport = () => {
+const DealersServuryByQuestionReport = () => {
     const [provinceSelect, setProvinceSelect] = useState<any>({
         value: 2,
         label: "اصفهان",
+    });
+    const [questionSelect, setQuestionSelect] = useState<any>({
+        value: 0,
+        label: "همه",
     });
 
     const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
@@ -23,12 +31,28 @@ const DealersRatingBasedOfProvinceReport = () => {
 
     const { data: provinces } = useGetProvinces();
 
-    const { mutate, data, isLoading, isError } = useGetRatingByProvince();
+    const { mutate, data, isLoading, isError } = useGetSurveryQusetion();
 
     const provinceOnChange = (selectedOption: any) => {
         setProvinceSelect(selectedOption);
         const formData = {
             provinceId: selectedOption.label,
+            questionType: questionSelect.value,
+            fromDate: moment(setDateOneMonth().getTime()).format(
+                "jYYYY/jMM/jDD"
+            ),
+            toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
+        };
+        mutate(formData);
+    };
+    const questionOnChange = (selectedOption: any) => {
+        setQuestionSelect(selectedOption);
+        const formData = {
+            provinceId:
+                provinceSelect.value === 0
+                    ? provinceSelect.value
+                    : provinceSelect.label,
+            questionType: selectedOption.value,
             fromDate: moment(setDateOneMonth().getTime()).format(
                 "jYYYY/jMM/jDD"
             ),
@@ -41,6 +65,7 @@ const DealersRatingBasedOfProvinceReport = () => {
             fromDate: "0",
             toDate: "0",
             provinceId: "0",
+            questionType: "0",
         };
 
         mutate(formData);
@@ -52,7 +77,11 @@ const DealersRatingBasedOfProvinceReport = () => {
         const formData = {
             fromDate: moment(d.value).format("jYYYY/jMM/jDD"),
             toDate: toDate ? calculateToDate : calculateNowDate,
-            provinceId: provinceSelect.label,
+            provinceId:
+                provinceSelect.value === 0
+                    ? provinceSelect.value
+                    : provinceSelect.label,
+            questionType: questionSelect.label,
         };
         mutate(formData);
     };
@@ -62,15 +91,20 @@ const DealersRatingBasedOfProvinceReport = () => {
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: moment(d.value).format("jYYYY/jMM/jDD"),
-            provinceId: provinceSelect.label,
+            provinceId:
+                provinceSelect.value === 0
+                    ? provinceSelect.value
+                    : provinceSelect.label,
+            questionType: questionSelect.label,
         };
         mutate(formData);
     };
 
+    console.log(provinceSelect);
 
     return (
         <>
-            <Card6 image="" title="گزارش آماری میزان نظرسنجی براساس نمایندگی">
+            <Card6 image="" title="گزارش آماری میزان نظرسنجی براساس نوع سوال">
                 <div className="flex flex-col">
                     <div className="grid grid-cols-3 gap-4">
                         <div className="py-1">
@@ -86,6 +120,19 @@ const DealersRatingBasedOfProvinceReport = () => {
                                 placeholder=""
                             />
                         </div>
+                        <div className="py-1">
+                            <label>نوع سوال</label>
+                            <ProfessionalSelect
+                                options={questionData}
+                                onChange={questionOnChange}
+                                value={questionSelect}
+                                defaultValue={{
+                                    value: 0,
+                                    label: "همه",
+                                }}
+                                placeholder=""
+                            />
+                        </div>
                         <div className="py-1 w-full">
                             <label>از تاریخ</label>
                             <CustomDatepicker
@@ -96,7 +143,7 @@ const DealersRatingBasedOfProvinceReport = () => {
                             />
                         </div>
                         <div className="py-1 w-full">
-                            <label>تا  تاریخ</label>
+                            <label>تا تاریخ</label>
 
                             <CustomDatepicker
                                 // title="تا تاریخ"
@@ -108,13 +155,20 @@ const DealersRatingBasedOfProvinceReport = () => {
                     </div>
                 </div>
                 <SplineTwoCharts
-                    data={data?.map((item: {averageStars: number}) => item.averageStars)}
-                    data1={data?.map((item: {customersCount: number}) => item.customersCount)}
-                    categories={data?.map((item: {branchName: string}) => item.branchName)}
-                    title1="میانگین ستاره های اخذ شده"
+                    data={data?.map(
+                        (item: { dealerSatisfactionRate: number }) => item.dealerSatisfactionRate
+                    )}
+                    data1={data?.map(
+                        (item: { customersCount: number }) =>
+                            item.customersCount
+                    )}
+                    categories={data?.map(
+                        (item: { branchName: string }) => item.branchName
+                    )}
+                    title1="مجموع امتیاز شاخص"
                     title2="تعداد شرکت کنندگان در نظرنسجی"
-                    color="#A5978B"
-                    color1="#d4526e"
+                    color="#13d8aa"
+                    color1="#546E7A"
                     isLoading={isLoading}
                     isError={isError}
                     tooltip={true}
@@ -125,4 +179,4 @@ const DealersRatingBasedOfProvinceReport = () => {
     );
 };
 
-export default DealersRatingBasedOfProvinceReport;
+export default DealersServuryByQuestionReport;
