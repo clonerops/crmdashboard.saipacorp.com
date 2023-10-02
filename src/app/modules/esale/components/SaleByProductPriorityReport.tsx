@@ -89,7 +89,7 @@ const SaleByProductPriorityReport = () => {
             saleTotalTypeDetailId: 0,
             priority: 0,
             isJavani: radioSelect,
-            winnerType: -1,
+            winnerType: totalWinnerTypeSelect?.value,
         };
         saleProductPriorityReport(formData, {
             onSuccess: (data) => {
@@ -107,7 +107,7 @@ const SaleByProductPriorityReport = () => {
             saleTotalTypeDetailId: selectOption?.value,
             isJavani: radioSelect,
             priority: 0,
-            winnerType: -1,
+            winnerType: totalWinnerTypeSelect?.value,
         };
         saleProductPriorityReport(formData, {
             onSuccess: (data) => {
@@ -125,7 +125,7 @@ const SaleByProductPriorityReport = () => {
             saleTotalTypeDetailId: totalTypeDetailSelect?.value,
             isJavani: radioSelect,
             priority: selectOption?.value,
-            winnerType: -1,
+            winnerType: totalWinnerTypeSelect?.value,
         };
         saleProductPriorityReport(formData, {
             onSuccess: (data) => {

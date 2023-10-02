@@ -82,7 +82,7 @@ const SaleByProductReport = () => {
             saletypeId: selectOption?.value,
             saleTotalTypeDetailId: 0,
             isJavani: radioSelect,
-            winnerType: -1,
+            winnerType: totalWinnerTypeSelect?.value,
         };
         saleProductReport(formData, {
             onSuccess: (data) => {
@@ -99,7 +99,7 @@ const SaleByProductReport = () => {
             saletypeId: totalTypesSelect?.value,
             saleTotalTypeDetailId: selectOption?.value,
             isJavani: radioSelect,
-            winnerType: -1,
+            winnerType: totalWinnerTypeSelect?.value,
         };
         saleProductReport(formData, {
             onSuccess: (data) => {
