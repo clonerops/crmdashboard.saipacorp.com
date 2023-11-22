@@ -1,6 +1,6 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import * as api from "./_requests";
-import { ComplaintOrRequestSendData } from "./_models";
+import { ComplaintOrRequestSendData, ICarEvaluation } from "./_models";
 
 
 const useGetComplaintOrRequestReport = () => {
@@ -19,10 +19,21 @@ const useGetComplaintOrRequestByDealersReport = () => {
         return api.getComplantOrRequestByDealersReport(formData);
     });
 };
+const useGetCarEvulationReport = () => {
+    return useMutation((formData: ICarEvaluation) => {
+        return api.getCarElavuationReport(formData);
+    });
+};
+
+const useGetQuestionChangeSurvery = () => {
+    return useQuery(['surveryQuestion'], () => api.getQuestionForChangeSurvery())
+};
 
 
 export {
     useGetComplaintOrRequestReport,
     useGetComplaintOrRequestStatusReport,
-    useGetComplaintOrRequestByDealersReport
+    useGetComplaintOrRequestByDealersReport,
+    useGetCarEvulationReport,
+    useGetQuestionChangeSurvery
 };

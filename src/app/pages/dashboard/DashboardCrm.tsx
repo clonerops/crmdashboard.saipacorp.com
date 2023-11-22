@@ -9,6 +9,7 @@ import AccessDenied from "../../../_cloner/helpers/components/AccessDenied";
 import ComplaintOrRequest from "../../modules/crm/components/ComplaintOrRequest";
 import ComplaintOrRequestStatus from "../../modules/crm/components/ComplaintOrRequestStatus";
 import ComplaintOrRequestByDealers from "../../modules/crm/components/ComplaintOrRequestByDealers";
+import CarEvaluationReport from "../../modules/crm/components/CarEvaluationReport";
 
 const DashboardCrm: FC = () => {
     return (
@@ -29,6 +30,11 @@ const DashboardCrm: FC = () => {
                     <div className="md:grid md:grid-cols-1 md:gap-4">
                         <div className="mt-2 mb-2 shadow-lg ">
                             <ComplaintOrRequestStatus />
+                        </div>
+                    </div>
+                    <div className="md:grid md:grid-cols-1 md:gap-4">
+                        <div className="mt-2 mb-2 shadow-lg ">
+                            <CarEvaluationReport />
                         </div>
                     </div>
                 </>
