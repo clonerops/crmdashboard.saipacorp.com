@@ -19,3 +19,7 @@ export interface IQuestion {
   qustionNo: number,
   question: string
 }
+
+export interface ISurvery extends ComplaintOrRequestSendData {
+  carGroupID?: number
+}

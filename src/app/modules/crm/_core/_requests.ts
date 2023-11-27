@@ -1,5 +1,5 @@
 import { dashboardHttp } from "../../../../_cloner/helpers/axiosConfig";
-import { ComplaintOrRequestSendData, ICarEvaluation } from "./_models";
+import { ComplaintOrRequestSendData, ICarEvaluation, ISurvery } from "./_models";
 
 // Tables Details
 const getComplantOrRequestReport = async (
@@ -38,11 +38,18 @@ const getQuestionForChangeSurvery = async () => {
     );
     return data;
 };
+const getSurveryReport = async (formData: ISurvery) => {
+    const { data } = await dashboardHttp.get(
+        `CrmTBSReport/GetChanganSurveyDetailsDashboardRep?fromDate=${formData.fromDate}&toDate=${formData.toDate}&carGroupID=${formData.carGroupID}`
+    );
+    return data;
+};
 
 export {
     getComplantOrRequestReport,
     getComplantOrRequestStatusReport,
     getComplantOrRequestByDealersReport,
     getCarElavuationReport,
-    getQuestionForChangeSurvery
+    getQuestionForChangeSurvery,
+    getSurveryReport
 };
