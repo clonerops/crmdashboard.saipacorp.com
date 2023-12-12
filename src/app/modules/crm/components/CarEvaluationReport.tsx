@@ -71,17 +71,17 @@ const CarEvaluationReport = () => {
                     <div className="flex justify-between items-center flex-row gap-4">
                         <div className="py-1 w-50">
                             <ProfessionalSelect
-                                options={ dropdownQuestionSurvery(surveryQuestion?.data)}
-                                onChange={onChangeQuestion}
-                                value={questionSelect}
+                                options={carGroupList}
+                                onChange={onChangeCar}
+                                value={carSelect}
                                 placeholder=""
                             />
                         </div>
                         <div className="py-1 w-50">
                             <ProfessionalSelect
-                                options={carGroupList}
-                                onChange={onChangeCar}
-                                value={carSelect}
+                                options={ dropdownQuestionSurvery(surveryQuestion?.data)}
+                                onChange={onChangeQuestion}
+                                value={questionSelect}
                                 placeholder=""
                             />
                         </div>

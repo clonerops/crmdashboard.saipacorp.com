@@ -4,11 +4,10 @@ import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import moment from "moment-jalaali";
-import {
-    useGetBLandsCarsByStatus2,
-    useGetContractors,
-} from "../../transfer/core/_hooks";
 import { useGetSurveryReport } from "../_core/_hooks";
+import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
+import { HorizontalCharts } from "../../../../_cloner/partials/charts/HorizontalCharts";
+import { SplineCharts } from "../../../../_cloner/partials/charts/SplineCharts";
 
 const carGroupList= [
     {value: 71, label: "شاهین اتومات"},
@@ -18,7 +17,7 @@ const carGroupList= [
 
 const SurveryReport = () => {
     const [carSelect, setCarSelect] = useState<any>({value: 71, label: "شاهین اتومات"});
-    const [fromDate, setFromDate] = useState("");
+    const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
     const [toDate, setToDate] = useState("");
 
     let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
@@ -34,7 +33,9 @@ const SurveryReport = () => {
 
     useEffect(() => {
         const formData = {
-            fromDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
+            fromDate: moment(setDateOneMonth().getTime()).format(
+                "jYYYY/jMM/jDD"
+            ),
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
             carGroupID: 71,
         };
@@ -74,8 +75,6 @@ const SurveryReport = () => {
     let filteredCountAll = survery?.filter((value: any) => value.question === 'CountAll')
     let filteredWithoutCountAll = survery?.filter((value: any) => value.question !== 'CountAll')
 
-    console.log("filteredCountAll", filteredCountAll)
-
     return (
         <Card6 image="" title="گزارش ارزیابی خودروهای چانگان و شاهین اتومات - براساس میانگین امتیاز">
             <div className="flex flex-col">
@@ -84,7 +83,7 @@ const SurveryReport = () => {
                         <CustomDatepicker
                             placeholder="از تاریخ"
                             onChange={(d: any) => fromDateChange(d)}
-                            defaultValue={new Date().getTime()}
+                            defaultValue={setDateOneMonth().getTime()}
                         />
                     </div>
                     <div className="py-1 w-full">

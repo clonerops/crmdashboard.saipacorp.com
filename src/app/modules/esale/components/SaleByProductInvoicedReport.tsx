@@ -15,9 +15,13 @@ import {
 } from "../_core/_hooks";
 import { VerticalInvoicedCategoryCharts } from "../../../../_cloner/partials/charts/VerticalInvoicedCategoryCharts";
 import SaleInvociedModal from "./SaleInvociedModal";
+import { downloadSamtDepartemantReportExcel } from "../_core/_requests";
+import { DownloadExcelFile } from "./DownloadExcel";
+import { checkUserRole, getUserRoles } from "../../../../_cloner/helpers/reusableFunction";
 
 const SaleByProductInvoicedReport = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [excelLoading, setExcelLoading] = useState(false);
 
     const [radioSelect, setRadioSelect] = useState(-1);
     const [totalTypesSelect, setTotalTypesSelect] = useState<any>({
@@ -161,6 +165,26 @@ const SaleByProductInvoicedReport = () => {
         });
     };
 
+    const handleDownloadExcel = async () => {
+        setExcelLoading(true);
+        const formData = {
+            saletypeId: totalTypesSelect?.value,
+            saleTotalTypeDetailId: totalTypeDetailSelect?.value,
+            isJavani: radioSelect,
+            priority: totalDateSelect?.value,
+        };
+        try {
+            const response = await downloadSamtDepartemantReportExcel(formData);
+            const outputFilename = `registeredCarReport${Date.now()}.csv`;
+            DownloadExcelFile(response, outputFilename);
+            setExcelLoading(false);
+        } catch (error) {
+            console.log(error);
+            setExcelLoading(false);
+        }
+    };
+
+
     return (
         <>
             <Card6
@@ -214,10 +238,10 @@ const SaleByProductInvoicedReport = () => {
                             />
                         </div>
                         <div className="flex justify-center items-center gap-8">
-                            <button onClick={() => setIsOpen(true)}>
+                            <button onClick={() => setIsOpen(true)} className="w-full">
                                 مشاهده جزئیات
                             </button>
-                            <label className="flex items-center justify-center">
+                            <label className="flex items-center justify-center w-full">
                                 تعداد کل تحویل شده:{" "}
                                 <span className="font-yekan_extrabold text-xl text-indigo-700 px-4">
                                     {calculateTotalCount}
@@ -225,12 +249,22 @@ const SaleByProductInvoicedReport = () => {
                             </label>
                         </div>
                         <div className="flex justify-center items-center">
-                            <label className="flex items-center justify-center">
+                            <label className="flex items-center justify-center w-full">
                                 تعداد کل فاکتور شده:{" "}
                                 <span className="font-yekan_extrabold text-xl text-indigo-700 px-4">
                                     {calculateTotalInvoicedCount}
                                 </span>
                             </label>
+                            {checkUserRole(getUserRoles(), "TransSamtStatisticExcelRep") &&
+                                <button
+                                    onClick={handleDownloadExcel}
+                                    className="text-white rounded-lg bg-green-500 px-8 py-2"
+                                >
+                                {excelLoading
+                                    ? "در حال دانلود..."
+                                    : "خروجی گزارش براساس خودروهای ثبت نامی"}
+                                </button>
+                            }
                         </div>
                     </div>
                     <div>

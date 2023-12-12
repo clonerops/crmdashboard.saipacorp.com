@@ -93,6 +93,12 @@ const useGetSaleTotalDetailsExcel = () => {
     });
 };
 
+const useGetSamtDepartmentExcel = () => {
+    return useMutation((formData: SaleByProductInvoicedReportDetailRequest) => {
+        return api.downloadSamtDepartemantReportExcel(formData);
+    });
+};
+
 export {
     useGetSaleTotalTypes,
     useGetSaleTotalTypeDetails,
@@ -110,4 +116,5 @@ export {
     useGetSaleTotalDetailsReport,
     useGetSaleTotalExcel,
     useGetSaleTotalDetailsExcel,
+    useGetSamtDepartmentExcel
 };

@@ -19,6 +19,7 @@ const Captcha: FC<IProps> = ({ captcha, refetch }) => {
         queryClient.invalidateQueries(["captcha"]);
     };
 
+    console.log("captcha", captcha)
     const [captchaValue, setCaptchaValue] = useState<string>("");
 
     useEffect(() => {

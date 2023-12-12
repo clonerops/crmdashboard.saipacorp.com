@@ -190,6 +190,21 @@ const downloadInvoicedDetailExcel = async (formData: SaleByProductInvoicedReport
   return data
 }
 
+const downloadSamtDepartemantReportExcel = async (formData: SaleByProductInvoicedReportDetailRequest) => {
+  const {data} = await dashboardHttp.get('LotteryWinnerFileReport/GetSamtStatisticExcelRep', {
+    responseType: 'arraybuffer',
+    headers: {
+      'Content-Type': 'blob',
+      saletypeId: formData.saletypeId,
+      saleTotalTypeDetailId: formData.saleTotalTypeDetailId,
+      isJavani: formData.isJavani,
+      priority: formData.priority
+    },
+  })
+  return data
+}
+
+
 
 export {
   getSaleTotalTypes,
@@ -208,5 +223,6 @@ export {
   getSaleTotalDetailReport,
   downloadTotalTypeExcel,
   downloadTotalTypeDetailExcel,
-  downloadInvoicedDetailExcel
+  downloadInvoicedDetailExcel,
+  downloadSamtDepartemantReportExcel
 }
