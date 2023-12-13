@@ -7,3 +7,12 @@ export const dropdownQuestionSurvery = (data: any) => {
         })
     );
 };
+export const dropdownCarType = (data: any) => {
+    return (
+        data &&
+        data?.map((obj: { typeID: any; typeName: any }): any => {
+            const { typeID, typeName } = obj;
+            return { value: typeID, label: typeName };
+        })
+    );
+};

@@ -1,5 +1,5 @@
 import { dashboardHttp } from "../../../../_cloner/helpers/axiosConfig";
-import { ComplaintOrRequestSendData, ICarEvaluation, ISurvery } from "./_models";
+import { ComplaintOrRequestSendData, ICarEvaluation, ISurvery, ITopx, ITopxFilter } from "./_models";
 
 // Tables Details
 const getComplantOrRequestReport = async (
@@ -45,11 +45,32 @@ const getSurveryReport = async (formData: ISurvery) => {
     return data;
 };
 
+const getCarTypes = async() => {
+    const {data} = await dashboardHttp.get('CrmTBSReport/GetCarTypes')
+    return data
+}
+
+const getTopxReport = async (formData: ITopx) => {
+    const { data } = await dashboardHttp.get(
+        `CrmTBSReport/GetTopXOnlyPartReport?fromDate=${formData.fromDate}&toDate=${formData.toDate}&top=${formData.top}`
+    );
+    return data;
+};
+const getTopxReportBaesdOfFilter = async (formData: ITopxFilter) => {
+    const { data } = await dashboardHttp.get(
+        `CrmTBSReport/GetTopXOnlyPartReport?fromDate=${formData.fromDate}&toDate=${formData.toDate}&top=${formData.top}&carGroupID=${formData.carGroupID}&kilometrFrom=${formData.kilometrFrom}&kilometrTo=${formData.kilometrTo}`
+    );
+    return data;
+};
+
 export {
     getComplantOrRequestReport,
     getComplantOrRequestStatusReport,
     getComplantOrRequestByDealersReport,
     getCarElavuationReport,
     getQuestionForChangeSurvery,
-    getSurveryReport
+    getSurveryReport,
+    getCarTypes,
+    getTopxReport,
+    getTopxReportBaesdOfFilter
 };

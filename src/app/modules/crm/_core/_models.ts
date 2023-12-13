@@ -23,3 +23,19 @@ export interface IQuestion {
 export interface ISurvery extends ComplaintOrRequestSendData {
   carGroupID?: number
 }
+
+export interface ITopx {
+  fromDate?: string
+  toDate?: string
+  top?: number
+}
+export interface ITopxFilter extends ITopx {
+  carGroupID?: number
+  kilometrFrom?: number
+  kilometrTo?: number
+}
+
+export interface ICarType {
+  typeID: number
+  typeName: string
+}

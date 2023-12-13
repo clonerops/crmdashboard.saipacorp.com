@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import * as api from "./_requests";
-import { ComplaintOrRequestSendData, ICarEvaluation, ISurvery } from "./_models";
+import { ComplaintOrRequestSendData, ICarEvaluation, ISurvery, ITopx, ITopxFilter } from "./_models";
 
 
 const useGetComplaintOrRequestReport = () => {
@@ -34,6 +34,19 @@ const useGetSurveryReport = () => {
         return api.getSurveryReport(formData);
     });
 };
+const useGetCarTypes = () => {
+    return useQuery(['carTypes'], () => api.getCarTypes())
+};
+const useGetTopxReport = () => {
+    return useMutation((formData: ITopx) => {
+        return api.getTopxReport(formData);
+    });
+};
+const useGetTopxReportBasedOfFilter = () => {
+    return useMutation((formData: ITopxFilter) => {
+        return api.getTopxReportBaesdOfFilter(formData);
+    });
+};
 
 
 export {
@@ -42,5 +55,8 @@ export {
     useGetComplaintOrRequestByDealersReport,
     useGetCarEvulationReport,
     useGetQuestionChangeSurvery,
-    useGetSurveryReport
+    useGetSurveryReport,
+    useGetCarTypes,
+    useGetTopxReport,
+    useGetTopxReportBasedOfFilter
 };
