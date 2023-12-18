@@ -1,4 +1,5 @@
 import { dashboardHttp } from "../../../../_cloner/helpers/axiosConfig";
+import { generateURLQueryParam } from "../../../../_cloner/helpers/queryStringUrl";
 import { ComplaintOrRequestSendData, ICarEvaluation, ISurvery, ITopx, ITopxFilter } from "./_models";
 
 // Tables Details
@@ -51,15 +52,32 @@ const getCarTypes = async() => {
 }
 
 const getTopxReport = async (formData: ITopx) => {
-    const { data } = await dashboardHttp.get(
-        `CrmTBSReport/GetTopXOnlyPartReport?fromDate=${formData.fromDate}&toDate=${formData.toDate}&top=${formData.top}`
-    );
+    const filter = {
+        fromDate: formData.fromDate,
+        toDate:formData.toDate,
+        top:formData.top
+    }
+    const { data } = await dashboardHttp.get(`${generateURLQueryParam('CrmTBSReport/GetTopXOnlyPartReport', filter)}`);
+
+    // const { data } = await dashboardHttp.get(
+    //     `CrmTBSReport/GetTopXOnlyPartReport?fromDate=${formData.fromDate}&toDate=${formData.toDate}&top=${formData.top}`
+    // );
     return data;
 };
 const getTopxReportBaesdOfFilter = async (formData: ITopxFilter) => {
-    const { data } = await dashboardHttp.get(
-        `CrmTBSReport/GetTopXOnlyPartReport?fromDate=${formData.fromDate}&toDate=${formData.toDate}&top=${formData.top}&carGroupID=${formData.carGroupID}&kilometrFrom=${formData.kilometrFrom}&kilometrTo=${formData.kilometrTo}`
-    );
+    const filter = {
+        fromDate: formData.fromDate,
+        toDate:formData.toDate,
+        top:formData.top,
+        carGroupID: formData.carGroupID,
+        kilometrFrom: formData.kilometrFrom,
+        kilometrTo: formData.kilometrTo,
+    }
+    const { data } = await dashboardHttp.get(`${generateURLQueryParam('CrmTBSReport/GetTopXPartReport', filter)}`);
+
+    // const { data } = await dashboardHttp.get(
+    //     `CrmTBSReport/GetTopXOnlyPartReport?fromDate=${formData.fromDate}&toDate=${formData.toDate}&top=${formData.top}&carGroupID=${formData.carGroupID}&kilometrFrom=${formData.kilometrFrom}&kilometrTo=${formData.kilometrTo}`
+    // );
     return data;
 };
 

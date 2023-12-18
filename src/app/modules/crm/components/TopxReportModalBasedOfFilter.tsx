@@ -25,8 +25,8 @@ const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
     const [toDate, setToDate] = useState("");
     const [top, setTop] = useState(10)
     const [kilometrFrom, setKilometrFrom] = useState(0)
-    const [kilometrTo, setKilometrTo] = useState(0)
-    const [carSelect, setCarSelect] = useState<any>({value: 1, label: "سيتروئن"});
+    const [kilometrTo, setKilometrTo] = useState(null)
+    const [carSelect, setCarSelect] = useState<any>();
 
     let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
     let calculateToDate = moment(toDate).format("jYYYY/jMM/jDD");
@@ -50,7 +50,7 @@ const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
             top: 10,
             kilometrFrom: 0,
-            kilometrTo: 0,
+            kilometrTo: null,
             carGroupID: 1
 
 
@@ -191,7 +191,7 @@ const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
                             title="کیلومتر از"
                             value={kilometrFrom}
                             onChange={(e: any) =>onChnageKilometrFrom(e)}
-                            defaultValue={10}
+                            defaultValue={0}
                         />
                     </div>
                     <div className="py-1 w-full">
@@ -200,7 +200,7 @@ const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
                             title="کیلومتر تا"
                             value={kilometrTo}
                             onChange={(e: any) =>onChnageKilometrTo(e)}
-                            defaultValue={10}
+                            defaultValue={null}
                         />
                     </div>
 

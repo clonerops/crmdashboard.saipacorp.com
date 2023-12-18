@@ -32,7 +32,7 @@ export interface ITopx {
 export interface ITopxFilter extends ITopx {
   carGroupID?: number
   kilometrFrom?: number
-  kilometrTo?: number
+  kilometrTo?: number | null
 }
 
 export interface ICarType {

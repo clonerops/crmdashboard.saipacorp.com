@@ -22,8 +22,8 @@ const TopxReportBasedOfFilter = () => {
     const [toDate, setToDate] = useState("");
     const [top, setTop] = useState(10)
     const [kilometrFrom, setKilometrFrom] = useState(0)
-    const [kilometrTo, setKilometrTo] = useState(0)
-    const [carSelect, setCarSelect] = useState<any>({value: 1, label: "سيتروئن"});
+    const [kilometrTo, setKilometrTo] = useState(100000)
+    const [carSelect, setCarSelect] = useState<any>();
 
     let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
     let calculateToDate = moment(toDate).format("jYYYY/jMM/jDD");
@@ -46,8 +46,8 @@ const TopxReportBasedOfFilter = () => {
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
             top: 10,
             kilometrFrom: 0,
-            kilometrTo: 0,
-            carGroupID: 1
+            kilometrTo: 100000,
+            carGroupID: 0
         };
         mutate(formData);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -191,15 +191,15 @@ const TopxReportBasedOfFilter = () => {
                             title="کیلومتر تا"
                             value={kilometrTo}
                             onChange={(e: any) =>onChnageKilometrTo(e)}
-                            defaultValue={10}
+                            defaultValue={null}
                         />
                     </div>
                 </div>
-                <div className="py-1 w-full">
+                {/* <div className="py-1 w-full">
                         <button onClick={() => setIsOpen(true)} className="w-full">
                                 مشاهده جزئیات
                         </button>
-                    </div>
+                    </div> */}
 
             </div>
             <VerticalCharts
