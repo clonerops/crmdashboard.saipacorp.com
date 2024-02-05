@@ -88,7 +88,7 @@ const CarEvaluationReportBasedOfProvince = () => {
         <>
             <Card6
                 image=""
-                title="گزارش ارزیابی خودروهای چانگان و شاهین اتومات - براساس پارامترهای نظرسنجی"
+                title="گزارش ارزیابی خودروهای چانگان و شاهین اتومات به تفکیک استان - براساس پارامترهای نظرسنجی"
             >
                 <div className="flex flex-col">
                     <div className="flex justify-between items-center flex-row gap-4">
