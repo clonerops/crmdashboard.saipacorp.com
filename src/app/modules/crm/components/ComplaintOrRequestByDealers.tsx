@@ -52,7 +52,7 @@ const ComplaintOrRequestByDealers = () => {
         <>
             <Card6 image="" title="گزارش آماری شکایت یا درخواست براساس حوزه های مختلف">
                 <div className="flex flex-col">
-                    <div className="grid grid-cols-2 gap-8 w-50">
+                    <div className="md:flex md:flex-row md:gap-4 w-full md:w-[50%]">
                         <div className="py-1 w-full">
                             <CustomDatepicker
                                 // title="از تاریخ"

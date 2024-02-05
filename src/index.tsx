@@ -6,7 +6,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import './_cloner/assets/sass/style.react.scss'
 import './_cloner/assets/css/style.rtl.css'
 import './_cloner/assets/css/tailwindcss.css'
+import 'react-toastify/dist/ReactToastify.css';
 import {AppRoutes} from './app/routing/AppRoutes'
+import { ToastContainer } from 'react-toastify'
 Chart.register(...registerables)
 
 const queryClient = new QueryClient()
@@ -16,6 +18,7 @@ if (container) {
     <QueryClientProvider client={queryClient}>
           <AppRoutes />
       <ReactQueryDevtools initialIsOpen={false} />
+      <ToastContainer />
     </QueryClientProvider>
   )
 }

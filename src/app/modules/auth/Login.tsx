@@ -7,6 +7,7 @@ import { useGetCaptcha } from "./core/_hooks";
 import { useState } from "react";
 import { loginUser } from "./core/_requests";
 import Cookies from 'js-cookie'
+import { toast } from "react-toastify";
 
 const Login = () => {
     const loginSchema = Yup.object().shape({
@@ -44,10 +45,17 @@ const Login = () => {
             }
             try {
                 const auth = await loginUser(userData);
-                localStorage.setItem("auth", JSON.stringify(auth))
-                Cookies.set("token", `${auth?.jwtToken}`);
-                setLoading(false)
-                window.location.reload();
+                console.log(auth)
+                if(auth.status === 400 || auth.status === 404) {
+                    toast.error(auth.data.errors.ErrorMessasge)
+                    refetch()
+                    setLoading(false)
+                } else {
+                    localStorage.setItem("auth", JSON.stringify(auth))
+                    Cookies.set("token", `${auth?.jwtToken}`);
+                    setLoading(false)
+                    window.location.reload();
+                }
             } catch (error) {
                 setStatus("اطلاعات ورود نادرست می باشد");
                 setSubmitting(false);
@@ -59,11 +67,20 @@ const Login = () => {
 
     return (
         <>
-            <div className="grid grid-cols-2 h-screen">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 h-screen">
                 <form
                     onSubmit={formik.handleSubmit}
                     className="flex justify-center items-center flex-col"
                 >
+                    <div>
+                        <img
+                            src={`${toAbsoluteUrl(
+                                "/media/logos/saipa-logo.png"
+                            )}`}
+                            alt="background"
+                        />
+                    </div>
+
                     <div>
                         <label className="text-black text-3xl font-yekan_bold">
                             ورود
@@ -125,7 +142,7 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
-                <div>
+                <div className="hidden md:block">
                     <div
                         className="h-full w-full bg-cover"
                         style={{
@@ -134,6 +151,14 @@ const Login = () => {
                             )})`,
                         }}
                     >
+                        <div className="flex justify-center items-center">
+                            <img
+                                src={`${toAbsoluteUrl(
+                                    "/media/logos/saipa-image.png"
+                                )}`}
+                                alt="background"
+                            />
+                        </div>
                         <div className="flex justify-center items-center">
                             <label className="text-white font-yekan_bold text-2xl my-8">
                                 داشبورد اختصاصی مدیریت امور مشتریان

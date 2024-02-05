@@ -139,7 +139,7 @@ const TopxReportBasedOfFilter = () => {
     return (
         <Card6 image="" title="گزارش آماری شکایت/درخواست براساس قطعه/خودرو براساس فیلترهای مختلف">
             <div className="flex flex-col">
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="py-1 w-full">
                     <label className="!flex justify-start items-start">از تاریخ</label>
                         <CustomDatepicker

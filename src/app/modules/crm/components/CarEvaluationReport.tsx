@@ -72,8 +72,8 @@ const CarEvaluationReport = () => {
                 title="گزارش ارزیابی خودروهای چانگان و شاهین اتومات - براساس پارامترهای نظرسنجی"
             >
                 <div className="flex flex-col">
-                    <div className="flex justify-between items-center flex-row gap-4">
-                        <div className="py-1 w-50">
+                    <div className="flex justify-between items-center flex-col md:flex-row gap-4">
+                        <div className="py-1 w-full md:w-[50%]">
                             <ProfessionalSelect
                                 options={carGroupList}
                                 onChange={onChangeCar}
@@ -81,7 +81,7 @@ const CarEvaluationReport = () => {
                                 placeholder=""
                             />
                         </div>
-                        <div className="py-1 w-50">
+                        <div className="py-1 w-full md:w-[50%]">
                             <ProfessionalSelect
                                 options={ dropdownQuestionSurvery(surveryQuestion?.data)}
                                 onChange={onChangeQuestion}

@@ -1,8 +1,13 @@
 import { http } from "../../../../_cloner/helpers/axiosConfig";
 
 const loginUser = async (userData: any) => {
-    const { data } = await http.post("/Users/authenticate", JSON.stringify(userData));
-    return data
+    try {
+        const { data } = await http.post("/Users/authenticate", JSON.stringify(userData));
+        return data
+    
+    } catch (error: any) {
+        return error.response;        
+    }
 };
 
 const getCaptcha = async () => {

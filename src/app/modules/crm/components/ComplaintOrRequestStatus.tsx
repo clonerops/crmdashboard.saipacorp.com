@@ -50,7 +50,7 @@ const ComplaintOrRequestStatus = () => {
         <>
             <Card6 image="" title="گزارش آماری وضعیت شکایت یا درخواست">
                 <div className="flex flex-col">
-                    <div className="flex flex-row gap-4 w-50">
+                    <div className="md:flex md:flex-row md:gap-4 w-full md:w-[50%]">
                         <div className="py-1 w-full">
                             <CustomDatepicker
                                 // title="از تاریخ"

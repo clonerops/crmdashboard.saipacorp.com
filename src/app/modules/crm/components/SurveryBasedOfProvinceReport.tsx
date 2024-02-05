@@ -95,7 +95,7 @@ const SurveryBasedOfProvinceReport = () => {
     return (
         <Card6 image="" title="گزارش ارزیابی خودروهای چانگان و شاهین اتومات به تفکیک استان - براساس میانگین امتیاز">
             <div className="flex flex-col">
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-col md:flex-row gap-4">
                     <div className="py-1 w-full">
                         <CustomDatepicker
                             placeholder="از تاریخ"

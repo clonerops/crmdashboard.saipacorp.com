@@ -76,7 +76,7 @@ const TopxReport = () => {
     return (
         <Card6 image="" title="گزارش آماری شکایت/درخواست براساس قطعه/خودرو">
             <div className="flex flex-col">
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-col md:flex-row gap-4">
                     <div className="py-1 w-full">
                     <label className="!flex justify-start items-start">از تاریخ</label>
                         <CustomDatepicker
