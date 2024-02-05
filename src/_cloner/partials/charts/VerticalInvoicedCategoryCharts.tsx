@@ -35,6 +35,9 @@ const VerticalInvoicedCategoryCharts: FC<IProps> = ({
         chart: {
             type: "column",
         },
+        credits: {
+            enabled: false
+        },
         title: {
             text: text,
         },

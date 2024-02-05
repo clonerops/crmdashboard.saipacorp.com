@@ -49,6 +49,9 @@ const VerticalCategoryRequestOrComplaintCharts: FC<IProps> = ({
         title: {
             text: text,
         },
+        credits: {
+            enabled: false
+        },
         xAxis: {
             type: "category",
             categories: categories,

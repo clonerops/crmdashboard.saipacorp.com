@@ -5,6 +5,7 @@ export interface ComplaintOrRequestSendData {
 export interface ICarEvaluation {
   qustionNo?: number
   carGroupID?: number
+  provinceId?: number | null
   countAll?: number
   countAllYes?: number
   countAllNo?: number

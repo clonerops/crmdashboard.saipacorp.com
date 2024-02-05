@@ -7,23 +7,32 @@ import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
 import { dropdownQuestionSurvery } from "../helpers/dropdownSaleTotalType";
+import { useGetProvinces } from "../../dealer/core/_hooks";
+import { dropdownProvinces } from "../../dealer/helpers/dropdownDealers";
+import { PieCharts } from "../../../../_cloner/partials/charts/PieCharts";
+import { pieChartCarEvaluationConvert, pieChartConvert } from "../../../../_cloner/helpers/pieChartConvert";
 
 const carGroupList= [
     {value: 71, label: "شاهین اتومات"},
     {value: 95, label: "چانگان"}
 ]
 
-const CarEvaluationReport = () => {
+const CarEvaluationReportBasedOfProvince = () => {
     const { mutate, data, isLoading, isError } = useGetCarEvulationReport();
     const surveryQuestion = useGetQuestionChangeSurvery();
+    const { data: provinces } = useGetProvinces();
     const [questionSelect, setQuestionSelect] = useState<any>({value: 1, label: "فرآیند فروش و تحویل خودرو"});
     const [carSelect, setCarSelect] = useState<any>({value: 71, label: "شاهین اتومات"});
+    const [provinceSelect, setProvinceSelect] = useState<any>({
+        value: 1,
+        label: "تهران",
+    });
 
     useEffect(() => {
         const formData = {
             qustionNo: 1,
             carGroupID: 71,
-            provinceId: null
+            provinceId: 1
         };
         mutate(formData);
         // eslint-disable-next-line
@@ -48,7 +57,7 @@ const CarEvaluationReport = () => {
         const formData = {
             qustionNo: selectOption?.value,
             carGroupID: carSelect?.value,
-            provinceId: null
+            provinceId: provinceSelect?.value
         };
         mutate(formData);
     };
@@ -57,10 +66,21 @@ const CarEvaluationReport = () => {
         const formData = {
             qustionNo: questionSelect?.value,
             carGroupID: selectOption?.value,
-            provinceId: null
+            provinceId: provinceSelect?.value
         };
         mutate(formData);
     };
+
+    const provinceOnChange = (selectedOption: any) => {
+        setProvinceSelect(selectedOption);
+        const formData = {
+            qustionNo: questionSelect?.value,
+            carGroupID: carSelect?.value,
+            provinceId: selectedOption?.value
+        };
+        mutate(formData);
+    };
+
 
     let fetchingData = [2,5,7].includes(questionSelect?.value) ? dataYesOrNo : dataConvert
 
@@ -88,14 +108,27 @@ const CarEvaluationReport = () => {
                                 placeholder=""
                             />
                         </div>
-                        <div className="py-1 w-full flex justify-end font-bold text-xl">
-                            تعداد کل شرکت کنندگان در نظرسنجی: {data?.countAll}
+                        <div className="py-1 w-50">
+                            <ProfessionalSelect
+                                options={dropdownProvinces(provinces)}
+                                onChange={provinceOnChange}
+                                value={provinceSelect}
+                                defaultValue={{
+                                    value: 1,
+                                    label: "تهران",
+                                }}
+                                placeholder=""
+                            />
                         </div>
+                        {/* <div className="py-1 w-full flex justify-end font-bold text-xl">
+                            تعداد کل شرکت کنندگان در نظرسنجی: {data?.countAll}
+                        </div> */}
                     </div>
                 </div>
-                <VerticalCharts
-                    data={fetchingData.map((item: any) => item.count)}
-                    categories={fetchingData?.map((item: any) => item.title)}
+                <PieCharts
+                    // data={fetchingData.map((item: any) => item.count)}
+                    // categories={fetchingData?.map((item: any) => item.title)}
+                    data={pieChartCarEvaluationConvert(fetchingData)}
                     isLoading={isLoading}
                     isError={isError}
                     text=""
@@ -105,4 +138,4 @@ const CarEvaluationReport = () => {
     );
 };
 
-export default CarEvaluationReport;
+export default CarEvaluationReportBasedOfProvince;

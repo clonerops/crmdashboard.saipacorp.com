@@ -39,6 +39,9 @@ const HorizontalGroupCharts: FC<IProps> = ({
         chart: {
             type: "bar",
         },
+        credits: {
+            enabled: false
+        },
         title: {
             text: text,
         },

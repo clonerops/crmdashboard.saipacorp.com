@@ -47,6 +47,9 @@ const SplineTwoCharts: FC<IProps> = ({
         title: {
             text: text,
         },
+        credits: {
+            enabled: false
+        },
         xAxis: {
             categories: categories,
             labels: {

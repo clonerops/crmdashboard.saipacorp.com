@@ -35,6 +35,9 @@ const PieCharts: FC<IProps> = ({
         chart: {
             type: "pie",
         },
+        credits: {
+            enabled: false
+        },
         title: {
             text: text,
         },
@@ -62,7 +65,8 @@ const PieCharts: FC<IProps> = ({
         series: [
             {
                 name: "chart",
-                data: pieChartConvert(data),
+                // data: pieChartConvert(data),
+                data: data,
                 colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
             },
         ],
@@ -106,42 +110,6 @@ const PieCharts: FC<IProps> = ({
             enabled: false,
         },
     };
-
-    // const darkTheme = {
-    //     chart: {
-    //         backgroundColor: "#333333",
-    //         style: {
-    //             color: "#ffffff",
-    //         },
-    //     },
-    //     title: {
-    //         style: {
-    //             color: "#ffffff",
-    //         },
-    //     },
-    //     xAxis: {
-    //         labels: {
-    //             style: {
-    //                 color: "#ffffff",
-    //             },
-    //         },
-    //     },
-    //     yAxis: {
-    //         labels: {
-    //             style: {
-    //                 color: "#ffffff",
-    //             },
-    //         },
-    //     },
-    //     tooltip: {
-    //         backgroundColor: "#000000",
-    //         style: {
-    //             color: "#ffffff",
-    //         },
-    //     },
-    //     // Add any other desired styling options for the dark mode theme
-    // };
-    // Highcharts.setOptions(darkTheme);
 
     return (
         <>

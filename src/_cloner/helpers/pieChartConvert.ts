@@ -7,3 +7,12 @@ export const pieChartConvert = (data: any) => {
         })
     );
 };
+export const pieChartCarEvaluationConvert = (data: any) => {
+    return (
+        data &&
+        data?.map((obj: { count: any; title: any }): any => {
+            const { count, title } = obj;
+            return { y: count, name: title };
+        })
+    );
+};

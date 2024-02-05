@@ -13,6 +13,7 @@ import CarEvaluationReport from "../../modules/crm/components/CarEvaluationRepor
 import SurveryReport from "../../modules/crm/components/SurveryReport";
 import TopxReport from "../../modules/crm/components/TopxReport";
 import TopxReportBasedOfFilter from "../../modules/crm/components/TopxReportBasedOfFilter";
+import CarEvaluationReportBasedOfProvince from "../../modules/crm/components/CarEvaluationReportBasedOfProvince";
 
 const DashboardCrm: FC = () => {
     return (
@@ -35,9 +36,12 @@ const DashboardCrm: FC = () => {
                             <ComplaintOrRequestStatus />
                         </div>
                     </div>
-                    <div className="md:grid md:grid-cols-1 md:gap-4">
+                    <div className="md:grid md:grid-cols-2 md:gap-4">
                         <div className="mt-2 mb-2 shadow-lg ">
                             <CarEvaluationReport />
+                        </div>
+                        <div className="mt-2 mb-2 shadow-lg ">
+                            <CarEvaluationReportBasedOfProvince />
                         </div>
                     </div>
                     <div className="md:grid md:grid-cols-1 md:gap-4">

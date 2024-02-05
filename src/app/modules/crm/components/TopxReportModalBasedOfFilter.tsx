@@ -21,7 +21,7 @@ interface IProps {
 
 const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
 
-    const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
+    const [fromDate, setFromDate] = useState("2023-03-21");
     const [toDate, setToDate] = useState("");
     const [top, setTop] = useState(10)
     const [kilometrFrom, setKilometrFrom] = useState(0)
@@ -31,6 +31,7 @@ const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
     let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
     let calculateToDate = moment(toDate).format("jYYYY/jMM/jDD");
     let calculateNowDate = moment(Date.now()).format("jYYYY/jMM/jDD");
+    console.log("calculateFromDate", calculateFromDate)
 
     const {
         mutate,
@@ -132,7 +133,7 @@ const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
     }
 
     const onChangeCar = (selectOption: any) => {
-        setCarSelect(selectOption)
+        setCarSelect(selectOption.value)
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: toDate ? calculateToDate : calculateNowDate,
@@ -141,6 +142,7 @@ const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
             kilometrTo: kilometrTo,
             carGroupID: selectOption?.value,
         };
+        console.log("formData", formData)
         mutate(formData);
     };
 
@@ -156,7 +158,8 @@ const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
                         <CustomDatepicker
                             placeholder="از تاریخ"
                             onChange={(d: any) => fromDateChange(d)}
-                            defaultValue={setDateOneMonth().getTime()}
+                            // defaultValue={setDateOneMonth().getTime()}
+                            defaultValue={"2023-03-21"}
                         />
                     </div>
                     <div className="py-1 w-full">
@@ -200,7 +203,7 @@ const TopxReportModalBasedOfFilter: FC<IProps> = ({ isOpen, setIsOpen }) => {
                             title="کیلومتر تا"
                             value={kilometrTo}
                             onChange={(e: any) =>onChnageKilometrTo(e)}
-                            defaultValue={null}
+                            defaultValue={100000}
                         />
                     </div>
 

@@ -1,4 +1,4 @@
-import { dashboardHttp } from "../../../../_cloner/helpers/axiosConfig";
+import { dashboardHttp, http } from "../../../../_cloner/helpers/axiosConfig";
 import { generateURLQueryParam } from "../../../../_cloner/helpers/queryStringUrl";
 import { ComplaintOrRequestSendData, ICarEvaluation, ISurvery, ITopx, ITopxFilter } from "./_models";
 
@@ -28,10 +28,11 @@ const getComplantOrRequestByDealersReport = async (
     return data;
 };
 const getCarElavuationReport = async (formData: ICarEvaluation) => {
-    const { data } = await dashboardHttp.get(
-        `CrmTBSReport/GetChanganSurveyQuestionsRep?qustionNo=${formData.qustionNo}&carGroupID=${formData.carGroupID}`
-    );
+    const {data} = await dashboardHttp.get(`${generateURLQueryParam('CrmTBSReport/GetChanganSurveyQuestionsRep', formData)}`)
     return data;
+    // const { data } = await dashboardHttp.get(
+    //     `CrmTBSReport/GetChanganSurveyQuestionsRep?qustionNo=${formData.qustionNo}&carGroupID=${formData.carGroupID}`
+    // );
 };
 const getQuestionForChangeSurvery = async () => {
     const { data } = await dashboardHttp.get(

@@ -3,11 +3,8 @@ import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import moment from "moment-jalaali";
-import {  useGetCarTypes, useGetTopxReport, useGetTopxReportBasedOfFilter } from "../_core/_hooks";
-import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
+import {  useGetCarTypes, useGetTopxReportBasedOfFilter } from "../_core/_hooks";
 import CustomInput from "../../../../_cloner/helpers/components/CustomInput";
-import SaleInvociedModal from "../../esale/components/SaleInvociedModal";
-import TopxReportModal from "./TopxReportModal";
 import TopxReportModalBasedOfFilter from "./TopxReportModalBasedOfFilter";
 import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
 import { dropdownCarType } from "../helpers/dropdownSaleTotalType";
@@ -18,12 +15,13 @@ import { dropdownCarType } from "../helpers/dropdownSaleTotalType";
 const TopxReportBasedOfFilter = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
+    // const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
+    const [fromDate, setFromDate] = useState("2023-03-21");
     const [toDate, setToDate] = useState("");
     const [top, setTop] = useState(10)
     const [kilometrFrom, setKilometrFrom] = useState(0)
     const [kilometrTo, setKilometrTo] = useState(100000)
-    const [carSelect, setCarSelect] = useState<any>();
+    const [carSelect, setCarSelect] = useState<any>({value: 1001, label: "شاهين"});
 
     let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
     let calculateToDate = moment(toDate).format("jYYYY/jMM/jDD");
@@ -40,14 +38,15 @@ const TopxReportBasedOfFilter = () => {
 
     useEffect(() => {
         const formData = {
-            fromDate: moment(setDateOneMonth().getTime()).format(
-                "jYYYY/jMM/jDD"
-            ),
+            // fromDate: moment(setDateOneMonth().getTime()).format(
+            //     "jYYYY/jMM/jDD"
+            // ),
+            fromDate: "1402/01/01",
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
             top: 10,
             kilometrFrom: 0,
             kilometrTo: 100000,
-            carGroupID: 0
+            carGroupID: 1001
         };
         mutate(formData);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -132,6 +131,7 @@ const TopxReportBasedOfFilter = () => {
             kilometrTo: kilometrTo,
             carGroupID: selectOption?.value,
         };
+        console.log("formData", formData)
         mutate(formData);
     };
 
@@ -145,7 +145,8 @@ const TopxReportBasedOfFilter = () => {
                         <CustomDatepicker
                             placeholder="از تاریخ"
                             onChange={(d: any) => fromDateChange(d)}
-                            defaultValue={setDateOneMonth().getTime()}
+                            // defaultValue={setDateOneMonth().getTime()}
+                            defaultValue={"2023-03-21"}
                         />
                     </div>
                     <div className="py-1 w-full">
