@@ -3,7 +3,9 @@ import { FC } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HC_exporting from "highcharts/modules/exporting";
+import highcharts3D from 'highcharts/highcharts-3d'; // Import 3D module
 HC_exporting(Highcharts);
+highcharts3D(Highcharts); // Enable 3D module
 
 interface IProps {
     text: string;
@@ -11,16 +13,19 @@ interface IProps {
     data?: any;
     isLoading?: boolean;
     isError?: boolean;
+    tooltip?: boolean;
 }
 
-const PieCharts: FC<IProps> = ({
+
+const VerticalCharts3D: FC<IProps> = ({
     text,
     categories,
     data,
     isLoading,
     isError,
+    tooltip = false,
 }) => {
-
+    
     if (isLoading) {
         return <div>درحال بارگزاری...</div>;
     }
@@ -29,10 +34,17 @@ const PieCharts: FC<IProps> = ({
         return <div>داده ای برای نمایش یافت نشد</div>;
     }
 
-
     const options = {
         chart: {
-            type: "pie",
+            type: "column",
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 15,
+                depth: 50,
+                viewDistance: 60,
+              },    
+            // margin: 75, // Adjust margin for better visualization
         },
         credits: {
             enabled: false
@@ -63,22 +75,12 @@ const PieCharts: FC<IProps> = ({
         },
         series: [
             {
-                name: "chart",
-                // data: pieChartConvert(data),
+                name: "",
                 data: data,
                 colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
             },
         ],
         plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: "pointer",
-                dataLabels: {
-                  enabled: true,
-                  format: "<b>{point.name}</b>: {point.y}"
-                }
-              },
-        
             series: {
                 colors: ["#546E7A", "#d4526e", "#13d8aa", "#A5978B"],
                 distributed: true,
@@ -106,9 +108,10 @@ const PieCharts: FC<IProps> = ({
             },
         },
         tooltip: {
-            enabled: false,
+            enabled: tooltip,
         },
     };
+
 
     return (
         <>
@@ -121,4 +124,4 @@ const PieCharts: FC<IProps> = ({
     );
 };
 
-export { PieCharts };
+export { VerticalCharts3D };

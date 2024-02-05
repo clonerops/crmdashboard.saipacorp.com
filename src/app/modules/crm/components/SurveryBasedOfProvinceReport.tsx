@@ -1,24 +1,28 @@
 import { useEffect, useState } from "react";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
+import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
 import moment from "moment-jalaali";
-import {  useGetTopxReport } from "../_core/_hooks";
+import { useGetSurveryReport } from "../_core/_hooks";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
-import CustomInput from "../../../../_cloner/helpers/components/CustomInput";
-import SaleInvociedModal from "../../esale/components/SaleInvociedModal";
-import TopxReportModal from "./TopxReportModal";
+import { useGetProvinces } from "../../dealer/core/_hooks";
+import { dropdownProvinces } from "../../dealer/helpers/dropdownDealers";
 import { VerticalCharts3D } from "../../../../_cloner/partials/charts/VerticalCharts3D";
 
+const carGroupList= [
+    {value: 71, label: "شاهین اتومات"},
+    {value: 95, label: "چانگان"}
+]
 
-
-
-const TopxReport = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
+const SurveryBasedOfProvinceReport = () => {
+    const [carSelect, setCarSelect] = useState<any>({value: 71, label: "شاهین اتومات"});
     const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
     const [toDate, setToDate] = useState("");
-    const [top, setTop] = useState(10)
+    const [provinceSelect, setProvinceSelect] = useState<any>({
+        value: 1,
+        label: "تهران",
+    });
 
     let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
     let calculateToDate = moment(toDate).format("jYYYY/jMM/jDD");
@@ -26,10 +30,11 @@ const TopxReport = () => {
 
     const {
         mutate,
-        data,
+        data: survery,
         isLoading,
         isError,
-    } = useGetTopxReport();
+    } = useGetSurveryReport();
+    const { data: provinces } = useGetProvinces();
 
     useEffect(() => {
         const formData = {
@@ -37,7 +42,7 @@ const TopxReport = () => {
                 "jYYYY/jMM/jDD"
             ),
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
-            top: 10
+            carGroupID: 71,
         };
         mutate(formData);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,7 +53,7 @@ const TopxReport = () => {
         const formData = {
             fromDate: moment(d.value).format("jYYYY/jMM/jDD"),
             toDate: toDate ? calculateToDate : calculateNowDate,
-            top: +top
+            carGroupID: carSelect?.value
         };
         mutate(formData);
     };
@@ -57,28 +62,41 @@ const TopxReport = () => {
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: moment(d.value).format("jYYYY/jMM/jDD"),
-            top: +top
+            carGroupID: carSelect?.value
         };
         mutate(formData);
     };
 
-    const onChnageTopx = (event: any) => {
-        setTop(event.target.value)
+    const onChangeCar = (selectOption: any) => {
+        setCarSelect(selectOption)
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: toDate ? calculateToDate : calculateNowDate,
-            top: +event.target.value
+            carGroupID: selectOption?.value,
         };
         mutate(formData);
-    }
+    };
 
+    const provinceOnChange = (selectedOption: any) => {
+        setProvinceSelect(selectedOption);
+        const formData = {
+            fromDate: fromDate ? calculateFromDate : calculateNowDate,
+            toDate: toDate ? calculateToDate : calculateNowDate,
+            carGroupID: carSelect?.value,
+            provinceId: selectedOption?.value
+        };
+        mutate(formData);
+    };
+
+
+    let filteredCountAll = survery?.filter((value: any) => value.question === 'CountAll')
+    let filteredWithoutCountAll = survery?.filter((value: any) => value.question !== 'CountAll')
 
     return (
-        <Card6 image="" title="گزارش آماری شکایت/درخواست براساس قطعه/خودرو">
+        <Card6 image="" title="گزارش ارزیابی خودروهای چانگان و شاهین اتومات به تفکیک استان - براساس میانگین امتیاز">
             <div className="flex flex-col">
                 <div className="flex flex-row gap-4">
                     <div className="py-1 w-full">
-                    <label className="!flex justify-start items-start">از تاریخ</label>
                         <CustomDatepicker
                             placeholder="از تاریخ"
                             onChange={(d: any) => fromDateChange(d)}
@@ -86,7 +104,6 @@ const TopxReport = () => {
                         />
                     </div>
                     <div className="py-1 w-full">
-                    <label className="!flex justify-start items-start">تا تاریخ</label>
                         <CustomDatepicker
                             placeholder="تا تاریخ"
                             onChange={(d: any) => toDateChange(d)}
@@ -94,32 +111,41 @@ const TopxReport = () => {
                         />
                     </div>
                     <div className="py-1 w-full">
-                    <label className="!flex justify-start items-start">تعداد نمایش</label>
-                        <CustomInput
-                            title="تعداد نمایش"
-                            value={top}
-                            onChange={(e: any) =>onChnageTopx(e)}
-                            defaultValue={10}
+                        <ProfessionalSelect
+                            options={carGroupList}
+                            onChange={onChangeCar}
+                            value={carSelect}
+                            placeholder=""
                         />
                     </div>
                     <div className="py-1 w-full">
-                        <button onClick={() => setIsOpen(true)} className="w-full">
-                                مشاهده جزئیات
-                        </button>
-                    </div>
+                        <ProfessionalSelect
+                            options={dropdownProvinces(provinces)}
+                            onChange={provinceOnChange}
+                            value={provinceSelect}
+                            defaultValue={{
+                                value: 1,
+                                label: "تهران",
+                            }}
+                            placeholder=""
+                        />
+                        </div>
+
+                </div>
+                <div className="py-1 w-full flex justify-end font-bold text-xl">
+                    تعداد کل شرکت کنندگان در نظرسنجی: {filteredCountAll?.length > 0 ? filteredCountAll[0]?.questionCount : 0}
                 </div>
             </div>
-            <VerticalCharts3D
-                data={data?.map((item: any) => item.فراوانی)}
-                categories={data?.map((item: any) => item.part_desc)}
+            
+            <VerticalCharts
+                data={filteredWithoutCountAll?.map((item: any) => item.questionCount)}
+                categories={filteredWithoutCountAll?.map((item: any) => item.question)}
                 isLoading={isLoading}
                 isError={isError}
                 text=""
             />
-            <TopxReportModal isOpen={isOpen} setIsOpen={setIsOpen} />
-
         </Card6>
     );
 };
 
-export default TopxReport;
+export default SurveryBasedOfProvinceReport;

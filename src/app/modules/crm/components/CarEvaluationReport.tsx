@@ -7,6 +7,7 @@ import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
 import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
 import { dropdownQuestionSurvery } from "../helpers/dropdownSaleTotalType";
+import { VerticalCharts3D } from "../../../../_cloner/partials/charts/VerticalCharts3D";
 
 const carGroupList= [
     {value: 71, label: "شاهین اتومات"},
@@ -88,12 +89,12 @@ const CarEvaluationReport = () => {
                                 placeholder=""
                             />
                         </div>
-                        <div className="py-1 w-full flex justify-end font-bold text-xl">
-                            تعداد کل شرکت کنندگان در نظرسنجی: {data?.countAll}
-                        </div>
+                    </div>
+                    <div className="py-1 w-full flex justify-end font-bold text-xl">
+                        تعداد کل شرکت کنندگان در نظرسنجی: {data?.countAll}
                     </div>
                 </div>
-                <VerticalCharts
+                <VerticalCharts3D
                     data={fetchingData.map((item: any) => item.count)}
                     categories={fetchingData?.map((item: any) => item.title)}
                     isLoading={isLoading}

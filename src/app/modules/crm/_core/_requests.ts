@@ -30,9 +30,6 @@ const getComplantOrRequestByDealersReport = async (
 const getCarElavuationReport = async (formData: ICarEvaluation) => {
     const {data} = await dashboardHttp.get(`${generateURLQueryParam('CrmTBSReport/GetChanganSurveyQuestionsRep', formData)}`)
     return data;
-    // const { data } = await dashboardHttp.get(
-    //     `CrmTBSReport/GetChanganSurveyQuestionsRep?qustionNo=${formData.qustionNo}&carGroupID=${formData.carGroupID}`
-    // );
 };
 const getQuestionForChangeSurvery = async () => {
     const { data } = await dashboardHttp.get(
@@ -41,9 +38,11 @@ const getQuestionForChangeSurvery = async () => {
     return data;
 };
 const getSurveryReport = async (formData: ISurvery) => {
-    const { data } = await dashboardHttp.get(
-        `CrmTBSReport/GetChanganSurveyDetailsDashboardRep?fromDate=${formData.fromDate}&toDate=${formData.toDate}&carGroupID=${formData.carGroupID}`
-    );
+    // const { data } = await dashboardHttp.get(
+    //     `CrmTBSReport/GetChanganSurveyDetailsDashboardRep?fromDate=${formData.fromDate}&toDate=${formData.toDate}&carGroupID=${formData.carGroupID}`
+    // );
+    const {data} = await dashboardHttp.get(`${generateURLQueryParam('CrmTBSReport/GetChanganSurveyDetailsDashboardRep', formData)}`)
+
     return data;
 };
 

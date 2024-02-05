@@ -23,6 +23,7 @@ export interface IQuestion {
 
 export interface ISurvery extends ComplaintOrRequestSendData {
   carGroupID?: number
+  provinceId?: number
 }
 
 export interface ITopx {

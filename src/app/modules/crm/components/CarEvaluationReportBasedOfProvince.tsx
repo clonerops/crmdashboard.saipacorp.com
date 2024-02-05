@@ -4,13 +4,12 @@ import {
     useGetQuestionChangeSurvery,
 } from "../_core/_hooks";
 import { Card6 } from "../../../../_cloner/partials/content/cards/Card6";
-import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import ProfessionalSelect from "../../esale/components/ProfessionalSelect";
 import { dropdownQuestionSurvery } from "../helpers/dropdownSaleTotalType";
 import { useGetProvinces } from "../../dealer/core/_hooks";
 import { dropdownProvinces } from "../../dealer/helpers/dropdownDealers";
+import { pieChartCarEvaluationConvert } from "../../../../_cloner/helpers/pieChartConvert";
 import { PieCharts } from "../../../../_cloner/partials/charts/PieCharts";
-import { pieChartCarEvaluationConvert, pieChartConvert } from "../../../../_cloner/helpers/pieChartConvert";
 
 const carGroupList= [
     {value: 71, label: "شاهین اتومات"},
@@ -120,9 +119,9 @@ const CarEvaluationReportBasedOfProvince = () => {
                                 placeholder=""
                             />
                         </div>
-                        {/* <div className="py-1 w-full flex justify-end font-bold text-xl">
-                            تعداد کل شرکت کنندگان در نظرسنجی: {data?.countAll}
-                        </div> */}
+                    </div>
+                    <div className="py-1 w-full flex justify-end font-bold text-xl">
+                        تعداد کل شرکت کنندگان: {data?.countAll}
                     </div>
                 </div>
                 <PieCharts

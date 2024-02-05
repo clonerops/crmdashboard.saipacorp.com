@@ -3,7 +3,10 @@ import { FC } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HC_exporting from "highcharts/modules/exporting";
+import highcharts3D from 'highcharts/highcharts-3d'; // Import 3D module
+
 HC_exporting(Highcharts);
+highcharts3D(Highcharts); // Enable 3D module
 
 interface IProps {
     text: string;
@@ -13,7 +16,7 @@ interface IProps {
     isError?: boolean;
 }
 
-const PieCharts: FC<IProps> = ({
+const PieCharts3D: FC<IProps> = ({
     text,
     categories,
     data,
@@ -33,6 +36,11 @@ const PieCharts: FC<IProps> = ({
     const options = {
         chart: {
             type: "pie",
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 45,
+              },
         },
         credits: {
             enabled: false
@@ -121,4 +129,4 @@ const PieCharts: FC<IProps> = ({
     );
 };
 
-export { PieCharts };
+export { PieCharts3D };

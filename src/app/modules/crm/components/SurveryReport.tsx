@@ -8,6 +8,8 @@ import { useGetSurveryReport } from "../_core/_hooks";
 import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
 import { HorizontalCharts } from "../../../../_cloner/partials/charts/HorizontalCharts";
 import { SplineCharts } from "../../../../_cloner/partials/charts/SplineCharts";
+import TopxReportModal from "./TopxReportModal";
+import ServuryReportModal from "./SurveryReportModal";
 
 const carGroupList= [
     {value: 71, label: "شاهین اتومات"},
@@ -19,6 +21,7 @@ const SurveryReport = () => {
     const [carSelect, setCarSelect] = useState<any>({value: 71, label: "شاهین اتومات"});
     const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
     const [toDate, setToDate] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
 
     let calculateFromDate = moment(fromDate).format("jYYYY/jMM/jDD");
     let calculateToDate = moment(toDate).format("jYYYY/jMM/jDD");
@@ -93,7 +96,7 @@ const SurveryReport = () => {
                             defaultValue={new Date().getTime()}
                         />
                     </div>
-                    <div className="py-1 w-50">
+                    <div className="py-1 w-full">
                         <ProfessionalSelect
                             options={carGroupList}
                             onChange={onChangeCar}
@@ -101,9 +104,14 @@ const SurveryReport = () => {
                             placeholder=""
                         />
                     </div>
-                    <div className="py-1 w-full flex justify-end font-bold text-xl">
-                            تعداد کل شرکت کنندگان در نظرسنجی: {filteredCountAll?.length > 0 ? filteredCountAll[0]?.questionCount : 0}
-                    </div>
+                    {/* <div className="py-1 w-full">
+                        <button onClick={() => setIsOpen(true)} className="w-full">
+                                مشاهده جزئیات
+                        </button>
+                    </div> */}
+                </div>
+                <div className="py-1 w-full flex justify-end font-bold text-xl">
+                        تعداد کل شرکت کنندگان در نظرسنجی: {filteredCountAll?.length > 0 ? filteredCountAll[0]?.questionCount : 0}
                 </div>
             </div>
             <VerticalCharts
@@ -113,6 +121,7 @@ const SurveryReport = () => {
                 isError={isError}
                 text=""
             />
+            {/* <ServuryReportModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
         </Card6>
     );
 };

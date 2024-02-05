@@ -12,7 +12,7 @@ import {
     useGetSaleTotalTypes,
 } from "../_core/_hooks";
 import SaleTotalDetailModal from "./SaleTotalDetailModal";
-import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
+import { VerticalCharts3D } from "../../../../_cloner/partials/charts/VerticalCharts3D";
 
 const SaleTotalTypeReport = () => {
     const [radioSelect, setRadioSelect] = useState(-1);
@@ -184,7 +184,7 @@ const SaleTotalTypeReport = () => {
                         </div>
                     </div>
                     <div className="order-3">
-                        <VerticalCharts
+                        <VerticalCharts3D
                             data={saleReportData?.map(
                                 (item: any) => item.count
                             )}

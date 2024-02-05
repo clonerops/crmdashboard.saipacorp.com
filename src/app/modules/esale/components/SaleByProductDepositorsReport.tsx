@@ -14,9 +14,9 @@ import {
     useGetSaleTotalTypeDetails,
     useGetSaleTotalTypes,
 } from "../_core/_hooks";
-import { VerticalCharts } from "../../../../_cloner/partials/charts/VerticalCharts";
 import { setDateOneWeek } from "../../../../_cloner/helpers/reusableFunction";
 import CustomDatepicker from "../../../../_cloner/helpers/components/CustomDatepicker";
+import { VerticalCharts3D } from "../../../../_cloner/partials/charts/VerticalCharts3D";
 
 const SaleByProductDepositorsReport = () => {
     const [fromDate, setFromDate] = useState(setDateOneWeek().getTime());
@@ -281,7 +281,7 @@ const SaleByProductDepositorsReport = () => {
                     </div>
                 </div>
                 <div>
-                    <VerticalCharts
+                    <VerticalCharts3D
                         data={saleProductDepositors?.map(
                             (item: any) => item.count
                         )}
