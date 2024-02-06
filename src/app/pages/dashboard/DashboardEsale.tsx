@@ -24,11 +24,11 @@ const DashboardEsale: FC = () => {
                 "TransLotteryWinnerDashboard"
             ) ? (
                 <>
-                    <div className="md:grid md:grid-cols-3 md:gap-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-4">
                         <div className="mt-2 mb-2 shadow-lg">
                             <SaleTotalTypeReport />
                         </div>
-                        <div className="mt-2 mb-2 shadow-lg md:col-span-2">
+                        <div className="mt-2 mb-2 shadow-lg lg:col-span-2">
                             <SaleTotalProductAndDateReport />
                         </div>
                     </div>

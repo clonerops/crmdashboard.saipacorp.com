@@ -69,7 +69,7 @@ const Login = () => {
   return (
     <>
       <div
-        className="h-screen  md:block hidden "
+        className="h-screen  lg:block hidden "
         style={{
           backgroundImage: `url(${toAbsoluteUrl("/media/logos/login-bg.png")})`,
           backgroundRepeat: "no-repeat",
@@ -92,7 +92,7 @@ const Login = () => {
       </div>
 
       <div
-        className={"md:hidden h-screen"}
+        className={"lg:hidden h-screen"}
         style={{
           backgroundImage: `url(${toAbsoluteUrl(
             "/media/logos/mobile-login-bg.png"

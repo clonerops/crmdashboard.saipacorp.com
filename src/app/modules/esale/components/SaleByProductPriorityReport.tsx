@@ -177,7 +177,7 @@ const SaleByProductPriorityReport = () => {
     return (
         <Card6 image="" title="گزارش آماری براساس محصول اولویت">
             <div className="flex flex-col">
-                <div className="md:grid md:grid-cols-3 md:gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-4">
                     <ProfessionalSelect
                         options={dropdownSaleTotalType(saleTotalTypes)}
                         onChange={onChangeTotalTypes}
@@ -218,7 +218,7 @@ const SaleByProductPriorityReport = () => {
                         placeholder=""
                     />
                 </div>
-                <div className="md:grid md:grid-cols-3 md:gap-4 my-2">
+                <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-4 my-2">
                     <div>
                         <RadioGroupSaleType
                             onChange={onChangeRadioSelect}

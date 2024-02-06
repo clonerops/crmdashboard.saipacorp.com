@@ -192,7 +192,7 @@ const SaleByProductInvoicedReport = () => {
                 title="گزارش آماری فاکتورشده ها و تحویل شده ها براساس خودرو"
             >
                 <div className="flex flex-col">
-                    <div className="md:grid md:grid-cols-3 md:gap-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-4">
                         <ProfessionalSelect
                             options={dropdownSaleTotalType(saleTotalTypes)}
                             onChange={onChangeTotalTypes}
@@ -229,7 +229,7 @@ const SaleByProductInvoicedReport = () => {
                             placeholder=""
                         />
                     </div>
-                    <div className="md:grid md:grid-cols-3 md:gap-4 my-2">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 my-2">
                         <div>
                             <RadioGroupSaleType
                                 onChange={onChangeRadioSelect}

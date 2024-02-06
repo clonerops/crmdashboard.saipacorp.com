@@ -37,7 +37,7 @@ const DashboardCrm: FC = () => {
                             <ComplaintOrRequestStatus />
                         </div>
                     </div>
-                    <div className="md:grid md:grid-cols-2 md:gap-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-4">
                         <div className="mt-2 mb-2 shadow-lg ">
                             <CarEvaluationReport />
                         </div>
