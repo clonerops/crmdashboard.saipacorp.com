@@ -248,7 +248,7 @@ const SaleByProductDepositorsReport = () => {
 
                     <div className="py-1 w-full">
                         <CustomDatepicker
-                            // title="از تاریخ"
+                            title="از تاریخ"
                             placeholder="از تاریخ"
                             onChange={(d: any) => fromDateChange(d)}
                             defaultValue={setDateOneWeek().getTime()}
@@ -256,7 +256,7 @@ const SaleByProductDepositorsReport = () => {
                     </div>
                     <div className="py-1 w-full">
                         <CustomDatepicker
-                            // title="تا تاریخ"
+                            title="تا تاریخ"
                             placeholder="تا تاریخ"
                             onChange={(d: any) => toDateChange(d)}
                             defaultValue={new Date().getTime()}

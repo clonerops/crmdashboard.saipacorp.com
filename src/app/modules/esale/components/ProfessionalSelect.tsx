@@ -56,23 +56,26 @@ const ProfessionalSelect = (props: any) => {
     })
   }
   return (
-    <Select
-      options={props.options}
-      onChange={props.onChange}
-      defaultInputValue={props.defaultInputValue}
-      className='h-full rounded-md text-md'
-      defaultValue={props.defaultValue}
-      value={props.value}
-      placeholder={props.placeholder}
-      styles={customStyles}
-      inputValue={inputValue}
-      name={props.name}
-      autoFocus={props.autoFocus}
-      onKeyDown={handleKeyDown}
-      filterOption={customFilterOption}
-      onInputChange={handleInputChange}
-      isSearchable
-    />
+    <>
+      {/* <label>{props.title}</label> */}
+      <Select
+        options={props.options}
+        onChange={props.onChange}
+        defaultInputValue={props.defaultInputValue}
+        className='h-full rounded-md text-md'
+        defaultValue={props.defaultValue}
+        value={props.value}
+        placeholder={props.placeholder}
+        styles={customStyles}
+        inputValue={inputValue}
+        name={props.name}
+        autoFocus={props.autoFocus}
+        onKeyDown={handleKeyDown}
+        filterOption={customFilterOption}
+        onInputChange={handleInputChange}
+        isSearchable
+      />
+    </>
   )
 }
 

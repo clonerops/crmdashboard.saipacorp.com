@@ -87,6 +87,7 @@ const BilllandingCarsByStatus2 = () => {
                 <div className="flex flex-row gap-4">
                     <div className="py-1 w-full">
                         <CustomDatepicker
+                            title="از تاریخ"
                             placeholder="از تاریخ"
                             onChange={(d: any) => fromDateChange(d)}
                             defaultValue={new Date().getTime()}
@@ -94,6 +95,7 @@ const BilllandingCarsByStatus2 = () => {
                     </div>
                     <div className="py-1 w-full">
                         <CustomDatepicker
+                            title="تا تاریخ"
                             placeholder="تا تاریخ"
                             onChange={(d: any) => toDateChange(d)}
                             defaultValue={new Date().getTime()}

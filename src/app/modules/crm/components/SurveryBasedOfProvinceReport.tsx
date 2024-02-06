@@ -98,6 +98,7 @@ const SurveryBasedOfProvinceReport = () => {
                 <div className="flex flex-col md:flex-row gap-4">
                     <div className="py-1 w-full">
                         <CustomDatepicker
+                            title="از تاریخ"
                             placeholder="از تاریخ"
                             onChange={(d: any) => fromDateChange(d)}
                             defaultValue={setDateOneMonth().getTime()}
@@ -105,12 +106,13 @@ const SurveryBasedOfProvinceReport = () => {
                     </div>
                     <div className="py-1 w-full">
                         <CustomDatepicker
+                            title="تا تاریخ"
                             placeholder="تا تاریخ"
                             onChange={(d: any) => toDateChange(d)}
                             defaultValue={new Date().getTime()}
                         />
                     </div>
-                    <div className="py-1 w-full">
+                    <div className="py-1 w-full mt-6">
                         <ProfessionalSelect
                             options={carGroupList}
                             onChange={onChangeCar}
@@ -118,7 +120,7 @@ const SurveryBasedOfProvinceReport = () => {
                             placeholder=""
                         />
                     </div>
-                    <div className="py-1 w-full">
+                    <div className="py-1 w-full mt-6">
                         <ProfessionalSelect
                             options={dropdownProvinces(provinces)}
                             onChange={provinceOnChange}

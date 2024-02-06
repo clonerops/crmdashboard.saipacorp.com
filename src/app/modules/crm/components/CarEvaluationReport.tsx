@@ -74,8 +74,10 @@ const CarEvaluationReport = () => {
                 <div className="flex flex-col">
                     <div className="flex justify-between items-center flex-col md:flex-row gap-4">
                         <div className="py-1 w-full md:w-[50%]">
+                            
                             <ProfessionalSelect
                                 options={carGroupList}
+                                title=""
                                 onChange={onChangeCar}
                                 value={carSelect}
                                 placeholder=""
