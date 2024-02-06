@@ -161,15 +161,25 @@ const Login = () => {
                         </div>
                         <div className="flex justify-center items-center">
                             <label className="text-white font-yekan_bold text-2xl my-8">
-                                داشبورد اختصاصی مدیریت امور مشتریان
+                                داشبورد اختصاصی مدیریت مشتریان
                             </label>
                         </div>
-                        <div>
+                        <div className="relative flex justify-center items-center">
+                            <img
+                                src={`${toAbsoluteUrl(
+                                    "/media/logos/shahin.png"
+                                )}`}
+                                alt="background"
+                                className="z-10"
+                            />
                             <img
                                 src={`${toAbsoluteUrl(
                                     "/media/logos/demo_7403_none-2.png"
                                 )}`}
                                 alt="background"
+                                // width={340}
+                                className="absolute top-0 right-0 left-0 bottom-0"
+                                // height={340}
                             />
                         </div>
                     </div>
