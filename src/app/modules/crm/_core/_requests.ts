@@ -1,6 +1,6 @@
 import { dashboardHttp, http } from "../../../../_cloner/helpers/axiosConfig";
 import { generateURLQueryParam } from "../../../../_cloner/helpers/queryStringUrl";
-import { ComplaintOrRequestSendData, ICarEvaluation, ISurvery, ITopx, ITopxFilter } from "./_models";
+import { ComplaintOrRequestSendData, ICarEvaluation, IDate, ISurvery, ITopx, ITopxFilter } from "./_models";
 
 // Tables Details
 const getComplantOrRequestReport = async (
@@ -81,6 +81,19 @@ const getTopxReportBaesdOfFilter = async (formData: ITopxFilter) => {
     return data;
 };
 
+const downloadChanganSurveyDetailsInfoDashboardRepExcel = async (formData: IDate) => {
+    const {data} = await dashboardHttp.get('CrmTBSReport/ChanganSurveyDetailsInfoDashboardRep', {
+      responseType: 'arraybuffer',
+      headers: {
+        'Content-Type': 'blob',
+        fromdate: formData.fromdate,
+        toDate: formData.toDate,
+      },
+    })
+    return data
+  }
+  
+
 export {
     getComplantOrRequestReport,
     getComplantOrRequestStatusReport,
@@ -90,5 +103,6 @@ export {
     getSurveryReport,
     getCarTypes,
     getTopxReport,
-    getTopxReportBaesdOfFilter
+    getTopxReportBaesdOfFilter,
+    downloadChanganSurveyDetailsInfoDashboardRepExcel
 };

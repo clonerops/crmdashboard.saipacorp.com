@@ -41,3 +41,7 @@ export interface ICarType {
   typeID: number
   typeName: string
 }
+export interface IDate {
+  fromdate: string;
+  toDate: string;
+}

@@ -21,3 +21,4 @@ export interface SaleByProductInvoicedReportRequest extends SaleReportRequest {
 }
 export interface SaleByProductInvoicedReportDetailRequest
     extends SaleByProductInvoicedReportRequest {}
+

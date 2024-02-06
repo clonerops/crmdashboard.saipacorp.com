@@ -12,7 +12,7 @@ export const dropdownDealers = (data: any) => {
 export const dropdownProvinces = (data: any) => {
     return (
         data &&
-        data?.map((obj: { prvN_NO: any; prvN_NAME: any }): any => {
+        data?.filter((item: {prvN_NO: number}) => item.prvN_NO !== 0).map((obj: { prvN_NO: any; prvN_NAME: any }): any => {
             const { prvN_NO, prvN_NAME } = obj;
             return { value: prvN_NO, label: prvN_NAME };
         })

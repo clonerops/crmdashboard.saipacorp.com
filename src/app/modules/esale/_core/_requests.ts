@@ -206,6 +206,7 @@ const downloadSamtDepartemantReportExcel = async (formData: SaleByProductInvoice
 
 
 
+
 export {
   getSaleTotalTypes,
   getSaleTotalTypeDetails,

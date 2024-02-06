@@ -9,6 +9,9 @@ import { setDateOneMonth } from "../../../../_cloner/helpers/reusableFunction";
 import { useGetProvinces } from "../../dealer/core/_hooks";
 import { dropdownProvinces } from "../../dealer/helpers/dropdownDealers";
 import { VerticalCharts3D } from "../../../../_cloner/partials/charts/VerticalCharts3D";
+import { downloadSamtDepartemantReportExcel } from "../../esale/_core/_requests";
+import { downloadChanganSurveyDetailsInfoDashboardRepExcel } from "../_core/_requests";
+import { DownloadExcelFile } from "../../esale/components/DownloadExcel";
 
 const carGroupList= [
     {value: 71, label: "شاهین اتومات"},
@@ -19,6 +22,7 @@ const SurveryBasedOfProvinceReport = () => {
     const [carSelect, setCarSelect] = useState<any>({value: 71, label: "شاهین اتومات"});
     const [fromDate, setFromDate] = useState(setDateOneMonth().getTime());
     const [toDate, setToDate] = useState("");
+    const [excelLoading, setExcelLoading] = useState(false);
     const [provinceSelect, setProvinceSelect] = useState<any>({
         value: 1,
         label: "تهران",
@@ -43,6 +47,7 @@ const SurveryBasedOfProvinceReport = () => {
             ),
             toDate: moment(Date.now()).format("jYYYY/jMM/jDD"),
             carGroupID: 71,
+            provinceId: 1
         };
         mutate(formData);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,7 +58,8 @@ const SurveryBasedOfProvinceReport = () => {
         const formData = {
             fromDate: moment(d.value).format("jYYYY/jMM/jDD"),
             toDate: toDate ? calculateToDate : calculateNowDate,
-            carGroupID: carSelect?.value
+            carGroupID: carSelect?.value,
+            provinceId: provinceSelect?.value
         };
         mutate(formData);
     };
@@ -62,7 +68,8 @@ const SurveryBasedOfProvinceReport = () => {
         const formData = {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: moment(d.value).format("jYYYY/jMM/jDD"),
-            carGroupID: carSelect?.value
+            carGroupID: carSelect?.value,
+            provinceId: provinceSelect?.value
         };
         mutate(formData);
     };
@@ -73,6 +80,7 @@ const SurveryBasedOfProvinceReport = () => {
             fromDate: fromDate ? calculateFromDate : calculateNowDate,
             toDate: toDate ? calculateToDate : calculateNowDate,
             carGroupID: selectOption?.value,
+            provinceId: provinceSelect?.value
         };
         mutate(formData);
     };
@@ -86,6 +94,24 @@ const SurveryBasedOfProvinceReport = () => {
             provinceId: selectedOption?.value
         };
         mutate(formData);
+    };
+
+    const handleDownloadExcel = async () => {
+        setExcelLoading(true);
+        const formData = {
+            fromdate: fromDate ? calculateFromDate : calculateNowDate,
+            toDate: toDate ? calculateToDate : calculateNowDate,
+        };
+
+        try {
+            const response = await downloadChanganSurveyDetailsInfoDashboardRepExcel(formData);
+            const outputFilename = `changanSurvery${Date.now()}.csv`;
+            DownloadExcelFile(response, outputFilename);
+            setExcelLoading(false);
+        } catch (error) {
+            console.log(error);
+            setExcelLoading(false);
+        }
     };
 
 
@@ -131,6 +157,17 @@ const SurveryBasedOfProvinceReport = () => {
                             }}
                             placeholder=""
                         />
+                        </div>
+                        <div className="py-1 w-full mt-6">
+                            <button
+                                 onClick={handleDownloadExcel}
+                                 className="text-white rounded-lg bg-green-500 px-8 py-2"
+                                >
+                                {excelLoading
+                                 ? "در حال دانلود..."
+                                 : "'گزارش ارزیابی'"}
+                            </button>
+
                         </div>
 
                 </div>
