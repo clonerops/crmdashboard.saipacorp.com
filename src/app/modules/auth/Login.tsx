@@ -75,11 +75,12 @@ const Login = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "left top ",
+          rotate: "180deg",
         }}
       >
         <div
           className={
-            "md:w-[70%] xl:w-[50%] mr-auto h-full flex items-center justify-center"
+            "md:w-[70%] xl:w-[50%] mr-auto h-full flex items-center justify-center [rotate:180deg]"
           }
         >
           <form
