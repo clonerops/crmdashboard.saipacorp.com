@@ -275,19 +275,15 @@ const SaleByProductDepositorsReport = () => {
                         <label className="flex items-center justify-center">
                             تعداد کل:{" "}
                             <span className="font-yekan_extrabold text-xl text-indigo-700 px-4">
-                                {calculateTotalCount}
+                                {saleProductDepositors?.length > 0 ? saleProductDepositors[saleProductDepositors?.length - 1].count : 0}
                             </span>
                         </label>
                     </div>
                 </div>
                 <div>
                     <VerticalCharts3D
-                        data={saleProductDepositors?.map(
-                            (item: any) => item.count
-                        )}
-                        categories={saleProductDepositors?.map(
-                            (item: any) => item.carType
-                        )}
+                        data={saleProductDepositors?.slice(0, -1)?.map((item: any) => item.count)}
+                        categories={saleProductDepositors?.slice(0, -1).map((item: any) => item.carType)}
                         isLoading={isLoading}
                         isError={isError}
                         text=""
